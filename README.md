@@ -1,4 +1,12 @@
-## Pivotal Cloud Foundry Partners Template
+The name of this product is:
+
++ _Altoros Heartbeat for PCF_ (if Pivotal Cloud Foundry has been spelled out above in body text)
++ _Altoros Heartbeat for Pivotal Cloud Foundry_  (first use of Pivotal Cloud Foundry in body text on a page)
+
+The doc will be found at https://docs.pivotal.io/partners/altoros-heartbeat/index.html
+
+
+## How to Use the Pivotal Cloud Foundry Partners Template
 
 This template helps partners prepare documentation for Pivotal Cloud Foundry (PCF) partner services that appear on [Pivotal Network](https://network.pivotal.io/). 
 
