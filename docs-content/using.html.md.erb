@@ -1,15 +1,134 @@
 ---
-title: Using YOUR-PRODUCT-NAME
+title: Using Altoros Heartbeat for PCF
 owner: Partners
 ---
 
-This topic describes how to use YOUR-PRODUCT-NAME.
+This topic describes how to use Altoros Heartbeat for PCF.
 
-##<a id='using'></a> Using YOUR-PRODUCT-NAME
+##<a id='create'></a> Creating a Service Instance (Heartbeat for Developers)
 
-**This topic should include any instructions for how to use the service or dashboard created by the tile. 
-Give procedures for how to perform the different functions offered by your product and provide screenshots where necessary.** 
+To start using Heartbeat, a developer needs to create an Altoros Heartbeat service instance inside their org/space. After this, they will be able to navigate to a URL in a browser to access Altoros Heartbeat’s Grafana dashboard and log in using their PCF login and password. After login, the developer gets access to Developer View.
 
-**You can also use this section to include information about Architecture and Troubleshooting for known errors. 
-If you include a Troubleshooting section, follow the Symptom/Explanation format used in the 
-[Okta Troubleshooting](http://docs.pivotal.io/p-identity/okta/troubleshooting.html) topic**.
+<p class="note"><strong>Note</strong>: Do not create service instances inside the org/space that grant users admin access rights to Altoros Heartbeat (these org/space are provided at the Grafana configuration step of the Altoros Heartbeat for PCF installation process).</p>
+
+To create an Altoros Heartbeat service instance:
+
+1. Navigate to cf-marketplace:
+
+      <pre class="terminal">cf marketplace
+        Getting services from marketplace in org admin / space demo as admin...
+    OK
+    service              plans                               description
+    app-autoscaler       standard                            Scales bound applications in response to load (beta)
+    heartbeat            standard                            Heartbeat Monitoring Solution</pre>
+
+1. Find Heartbeat in the list of the available services and select the service plan (currently, only the standard service plan is available—it will be selected by default).
+ 
+1. Create a service instance.
+
+      <pre class="terminal">cf create-service heartbeat standard heartbeat</pre>
+
+##<a id='access'></a>Accessing Altoros Heartbeat’s Dashboard
+
+To access Altoros Heartbeat’s dashboard, perform the following steps:
+
+1. Navigate to the **Ops Manager Installation Dashboard** and click the **Pivotal Elastic Runtime** tile.
+
+1. From the **Settings** tab, click **Domain**.
+
+1. Record the value for **Apps Domain**.
+
+      <%= image_tag("images/monitoring-url.png") %>
+
+1. Navigate to `https://monitoring.YOUR-APPS-DOMAIN.com`.
+
+1. Log in to **Altoros Heartbeat** using your **Pivotal Elastin Runtime** credentials.  
+
+      <%= image_tag("images/using-pcf-authorization.png") %>
+
+1. A prompt requesting permission to access Altoros Heartbeat appears.
+
+      <%= image_tag("images/using-prompt.png") %>
+
+1. Click **Authorize**.
+
+##<a id='configure'></a>Configuring Altoros Heartbeat’s Dashboard
+
+Altoros Heartbeat’s dashboard is based on open source Grafana software. For information about creating and editing Grafana graphs and panels, see [Grafana documentation](http://docs.grafana.org/guides/getting_started/).
+
+##<a id='viewing'></a>Viewing Metrics from PCF 
+
+Altoros Heartbeat offers the following PCF deployment monitoring views: Admin view and User view. 
+
+###Admin View
+
+A view from the admin org/space. 
+
+<%= image_tag("images/admin.png") %>
+
+The dashboards accessible from the Admin view are:
+
+**Overview** dashboards:
+
+* The **Pivotal BOSH Overview dashboard** contains panels with BOSH health metrics, such as sum CPU and memory/swap usage, and VM’s availability.
+
+* The **Pivotal Cloud Foundry Overview** dashboard contain panels with metrics on the state of long-running processes, container count and capacity of remaining containers, % of running VMs, average CPU usage on cells, overall memory usage on cells, overall swap usage on cells, load average on cells, all TCP connections of routers, and all apps’ CPU, memory and disc usage.
+
+**Apps dashboards** cover app CPU and memory metrics, metrics on CPU usage and memory usage on Diego cell, disc usage, and HTTP requests/error/status code rates and response time.
+
+**BOSH** dashboards:
+
+* The Pivotal BOSH Overview dashboard contains panels with BOSH health metrics, such as sum CPU and memory/swap usage, and VM’s availability.
+
+* The Pivotal BOSH VMs dashboard contains panels with metrics of any VM managed by BOSH, including CPU usage, LA 1 min, memory/swap usage, health, health timeline, health status, system disc usage, persistent disc usage, and ephemeral disc usage.
+
+**Cf component** dashboards provide full overview of PCF API Stats, installation capacity, and component-specific metrics from Consul, Diego, Etcd, Router, and UAA.
+
+**Cf service** dashboards contain panels with service-specific metrics for MySQL, PostgreSQL, Redis, and RabbitMQ.
+
+<p class="note"><strong>Note</strong>: To track metrics from the dingo-postgresql deployment on the Service - Postgresql Overview dashboard, choose router from the Host drop-down menu.</p>    
+
+<%= image_tag("images/dingo-postgres.png") %>
+
+**Alerting dashboards** include panes for BOSH HM alerts and Diego alerts.
+
+<p class="note"><strong>Note</strong>: To enable alerts after installing “Altoros Heartbeat for PCF Tile”, open these dashboards and click the save icon:</p>
+
+<%= image_tag("images/diego-alerts.png") %>
+
+###Developer View
+
+A sample view from a developer org/space.
+
+<%= image_tag("images/using-developer-dashboard.png") %>
+
+The dashboards accessible from the Developer view are:
+
+* The **PCF Apps Metrics for Devs dashboard** includes panes with metrics on CPU, memory, HTTP requests/error/status code rates, HTTP response types and disk usage.
+
+* The **JMX Metrics for Java Apps dashboard** includes panes with metrics on system swap usage, system CPU LA, JVM HEAP and non-HEAP memory usage, system memory usage, JVM loaded classes, thread, GC count and GC crime.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
