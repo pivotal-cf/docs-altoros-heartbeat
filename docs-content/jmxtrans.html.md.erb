@@ -1,0 +1,77 @@
+---
+title: JMXTrans Agent Integration
+owner: Partners
+---
+
+##<a id='about'></a> About JMXTrans agent integration
+
+This topic is intended for application developers who are going to use the Heartbeat service to collect JMX metrics from their Java apps.
+
+A custom Java buildpack is required to integrate the JMXTrans agent into a Java app for JMX monitoring. JMXTrans agent integration enables the app to send performance metrics to the StatsD server. These metrics are subsequently pushed to Graphite’s Carbon component for caching and persistence. 
+
+##<a id='compile'></a> Downloading and compiling a Java app
+
+1. From the command line, navigate to the application directory. Below, a sample spring-petclinic app (cloned form https://github.com/spring-projects/spring-petclinic) is used.
+
+      <pre class="terminal">cd spring-petclinic/</pre>
+
+1. Compile the app:
+
+      <pre class="terminal">./mvnw package</pre>
+
+##<a id='appmanifest'></a> Creating an application manifest
+
+1. Create an application manifest based on this example:
+
+      ```
+      applications:
+       - name: spring-petclinic
+         memory: 1G
+         random-route: true
+         path: target/spring-petclinic-1.5.1.jar
+         buildpack: https://github.com/Altoros/java-buildpack#jmx-agent-integration
+      ```
+
+1. Add the manifest to your project: 
+
+      <pre class="terminal">cd spring-petclinic
+    vim manifest.yml</pre>
+
+<p class="note"><strong>Note</strong>: Altoros modified the buildpack to attach and configure the JMXTrans agent. Use only the provided [GitHub link](https://github.com/Altoros/java-buildpack#jmx-agent-integration) to access the current version of the buildpack.</p>
+
+##<a id='pushapp'></a> Pushing the app
+
+1. Navigate to the application directory.
+
+      <pre class="terminal">cd spring-petclinic</pre>
+
+1. Push the app. 
+
+      <pre class="terminal">cf push</pre>
+
+##<a id='binding'></a> Binding a Service Instance to the App
+
+<p class="note"><strong>Note</strong>: Do not create service instances inside the administrator's org/space that you provided at the installation step.</p>
+
+1. Navigate to cf marketplace.
+
+      <pre class="terminal">cf marketplace
+        Getting services from marketplace in org admin / space demo as admin...
+    OK
+    service              plans          description
+    app-autoscaler       standard       Scales bound applications in response to load (beta)
+    heartbeat            standard       Heartbeat Monitoring Solution</pre>
+
+1. Find Heartbeat in the list of the available services and select the service plan (currently, only the standard service plan is available—it will be selected by default).
+
+1. Create a service instance.
+
+      <pre class="terminal">cf create-service heartbeat standard heartbeat</pre>
+
+1. Bind the service to your app.
+
+      <pre class="terminal">cf bind-service spring-petclinic heartbeat</pre>
+
+1. Restage the app to start the metrics flow.
+
+      <pre class="terminal">cf restage spring-petclinic</pre>

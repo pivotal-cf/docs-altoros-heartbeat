@@ -1,27 +1,26 @@
 ---
-title: Release Notes for YOUR-PRODUCT-NAME
+title: Release Notes for Altoros Heartbeat for PCF
 owner: Partners
 ---
 
-**This topic should include the Release Notes for your product. For examples, see the 
-[GCP Service Broker Release Notes](http://docs.pivotal.io/gcp-sb/release-notes.html) or the 
-[ISS Knowtify Search Analytics Release Notes](http://docs.pivotal.io/knowtify/release.html).
-When you release a new version, add new release notes to this file, keeping the older notes below.**
+These are release notes for Altoros Heartbeat for PCF.
 
-These are release notes for YOUR-PRODUCT-NAME.
+##<a id="ver"></a> v0.8.90
 
-##<a id="ver"></a> vCURRENT-VERSION-NUMBER (Ex. v1.0.1)
-
-**Release Date:** RELEASE-DATE (Ex. August 1, 2016)
+**Release Date:** July 20, 2017
 
 Features included in this release:
 
-* Feature one.
-* Feature two.
-* Feature three.
+* Open Beta.
+* Pivotal Cloud Foundry monitoring with predefined dashboards.
+* UAA integration.
+* The possibility to use the service in a multitenant mode.
+* Services monitoring (RabbitMQ, Redis, MySQL, Crunchy PostgreSQL, Dingo PostgreSQL) with predefined dashboards.
+* Basic apps monitoring with predefined dashboards.
+* JMXTrans integration.
 
 Known issues in this release:
 
-* Issue one.
-* Issue two.
-* Issue three.
+* Creation of service instances inside the org/space that grant users admin access to Altoros Heartbeat (the org/space specified at the Grafana configuration step during the installation process) is not supported.  
+* After renaming the org/space with the Altoros Heartbeat service instance, monitoring of this org/space is terminated. Please contact Altoros for instructions on how to fix issue manually.
+* Alerts are not enabled automatically after installation of the Altoros Heartbeat for PCF tile. To enable alerts, open the **alerting** dashboard and click the save icon.
