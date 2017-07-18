@@ -34,16 +34,16 @@ This adds the tile to your staging area.
 
 1. Specify the external server for uploading Grafana images so that they can be attached to Slack/email alert notifications:
 
-    a. If you are using [AWS S3](https://aws.amazon.com/s3/) , enable the **S3** checkbox 
-       and provide your **Amazon S3 Bucket URL, Amazon API Access Key ID, and Amazon API Secret Key.
+    1. If you are using [AWS S3](https://aws.amazon.com/s3/) , enable the **S3** checkbox 
+       and provide your Amazon S3 Bucket URL, Amazon API Access Key ID, and Amazon API Secret Key.
 
-    <%= image_tag("images/alert.png") %>
+         <%= image_tag("images/alert.png") %>
 
-    b. If you are using WebDAV, enable the **webdav** checkbox and provide your WebDAV URL,
+    1. If you are using WebDAV, enable the **webdav** checkbox and provide your WebDAV URL,
        username and password for WebDAV (basic auth), and (optional) the URL to send to users
        in notifications. The URL is appended to the resulting name of the uploaded file.
 
-    <%= image_tag("images/alert-webdav.png") %>
+         <%= image_tag("images/alert-webdav.png") %>
 
 1. To define email server settings, select the **SMTP** checkbox and complete the following fields:
 
@@ -65,19 +65,19 @@ This adds the tile to your staging area.
 
 1. To complete the **Credentials** for the **OpsManager Director** fields, provide username and password for the **OpsManager Director**:
 
-    a. Navigate to the **Ops Manager Installation Dashboard** and click the **Ops Manager Director** tile. 
+    1. Navigate to the **Ops Manager Installation Dashboard** and click the **Ops Manager Director** tile. 
 
-    b. In the **Credentials** tab, click **Link to Credentials** next to **Director Credentials**.
+    1. In the **Credentials** tab, click **Link to Credentials** next to **Director Credentials**.
 
-    <%= image_tag("images/graphite-nozzle-1.png") %>
+         <%= image_tag("images/graphite-nozzle-1.png") %>
 
-    c. Copy the identity and password values from the JSON file that opens.
+    1. Copy the identity and password values from the JSON file that opens.
 
-    <pre class="terminal">
+         <pre class="terminal">
     {"credential":{"type":"simple_credentials","value":{"identity":"director","password":"XYXYXYXYXYXYXYXYXXY"}}} 
     </pre>
 
-    d. Paste the retrieved username and password into the **Credentials** for the **OpsManager Director** fields.
+    1. Paste the retrieved username and password into the **Credentials** for the **OpsManager Director** fields.
 
 1. If you are using several apps domains in PCF, provide a comma-separated list of additional (other than the apps domain indicated in the Pivotal Elastic Runtime, which needs not to be provided) domains to filter **HttpStartStop** metrics out. If your system domain is different from the apps domain, mention it as well. 
 
@@ -91,26 +91,24 @@ This adds the tile to your staging area.
 
 1. Provide the following information:
 
-    a. The organization and space within PCF granting users admin access rights to Altoros Heartbeat.
-
-    <p class="note"><strong>Note</strong>: In Altoros Heartbeat, the following users have access to the Admin View:</p>
-    * Administrator accounts within PCF
-    * User accounts within PCF are assigned to the above specified org and space
-
-    <p class="note"><strong>Note</strong>: Cloud Foundry user rights map to Grafana rights in the following way:</p>
-
-
-    <table>
-    <th>PCF space</th><th>Grafana organisation</th>
-    <tr><td>Space Manager</td><td>Admin</td></tr>
-    <tr><td>Space Developer</td><td>Editor</td></tr>
-    <tr><td>Space Auditor</td><td>Viewer</td></tr>
-    </table>
+    1. The organization and space within PCF granting users admin access rights to Altoros Heartbeat.<br><br>
+       In Altoros Heartbeat, the following users have access to the Admin View:
+           <ul>
+             <li>Administrator accounts within PCF</li>
+             <li>User accounts within PCF are assigned to the above specified org and space</li>
+           </ul>
+       Cloud Foundry user rights map to Grafana rights in the following way:
+           <table>
+         <th>PCF space</th><th>Grafana organisation</th>
+         <tr><td>Space Manager</td><td>Admin</td></tr>
+         <tr><td>Space Developer</td><td>Editor</td></tr>
+         <tr><td>Space Auditor</td><td>Viewer</td></tr>
+         </table><br><br>
 
 
-    b. The email domain to be appended to the user's login if the latter does not represent a real email address.
+    1. The email domain to be appended to the user's login if the latter does not represent a real email address.
 
-    <%= image_tag("images/grafana.png") %>
+         <%= image_tag("images/grafana.png") %>
 
 1. Click **Save**
 
@@ -133,16 +131,17 @@ This adds the tile to your staging area.
 
 1. Complete the following fields:
 
-    a. **Load Balancer Unhealthy Threshold (Shutdown Delay)**: If you are using a load balancer above the proxies,          enter your load balancers unhealthy total threshold time here in seconds.
+    1. **Load Balancer Unhealthy Threshold (Shutdown Delay)**: If you are using a load balancer above the proxies,
+       enter your load balancers unhealthy total threshold time here in seconds.
        For example, if your load balancer polls every 30 seconds, and immediately fails over upon failure,
        set this property to 30 seconds.
 
-    b. **Load Balancer Healthy Threshold (Start Delay)**: If you are using a load balancer above the proxies,
+    1. **Load Balancer Healthy Threshold (Start Delay)**: If you are using a load balancer above the proxies,
        enter your load balancers healthy total threshold time here in seconds.
        For example,` if your load balancer polls every 30 seconds and requires three successful attempts,
        set this property to 90 seconds.
 
-    c. **Consul Service Name**: If `consul_enabled` is true, switchboard registers with consul using this name.
+    1. **Consul Service Name**: If `consul_enabled` is true, switchboard registers with consul using this name.
 
     <%= image_tag("images/mysql-proxy.png") %>
 
@@ -152,13 +151,17 @@ This adds the tile to your staging area.
 
 1. In the **Settings** tab, click **MySQL Server Configuration**.
 
-1. In case you are controlling access to the database from outside of PCF and the access is limited by a hostname, uncheck the **Disable reverse DNS lookups checkbox**.
+1. In case you are controlling access to the database from outside of PCF and the access is limited by a hostname,
+   clear the **Disable reverse DNS lookups checkbox**.
 
 1. Complete the following fields:
 
-    **Read-Only User Password**: The password to automatically provision a `roadmin` user with the right to read all databases in the system, but permission to write to none. Leave blank to disable the read-only user.
+   1. **Read-Only User Password**: The password to automatically provision a `roadmin` user
+      with the right to read all databases in the system, but permission to write to none.
+      Leave blank to disable the read-only user.
 
-    **MySQL Start Timeout**: The minimum amount of time necessary for the MySQL process to start, in seconds. For advanced configuration, read the MySQL documentation before modifying.
+   1. **MySQL Start Timeout**: The minimum amount of time necessary for the MySQL process to start, in seconds.
+      For advanced configuration, read the MySQL documentation before modifying.
 
     <%= image_tag("images/mysql-server.png") %>
 

@@ -13,7 +13,7 @@ These metrics are subsequently pushed to Graphite’s Carbon component for cachi
 
 1. Download a language-specific StatsD client library from [this Github page](https://github.com/etsy/statsd/wiki#client-implementations) and add it into your app code.
 
-1. Follow steps 1-5 from [Binding a Service Instance to the App](./jmxtrans.html#binding) to bind the Heartbeat service to your app.
+1. Follow steps 1–5 from [Binding a Service Instance to the App](./jmxtrans.html#binding) to bind the Heartbeat service to your app.
 
 1. Parse environment variables in the code to get a StatsD endpoint.
    To do this:
@@ -37,13 +37,13 @@ These metrics are subsequently pushed to Graphite’s Carbon component for cachi
         "name": "heartbeat"
       ```
 
-1. Prepare a metrics prefix in the following format `statsd_prefix` + `app_name` + `.` + `app_index`:
+1. Prepare a metrics prefix in the following format `statsd_prefix` + `app_name` + `.` + `app_index`, where:
 
-      `statsd_prefix`: statsd_prefix is described in the previous step
+      `statsd_prefix`: statsd_prefix is described in the previous step.
 
-      `app_name`: for information about the app’s name, see [this documentation](http://docs.cloudfoundry.org/devguide/deploy-apps/environment-variable.html#VCAP-APPLICATION).
+      `app_name`: For information about the app’s name, see [this documentation](http://docs.cloudfoundry.org/devguide/deploy-apps/environment-variable.html#VCAP-APPLICATION).
 
-      `app_index`: for information about the app’s index, see [this documentation](http://docs.cloudfoundry.org/devguide/deploy-apps/environment-variable.html#CF-INSTANCE-INDEX).
+      `app_index`: For information about the app’s index, see [this documentation](http://docs.cloudfoundry.org/devguide/deploy-apps/environment-variable.html#CF-INSTANCE-INDEX).
 
       For an example, see [this GitHub repository](https://github.com/Altoros/tweets-fetcher/blob/23e1fe7a3c2fbccaca1e0ca1dc09590e8f285c88/main.go#L130).
 

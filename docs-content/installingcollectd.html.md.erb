@@ -133,11 +133,12 @@ Follow the steps below to create a collectd manifest for your deployment:
     Process 'collectd' running</pre>
 
 1. If `monit summary` does not list `collectd`, perform the following steps:
-      a. Try to start the collectd processes by running the following command:
+
+      1. Try to start the collectd processes by running the following command:
 
       <pre class="terminal">$ monit start collectd</pre>
 
-      b. Run the `monit summary` again. If you do not see the processes mentioned above,
+      1. Run the `monit summary` again. If you do not see the processes mentioned above,
          check `/var/vcap/sys/log/collectd` logs for errors.
 
 ## <a id='uninstall'></a>Uninstalling the collectd Add-on
@@ -151,13 +152,13 @@ roll back to a previous configuration:
 
 1. On the Ops Manager VM, retrieve the latest runtime configuration saved on the BOSH Director. 
 
-      <pre class="terminal">$ bosh runtime-config > PATH_TO_SAVE_THE_RUNTIME_CONFIG</pre>
+      <pre class="terminal">$ bosh runtime-config > PATH-TO-SAVE-THE-RUNTIME-CONFIG</pre>
 
 1. Remove the lines added at the *Downloading and Deploying the collectd add-on* stage. 
 
 1. Update the runtime configuration.
 
-      <pre class="terminal">$bosh update runtime-config PATH_TO_SAVE_THE_RUNTIME_CONFIG</pre>
+      <pre class="terminal">$bosh update runtime-config PATH-TO-SAVE-THE-RUNTIME-CONFIG</pre>
 
 1. Navigate to your Installation Dashboard in Ops Manager.
 

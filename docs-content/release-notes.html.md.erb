@@ -11,16 +11,19 @@ These are release notes for Altoros Heartbeat for Pivotal Cloud Foundry (PCF).
 
 Features included in this release:
 
-* Open Beta.
-* Pivotal Cloud Foundry monitoring with predefined dashboards.
-* UAA integration.
-* The possibility to use the service in a multitenant mode.
-* Services monitoring (RabbitMQ, Redis, MySQL, Crunchy PostgreSQL, Dingo PostgreSQL) with predefined dashboards.
-* Basic apps monitoring with predefined dashboards.
-* JMXTrans integration.
+* Open Beta
+* PCF monitoring with predefined dashboards
+* UAA integration
+* The possibility to use the service in a multitenant mode
+* Services monitoring (RabbitMQ, Redis, MySQL, Crunchy PostgreSQL, Dingo PostgreSQL) with predefined dashboards
+* Basic apps monitoring with predefined dashboards
+* JMXTrans integration
 
 Known issues in this release:
 
-* Creation of service instances inside the org/space that grant users admin access to Altoros Heartbeat (the org/space specified at the Grafana configuration step during the installation process) is not supported.  
-* After renaming the org/space with the Altoros Heartbeat service instance, monitoring of this org/space is terminated. Please contact Altoros for instructions on how to fix issue manually.
-* Alerts are not enabled automatically after installation of the Altoros Heartbeat for PCF tile. To enable alerts, open the **alerting** dashboard and click the save icon.
+* Creation of service instances inside the org/space that grant users admin access to Altoros Heartbeat
+  (the org/space specified at the Grafana configuration step during the installation process) is not supported.  
+* After renaming the org/space with the Altoros Heartbeat service instance, monitoring of this org/space is terminated.
+  For instructions on how to fix the issue manually, contact Altoros.
+* Alerts are not enabled automatically after installation of the Altoros Heartbeat for PCF tile.
+  To enable alerts, open the **alerting** dashboard and click the save icon.
