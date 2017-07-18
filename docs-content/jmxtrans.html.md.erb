@@ -3,15 +3,18 @@ title: JMXTrans Agent Integration
 owner: Partners
 ---
 
-##<a id='about'></a> About JMXTrans agent integration
+##<a id='about'></a> About JMXTrans Agent Integration
 
-This topic is intended for application developers who are going to use the Heartbeat service to collect JMX metrics from their Java apps.
+This topic is intended for app developers who are going to use the Heartbeat service to collect JMX metrics from their Java apps.
 
-A custom Java buildpack is required to integrate the JMXTrans agent into a Java app for JMX monitoring. JMXTrans agent integration enables the app to send performance metrics to the StatsD server. These metrics are subsequently pushed to Graphite’s Carbon component for caching and persistence. 
+A custom Java buildpack is required to integrate the JMXTrans agent into a Java app for JMX monitoring.
+JMXTrans agent integration enables the app to send performance metrics to the StatsD server.
+These metrics are subsequently pushed to Graphite’s Carbon component for caching and persistence. 
 
-##<a id='compile'></a> Downloading and compiling a Java app
+##<a id='compile'></a> Downloading and Compiling a Java App
 
-1. From the command line, navigate to the application directory. Below, a sample spring-petclinic app (cloned form https://github.com/spring-projects/spring-petclinic) is used.
+1. From the command line, navigate to the app directory.
+   Below, a sample spring-petclinic app (cloned form https://github.com/spring-projects/spring-petclinic) is used.
 
       <pre class="terminal">cd spring-petclinic/</pre>
 
@@ -19,7 +22,7 @@ A custom Java buildpack is required to integrate the JMXTrans agent into a Java 
 
       <pre class="terminal">./mvnw package</pre>
 
-##<a id='appmanifest'></a> Creating an application manifest
+##<a id='appmanifest'></a> Creating an Application Manifest
 
 1. Create an application manifest based on this example:
 
@@ -37,11 +40,13 @@ A custom Java buildpack is required to integrate the JMXTrans agent into a Java 
       <pre class="terminal">cd spring-petclinic
     vim manifest.yml</pre>
 
-<p class="note"><strong>Note</strong>: Altoros modified the buildpack to attach and configure the JMXTrans agent. Use only the provided [GitHub link](https://github.com/Altoros/java-buildpack#jmx-agent-integration) to access the current version of the buildpack.</p>
+<p class="note"><strong>Note</strong>: Altoros modified the buildpack to attach and configure the JMXTrans agent.
+   Use only the provided <a href="https://github.com/Altoros/java-buildpack#jmx-agent-integration">Altoros/java-buildpack</a>
+    link to access the current version of the buildpack.</p>
 
-##<a id='pushapp'></a> Pushing the app
+##<a id='pushapp'></a> Pushing the App
 
-1. Navigate to the application directory.
+1. Navigate to the app directory.
 
       <pre class="terminal">cd spring-petclinic</pre>
 

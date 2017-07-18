@@ -3,11 +3,11 @@ title: Installing and Configuring Altoros Heartbeat for PCF
 owner: Partners
 ---
 
-This topic describes how to install and configure Altoros Heartbeat for PCF.
+This topic describes how to install and configure Altoros Heartbeat for Pivotal Cloud Foundry (PCF).
 
 ##<a id='install'></a> Install and Configure Altoros Heartbeat for PCF
 
-1. Download the product file from Pivotal Network.
+1. Download the product file from [Pivotal Network](https://network.pivotal.io/).
 
 1. Navigate to the Ops Manager Installation Dashboard and click **Import a Product** to upload the product file. 
 
@@ -26,7 +26,7 @@ This adds the tile to your staging area.
 
     <%= image_tag("images/az.png") %>
 
-1. Click **Save**
+1. Click **Save**.
 
 ##<a id='alerts'></a> Configure Alerts
 
@@ -34,15 +34,18 @@ This adds the tile to your staging area.
 
 1. Specify the external server for uploading Grafana images so that they can be attached to Slack/email alert notifications:
 
-    a. If you are using [AWS S3](https://aws.amazon.com/s3/) , enable the S3 checkbox and provide your Amazon S3 Bucket URL, Amazon API Access Key ID, and Amazon API Secret Key.
+    a. If you are using [AWS S3](https://aws.amazon.com/s3/) , enable the **S3** checkbox 
+       and provide your **Amazon S3 Bucket URL, Amazon API Access Key ID, and Amazon API Secret Key.
 
     <%= image_tag("images/alert.png") %>
 
-    b. If you are using WebDAV, enable the webdav checkbox and provide your WebDAV URL, username and password for WebDAV (basic auth), and (optional) the URL to send to users in notifications (it will be appended to the resulting name of the uploaded file).
+    b. If you are using WebDAV, enable the **webdav** checkbox and provide your WebDAV URL,
+       username and password for WebDAV (basic auth), and (optional) the URL to send to users
+       in notifications. The URL is appended to the resulting name of the uploaded file.
 
     <%= image_tag("images/alert-webdav.png") %>
 
-1. To define email server settings, select the SMTP checkbox and complete the following fields:
+1. To define email server settings, select the **SMTP** checkbox and complete the following fields:
 
     **Host**: the hostname of the outgoing SMTP server
 
@@ -68,7 +71,7 @@ This adds the tile to your staging area.
 
     <%= image_tag("images/graphite-nozzle-1.png") %>
 
-    c. Copy the identity and password values from the .json file that opens.
+    c. Copy the identity and password values from the JSON file that opens.
 
     <pre class="terminal">
     {"credential":{"type":"simple_credentials","value":{"identity":"director","password":"XYXYXYXYXYXYXYXYXXY"}}} 
@@ -88,11 +91,11 @@ This adds the tile to your staging area.
 
 1. Provide the following information:
 
-    a. The organization and space within Pivotal Cloud Foundry granting users admin access rights to Altoros Heartbeat.
+    a. The organization and space within PCF granting users admin access rights to Altoros Heartbeat.
 
-    <p class="note"><strong>Note</strong>: In Heartbeat, the following users have access to the Admin View:</p>
-    * Administrator accounts within Pivotal Cloud Foundry
-    * User accounts within Pivotal Cloud Foundry are assigned to the above specified org and space
+    <p class="note"><strong>Note</strong>: In Altoros Heartbeat, the following users have access to the Admin View:</p>
+    * Administrator accounts within PCF
+    * User accounts within PCF are assigned to the above specified org and space
 
     <p class="note"><strong>Note</strong>: Cloud Foundry user rights map to Grafana rights in the following way:</p>
 
@@ -117,7 +120,8 @@ This adds the tile to your staging area.
 
 1. Specify the default port BOSH HM Forwarder will use to forward the metrics collected from BOSH Agents.
 
-    *IMPORTANT* If you are using PCF v1.10 or later, uncheck the **use non-secure communication** for metrics checkbox.
+    <p class="note"><strong>IMPORTANT</strong>: If you are using PCF v1.10 or later,
+       uncheck the <storong>use non-secure communication</strong> for metrics checkbox.</p>
 
     <%= image_tag("images/bosh-hm-forwarder.png") %>
 
@@ -129,11 +133,16 @@ This adds the tile to your staging area.
 
 1. Complete the following fields:
 
-    a. **Load Balancer Unhealthy Threshold (Shutdown Delay)**: If you are using a load balancer above the proxies, enter your load balancers unhealthy total threshold time here in seconds. E.g., if your load balancer polls every 30 seconds, and immediately fails over upon failure, set this property to 30 seconds.
+    a. **Load Balancer Unhealthy Threshold (Shutdown Delay)**: If you are using a load balancer above the proxies,          enter your load balancers unhealthy total threshold time here in seconds.
+       For example, if your load balancer polls every 30 seconds, and immediately fails over upon failure,
+       set this property to 30 seconds.
 
-    b. **Load Balancer Healthy Threshold (Start Delay)**: If you are using a load balancer above the proxies, enter your load balancers healthy total threshold time here in seconds. E.g., if your load balancer polls every 30 seconds and requires 3 successful attempts, set this property to 90 seconds.
+    b. **Load Balancer Healthy Threshold (Start Delay)**: If you are using a load balancer above the proxies,
+       enter your load balancers healthy total threshold time here in seconds.
+       For example,` if your load balancer polls every 30 seconds and requires three successful attempts,
+       set this property to 90 seconds.
 
-    c. **Consul Service Name**: If *consul_enabled* is true, switchboard will register with consul using this name.
+    c. **Consul Service Name**: If `consul_enabled` is true, switchboard registers with consul using this name.
 
     <%= image_tag("images/mysql-proxy.png") %>
 
@@ -159,11 +168,11 @@ This adds the tile to your staging area.
 
 ##<a id='resourceconfig'></a> Configure Resource Config
 
-If you are using the **gp2** volume type with **Amazon EC2** instances and expect an intensive influx of metrics, Altoros recommends provisioning at least 300GB of persistent disk volume to the Heartbeat PCF Monitoring service to assure sustained IOPS performance. To increase the default disk volume value:
+If you are using the **gp2** volume type with **Amazon EC2** instances and expect an intensive influx of metrics, Altoros recommends provisioning at least 300&nbsp;GB of persistent disk volume to the Heartbeat PCF Monitoring service to assure sustained IOPS performance. To increase the default disk volume value:
 
 1. In the **Settings** tab, click **Resource Config**.
 
-1. Change the default 100GB value in the Persistent disc type column next to Heartbeat PCF Monitoring to 300GB.
+1. Change the default 100&nbsp;GB value in the Persistent disk type column next to Heartbeat PCF Monitoring to 300&nbsp;GB.
 
     <%= image_tag("images/resource-config.png") %>
 
