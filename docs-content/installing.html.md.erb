@@ -32,7 +32,7 @@ This adds the tile to your staging area.
 
 1. From the **Settings** tab, click **Heartbeat Alert Configuration**.
 
-1. Specify the external server for uploading Grafana images so that they can be attached to Slack/email alert notifications:
+1. Specify the external server for uploading Grafana images so that they can be attached to Slack and email alert notifications:
 
     1. If you are using [AWS S3](https://aws.amazon.com/s3/) , enable the **S3** checkbox 
        and provide your Amazon S3 Bucket URL, Amazon API Access Key ID, and Amazon API Secret Key.
@@ -118,8 +118,7 @@ This adds the tile to your staging area.
 
 1. Specify the default port BOSH HM Forwarder will use to forward the metrics collected from BOSH Agents.
 
-    <p class="note"><strong>IMPORTANT</strong>: If you are using PCF v1.10 or later,
-       uncheck the <storong>use non-secure communication</strong> for metrics checkbox.</p>
+    <p class="note"><strong>IMPORTANT</strong>: If you are using PCF v1.10 or later, clear the <storong>use non-secure communication</strong> for metrics checkbox.</p>
 
     <%= image_tag("images/bosh-hm-forwarder.png") %>
 
@@ -138,7 +137,7 @@ This adds the tile to your staging area.
 
     1. **Load Balancer Healthy Threshold (Start Delay)**: If you are using a load balancer above the proxies,
        enter your load balancers healthy total threshold time here in seconds.
-       For example,` if your load balancer polls every 30 seconds and requires three successful attempts,
+       For example, if your load balancer polls every 30 seconds and requires three successful attempts,
        set this property to 90 seconds.
 
     1. **Consul Service Name**: If `consul_enabled` is true, switchboard registers with consul using this name.
@@ -151,7 +150,7 @@ This adds the tile to your staging area.
 
 1. In the **Settings** tab, click **MySQL Server Configuration**.
 
-1. In case you are controlling access to the database from outside of PCF and the access is limited by a hostname,
+1. If you are controlling access to the database from outside of PCF and the access is limited by a hostname,
    clear the **Disable reverse DNS lookups checkbox**.
 
 1. Complete the following fields:
@@ -171,11 +170,11 @@ This adds the tile to your staging area.
 
 ##<a id='resourceconfig'></a> Configure Resource Config
 
-If you are using the **gp2** volume type with **Amazon EC2** instances and expect an intensive influx of metrics, Altoros recommends provisioning at least 300&nbsp;GB of persistent disk volume to the Heartbeat PCF Monitoring service to assure sustained IOPS performance. To increase the default disk volume value:
+If you are using the **gp2** volume type with **Amazon EC2** instances and expect an intensive influx of metrics, Altoros recommends provisioning at least 300&nbsp;GB of persistent disk volume to the Heartbeat PCF Monitoring service to ensure sustained IOPS performance. Perform the following steps to increase the default disk volume value:
 
 1. In the **Settings** tab, click **Resource Config**.
 
-1. Change the default 100&nbsp;GB value in the Persistent disk type column next to Heartbeat PCF Monitoring to 300&nbsp;GB.
+1. Change the default value in the Persistent disk type column next to Heartbeat PCF Monitoring from `100 GB` to `300 GB`.
 
     <%= image_tag("images/resource-config.png") %>
 
@@ -201,7 +200,7 @@ If you are using the **gp2** volume type with **Amazon EC2** instances and expec
 
 ##<a id='redisrabbit'></a> Configure Redis and RabbitMQ
 
-If you have Redis and RabbitMQ for PCF tiles installed and want to collect metrics from these services using Altoros Heartbeat, adjust the Metrics polling interval for these services to 15. 
+If you have Redis and RabbitMQ for PCF tiles installed and want to collect metrics from these services using Altoros Heartbeat, adjust the Metrics polling interval for these services to `15`. 
 
 To set the metrics polling interval in Redis:
 
@@ -209,7 +208,7 @@ To set the metrics polling interval in Redis:
  
 1. In the **Setting** tab, click **Metrics**.
  
-1. Complete the **Metrics polling interval field** with 15.
+1. In the **Metrics polling interval field**, enter `15`.
 
     <%= image_tag("images/configure-redis.png") %>
 
@@ -230,60 +229,4 @@ To set the metrics polling interval in RabbitMQ:
 1. Click **Save**.
 
 1. Return to the **Ops Manager Installation Dashboard** and click **Apply Changes** to apply the configuration settings.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- 
-
-
-
-
-
-
-
-
 

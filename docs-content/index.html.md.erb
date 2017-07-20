@@ -15,33 +15,33 @@ from their PCF installation in one place.
 
 ## <a id='overview'></a>Overview
 
-Altoros Heartbeat for PCF is a multi-tenant monitoring service that uses Cloud Foundry’s User Account and Authentication (UAA)
+Altoros Heartbeat for PCF is a multi-tenant monitoring service that uses Cloud Foundry's User Account and Authentication (UAA)
 server to grant access to apps and resources based on the user roles and rights within a PCF deployment. The service pulls,
-stores, visualizes and sends alerts on the metrics emitted by VMs, PCF components, services, and apps running on PCF. 
+stores, visualizes, and sends alerts on the metrics emitted by VMs, PCF components, services, and apps running on PCF. 
 
 The tile comes with pre-built integration with the following services available as PCF tiles: 
-[MySQL for PCF](https://network.pivotal.io/products/p-mysql), [RabbitMQ for PCF](https://network.pivotal.io/products/pivotal-rabbitmq-service),
-[Redis for PCF](https://network.pivotal.io/products/p-redis0), [Crunchy PostgreSQL for PCF (v1.0.8 or earlier)](https://network.pivotal.io/products/crunchy-postgresql),
-and [Dingo PostgreSQL for PCF](https://network.pivotal.io/products/dingo-postgresql-for-pcf).
-This enables operators to monitor the named services without any additional configuration.
+- [MySQL for PCF](https://network.pivotal.io/products/p-mysql)
+- [RabbitMQ for PCF](https://network.pivotal.io/products/pivotal-rabbitmq-service)
+- [Redis for PCF](https://network.pivotal.io/products/p-redis0)
+- [Crunchy PostgreSQL for PCF (v1.0.8 or earlier)](https://network.pivotal.io/products/crunchy-postgresql)
+- [Dingo PostgreSQL for PCF](https://network.pivotal.io/products/dingo-postgresql-for-pcf)
 
+This integration enables operators to monitor these services without any additional configuration.
 
 ## <a id='features'></a>Key Features
 
 Altoros Heartbeat for PCF includes the following key features:
 
-* **PCF monitoring**. Collects metrics emitted by all components of PCF. 
-* **IaaS-level monitoring**. Collects metrics from CPU, memory usage, IO, network, VM states, and more,
-  regardless of the underlying infrastructure.
-* **Third-party services monitoring**. Provides the ability  to collect metrics from MySQL, PostgreSQL, Redis, and RabbitMQ. 
-* **Application monitoring**. Gathers standard (CPU, memory, or disk usage), arbitrary (gauges, counters, timings, sets),
-  and HTTP-specific (requests per second, status codes, error rates, and more) metrics.
-* **SSO and multi-Tenancy**. Uses the Cloud Foundry UAA service
+* **PCF monitoring**: Collects metrics emitted by all components of PCF
+* **IaaS-level monitoring**: Collects metrics from CPU, memory usage, IO, network, VM states, and more, regardless of the underlying infrastructure
+* **Third-party services monitoring**: Provides the ability to collect metrics from MySQL, PostgreSQL, Redis, and RabbitMQ
+* **Application monitoring**: Gathers standard (CPU, memory, or disk usage), arbitrary (gauges, counters, timings, sets),
+  and HTTP-specific (requests per second, status codes, error rates, and more) metrics
+* **SSO and multi-Tenancy**: Uses the Cloud Foundry UAA service
   to control access to apps and resources based on user roles and rights within the platform.
   Multi-tenancy is implemented according to Cloud Foundry UAA roles.
   Dedicated shares of the solution are deployed to different spaces to collect metrics from the apps and services running within.
-* **Alerts**. Can be defined for each dashboard panel, and users get immediate notifications
-  via email, Slack, and other notification channels. 
+* **Alerts**: Can be defined for each dashboard panel, and users get immediate notifications though email, Slack, and other notification channels. 
 
 ## <a id="snapshot"></a>Product Snapshot
 
@@ -96,7 +96,7 @@ Altoros Heartbeat for PCF has the following requirements:
 
 * [Elastic Runtime](https://network.pivotal.io/products/elastic-runtime) v1.9.x, 1.10.x
 * [Ops Manager](https://network.pivotal.io/products/ops-manager) v.1.9.x, 1.10.x
-* Installation of the collectd add-on for PCF is required to enable PCF component VMs and
+* Installation of the collectd add-on for PCF to enable PCF component VMs and
   the VMs of any other BOSH-deployed services expose system metrics to Heartbeat. 
 For more information, see [Installing collectd Add-on for PCF](installing.html). 
 * (Optional) To enable collection of JMX metrics from Java apps, the Altoros Heartbeat tile for PCF requires a custom Java buildpack. 
