@@ -79,7 +79,7 @@ This adds the tile to your staging area.
 
     1. Paste the retrieved username and password into the **Credentials** for the **OpsManager Director** fields.
 
-1. If you are using several apps domains in PCF, provide a comma-separated list of additional (other than the apps domain indicated in the Pivotal Elastic Runtime, which needs not to be provided) domains to filter **HttpStartStop** metrics out. If your system domain is different from the apps domain, mention it as well. 
+1. If you are using several apps domains in PCF, provide a comma-separated list of additional (other than the apps domain indicated in the Pivotal Elastic Runtime, which needs not to be provided) domains to filter **HttpStartStop** metrics out.
 
     <%= image_tag("images/graphite-nozzle-2.png") %>
 
@@ -222,7 +222,7 @@ To set the metrics polling interval in RabbitMQ:
  
 1. In the **Setting** tab, click **RabbitMQ**.
  
-1. Complete the **Metrics polling interval field** with 15.
+1. Complete the **Metrics polling interval field** with `15`.
 
     <%= image_tag("images/configure-rabbitmq.png") %>
 

@@ -23,18 +23,19 @@ These metrics are subsequently pushed to Graphite’s Carbon component for cachi
       b. Find the service called Heartbeat and retrieve the variables highlighted below:
 
       ```
-      {
-       "VCAP_SERVICES": {
-        "heartbeat": [
-         {
-      	"credentials": {
-       	"host": "192.168.222.59",
-       	"jmxtrans_prefix": "jmxtrans.admin.demo.",
-       	"port": 8125,
-       	"statsd_prefix": "apps.admin.demo."
-      	},
-      	"label": "heartbeat",
-        "name": "heartbeat"
+    System-Provided:
+    {
+     "VCAP_SERVICES": {
+      "heartbeat": [
+       {
+        "credentials": {
+         "host": "192.168.222.59", <--
+         "jmxtrans_prefix": "jmxtrans.admin.demo.",
+         "port": 8125, <--
+         "statsd_prefix": "apps.admin.demo." <--
+        },
+        "label": "heartbeat",
+        "name": "heartbeat",
       ```
 
 1. Prepare a metrics prefix in the following format `statsd_prefix` + `app_name` + `.` + `app_index`, where:
@@ -73,8 +74,6 @@ For an example of an app (written in golang) that sends custom metrics to a Graf
 1. Find Heartbeat in the list of the available services and select the service plan (currently, only standard is available—it will be selected by default).
 
 1. Create a service instance.
-
-      <p class="note"><strong>Note</strong>: Do not create service instances inside the administrator's org/space that you provided at the installation step.</p>
 
       <pre class="terminal">cf create-service heartbeat standard heartbeat</pre>
 
