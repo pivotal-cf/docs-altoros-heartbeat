@@ -23,7 +23,7 @@ The tile comes with pre-built integration with the following services available 
 - [MySQL for PCF](https://network.pivotal.io/products/p-mysql)
 - [RabbitMQ for PCF](https://network.pivotal.io/products/pivotal-rabbitmq-service)
 - [Redis for PCF](https://network.pivotal.io/products/p-redis0)
-- [Crunchy PostgreSQL for PCF (v1.0.8 or earlier)](https://network.pivotal.io/products/crunchy-postgresql)
+- [Crunchy PostgreSQL for PCF](https://network.pivotal.io/products/crunchy-postgresql)
 - [Dingo PostgreSQL for PCF](https://network.pivotal.io/products/dingo-postgresql-for-pcf)
 
 This integration enables operators to monitor these services without any additional configuration.
@@ -52,15 +52,15 @@ The following table provides version and version-support information about Altor
     <th>Details</th>
     <tr>
         <td>Tile version</td>
-        <td>v0.8.90</td>
+        <td>v0.8.91</td>
     </tr>
     <tr>
         <td>Release date</td>
-        <td>July 20, 2017</td>
+        <td>August 03, 2017</td>
     </tr>
     <tr>
         <td>Software component version</td>
-        <td>Grafana v4.3, collectd v5.7.1, StatsD v0.8.0, Carbon API 0.8.0, and GoCarbon 0.9.1</td>
+        <td>Grafana v4.4, collectd v5.7.1, StatsD v0.8.0, Carbon API 0.8.0, and GoCarbon 0.9.1</td>
     </tr>
     <tr>
         <td>Compatible Ops Manager version(s)</td>
@@ -110,9 +110,8 @@ The Altoros Heartbeat for PCF tile has the following limitations:
 
 * Offline buildpacks are unavailable. Only the online version of the buildpack from 
   [this GitHub repository](https://github.com/Altoros/java-buildpack#jmx-agent-integration) can be used to collect JMX metrics from Java apps. 
-* Users are limited to using MariaDB to store internal Heartbeat data such as user sessions, mappings, dashboards, UI configs, etc.
+* Users are limited to using internal MariaDB to store internal Heartbeat data such as user sessions, mappings, dashboards, UI configs, etc.
 * High availability mode is currently not supported.
-* Only v1.0.8 or earlier versions of Crunchy PostgreSQL for PCF are currently supported.
 
 ## <a id="feedback"></a>Feedback
 

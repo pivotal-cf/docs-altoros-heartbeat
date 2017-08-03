@@ -31,24 +31,24 @@ Follow the steps below to create a collectd manifest for your deployment:
 
 1. Create a file named `collectd.yml`, starting with the code below as a template:
 
-      ```
-      releases:
+    ```
+    releases:
+    - name: collectd
+      version: 10
+    addons:
+    - name: collectd
+      jobs:
       - name: collectd
-        version: 10
-      addons:
-      - name: collectd
-        jobs:
-        - name: collectd
-          release: collectd
-        exclude:
-          deployments: ['some-deployment-name-to-exclude']
-        properties:
-          collectd:
-            graphite_prefix: cf.collectd.
-            graphite_servers:
-            - 192.168.1.190
-            interval: 10
-      ```
+        release: collectd
+      exclude:
+        deployments: ['some-deployment-name-to-exclude']
+      properties:
+        collectd:
+          graphite_prefix: cf.collectd.
+          graphite_servers:
+          - 192.168.1.190
+          interval: 10
+    ```
 
 1. Replace the values listed in the template as follows:
 
@@ -66,59 +66,60 @@ Follow the steps below to create a collectd manifest for your deployment:
 
 1. Copy the software binary to your Ops Manager VM.
 
-      <pre class="terminal">$ scp -i PATH/TO/PRIVATE/KEY collectd-10.tgz ubuntu@YOUR-OPS-MANAGER-VM-IP:</pre>
+    <pre class="terminal">$ scp -i PATH/TO/PRIVATE/KEY collectd-10.tgz ubuntu@YOUR-OPS-MANAGER-VM-IP:</pre>
 
 1. Copy the collectd manifest, `collectd.yml` file, to your Ops Manager instance.
 
-      <pre class="terminal">$ scp -i PATH/TO/PRIVATE/KEY collectd.yml ubuntu@YOUR-OPS-MANAGER-VM-IP:</pre>
+    <pre class="terminal">$ scp -i PATH/TO/PRIVATE/KEY collectd.yml ubuntu@YOUR-OPS-MANAGER-VM-IP:</pre>
 
 1. SSH into Ops Manager.
 
-      <pre class="terminal">$ ssh -i PATH-TO-PRIVATE-KEY ubuntu@YOUR-OPS-MANAGER-VM-IP</pre>
+    <pre class="terminal">$ ssh -i PATH-TO-PRIVATE-KEY ubuntu@YOUR-OPS-MANAGER-VM-IP</pre>
 
 1. On the Ops Manager VM, navigate to the software binary location.
 
-      <pre class="terminal">$ cd ~</pre>
+    <pre class="terminal">$ cd ~</pre>
 
 1. On the Ops Manager VM, target your BOSH director instance.
 
-      <pre class="terminal">$ bosh target YOUR-OPS-MANAGER-DIRECTOR-IP
-      Target set to 'Ops Manager'
-      Your username: director
-      Enter password: ****
-      Logged in as 'director'</pre>
+    <pre class="terminal">$ bosh target YOUR-OPS-MANAGER-DIRECTOR-IP
+    Target set to 'Ops Manager'
+    Your username: director
+    Enter password: ****
+    Logged in as 'director'</pre>
 
 1. Upload your release.
 
-      <pre class="terminal">$ bosh upload release ~/BINARY-NAME.tgz</pre>
+    <pre class="terminal">$ bosh upload release ~/BINARY-NAME.tgz</pre>
 
 1. From the command line, confirm that the upload of the collectd software binary completed.
    You should see the collectd release.
  
-      <pre class="terminal">$ bosh releases</pre>
+    <pre class="terminal">$ bosh releases</pre>
 
 1. Update your runtime configuration to include the collectd add-on.
 
-      <p class="note"><strong>Note</strong>: If you installed other BOSH add-ons,
-         you must merge the collectd manifest into your existing add-on manifest.
-         Append the contents of `collectd.yml` to your existing add-on YML file.</p>
+    <p class="note"><strong>Note</strong>: If you installed other BOSH add-ons,
+    you must merge the collectd manifest into your existing add-on manifest.
+    Append the contents of `collectd.yml` to your existing add-on YML file.</p>
 
-      <pre class="terminal">$ bosh update runtime-config PATH/YOUR-ADD-ON-YML.yml</pre>
+    <pre class="terminal">$ bosh update runtime-config PATH/YOUR-ADD-ON-YML.yml</pre>
 
 1. Verify your runtime configuration changes match what you specified in the collectd manifest.
 
-      ```
-      $ bosh runtime-config
-      Acting as user 'admin' on 'micro'
-      releases:
+    ```
+    $ bosh runtime-config
+    Acting as user 'admin' on 'micro'
+    releases:
+    - name: collectd
+      version: 10
+    addons:
+    - name: collectd
+      jobs:
       - name: collectd
-        version: 10
-      addons:
-      name: collectd
-        jobs:
-          - name: collectd
-            release: collectd
-      ```
+        release: collectd
+    ```
+
 1. Navigate to your Installation Dashboard in Ops Manager.
 
 1. Click **Apply Changes**.
@@ -129,17 +130,15 @@ Follow the steps below to create a collectd manifest for your deployment:
 
 1. Run `monit summary`. Look for the following processes in the output:
 
-      <pre class="terminal">The Monit daemon 5.2.4 uptime: 3d 0h 01m
+    <pre class="terminal">The Monit daemon 5.2.4 uptime: 3d 0h 01m
     Process 'collectd' running</pre>
 
 1. If `monit summary` does not list `collectd`, perform the following steps:
 
-      1. Try to start the collectd processes by running the following command:
-
-      <pre class="terminal">$ monit start collectd</pre>
-
-      1. Run the `monit summary` again. If you do not see the processes mentioned above,
-         check `/var/vcap/sys/log/collectd` logs for errors.
+    1. Try to start the collectd processes by running the following command:
+    <pre class="terminal">$ monit start collectd</pre>
+    1. Run the `monit summary` again. If you do not see the processes mentioned above,
+    check `/var/vcap/sys/log/collectd` logs for errors.
 
 ## <a id='uninstall'></a>Uninstalling the collectd Add-on
 
@@ -148,17 +147,17 @@ roll back to a previous configuration:
 
 1. SSH into Ops Manager.
 
-      <pre class="terminal">$ ssh -i PATH-TO-PRIVATE-KEY ubuntu@YOUR-OPS-MANAGER-VM-IP</pre>
+    <pre class="terminal">$ ssh -i PATH-TO-PRIVATE-KEY ubuntu@YOUR-OPS-MANAGER-VM-IP</pre>
 
 1. On the Ops Manager VM, retrieve the latest runtime configuration saved on the BOSH Director. 
 
-      <pre class="terminal">$ bosh runtime-config > PATH-TO-SAVE-THE-RUNTIME-CONFIG</pre>
+    <pre class="terminal">$ bosh runtime-config > PATH-TO-SAVE-THE-RUNTIME-CONFIG</pre>
 
 1. Remove the lines added at the *Downloading and Deploying the collectd add-on* stage. 
 
 1. Update the runtime configuration.
 
-      <pre class="terminal">$bosh update runtime-config PATH-TO-SAVE-THE-RUNTIME-CONFIG</pre>
+    <pre class="terminal">$bosh update runtime-config PATH-TO-SAVE-THE-RUNTIME-CONFIG</pre>
 
 1. Navigate to your Installation Dashboard in Ops Manager.
 
@@ -168,12 +167,12 @@ If you have no existing runtime configuration, follow the steps below:
 
 1. On the Ops Manager VM, create an `empty-runtime.yml` manifest file.
 
-      <pre class="terminal">$ cat empty-runtime.yml 
+    <pre class="terminal">$ cat empty-runtime.yml 
     releases: []</pre>
 
 1. Update the runtime configuration with `empty-runtime.yml`.
 
-      <pre class="terminal">$ bosh update runtime-config empty-runtime.yml</pre>
+    <pre class="terminal">$ bosh update runtime-config empty-runtime.yml</pre>
 
 1. Navigate to your Installation Dashboard in Ops Manager.
 

@@ -5,6 +5,28 @@ owner: Partners
 
 These are release notes for Altoros Heartbeat for Pivotal Cloud Foundry (PCF).
 
+##<a id="ver"></a> v0.8.91
+
+**Release Date:** August 03, 2017
+
+Features included in this release:
+
+* Added support of external MySQL for PCF Elastic Runtime
+* Added support of on-demand version of Crunchy PostgreSQL
+* Minor updates of dashboards
+* Update the version of carbonapi
+* Update Grafana version
+* Forbidden creation of service instance in admin's org/space
+* Added delete-uaa-client errand
+* Changed VM requirements in "Resource Config"
+
+Known issues in this release:
+
+* After renaming the org/space with the Altoros Heartbeat service instance, access to metrics of this org/space is unavailable.
+  For instructions on how to fix the issue manually, contact Altoros support team.
+* Alerts are not enabled automatically after installation of the Altoros Heartbeat for PCF tile.
+  To enable alerts, open the **alerting** dashboard and click the save icon.
+
 ##<a id="ver"></a> v0.8.90
 
 **Release Date:** July 20, 2017
@@ -23,7 +45,7 @@ Known issues in this release:
 
 * Creation of service instances inside the org/space that grant users admin access to Altoros Heartbeat
   (the org/space specified at the Grafana configuration step during the installation process) is not supported.  
-* After renaming the org/space with the Altoros Heartbeat service instance, monitoring of this org/space is terminated.
+* After renaming the org/space with the Altoros Heartbeat service instance, access to metrics of this org/space is unavailable.
   For instructions on how to fix the issue manually, contact Altoros.
 * Alerts are not enabled automatically after installation of the Altoros Heartbeat for PCF tile.
   To enable alerts, open the **alerting** dashboard and click the save icon.

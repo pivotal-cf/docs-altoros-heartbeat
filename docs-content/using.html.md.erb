@@ -11,7 +11,7 @@ To start using Heartbeat, a developer needs to create an Altoros Heartbeat servi
 After this, they will be able to navigate to a URL in a browser to access Altoros Heartbeat’s Grafana dashboard and log in using their PCF login and password.
 After login, the developer gets access to Developer View.
 
-<p class="note"><strong>Note</strong>: Do not create service instances inside the org/space
+<p class="note"><strong>Note</strong>: You do not need to create service instances inside the org/space
    that grant users admin access rights to Altoros Heartbeat.
    These org/space are provided at the Grafana configuration step of the Altoros Heartbeat for PCF installation process).</p>
 
@@ -100,14 +100,21 @@ The dashboards accessible from the Admin view are:
 
 **Cf service** dashboards contain panels with service-specific metrics for MySQL, PostgreSQL, Redis, and RabbitMQ.
 
-<p class="note"><strong>Note</strong>: To track metrics from the dingo-postgresql deployment
-   on the Service - Postgresql Overview dashboard, choose router from the Host drop-down menu.</p>    
+<p class="note"><strong>Note</strong>: To track metrics from the External MySQL used by PCF Elastic Runtime on the "Service - Postgresql Overview" dashboard, choose "cf-*" from the Deloyment drop-down menu and "mysql" from the Host drop-down menu.</p>
+
+<p class="note"><strong>Note</strong>: To track metrics from the Internal MySQL used by PCF Elastic Runtime on the "Service - Postgresql Overview" dashboard, choose "cf-*" from the Deloyment drop-down menu and "cloud_controller" from the Host drop-down menu.</p>
+
+<p class="note"><strong>Note</strong>: To track metrics from the Crunchy PostgreSQL (on-demand version) deployment
+   on the "Service - Postgresql Overview" dashboard, choose "service-instance_*" from the Deloyment drop-down menu and "postgresql" from the Host drop-down menu.</p>
+   
+<p class="note"><strong>Note</strong>: To track metrics from the Dingo PostgreSQL deployment
+on the "Service - Postgresql Overview" dashboard, choose "dingo-postgresql-*" from the Deloyment drop-down menu and "router" from the Host drop-down menu.</p>
 
 <%= image_tag("images/dingo-postgres.png") %>
 
 **Alerting dashboards** include panes for BOSH HM alerts and Diego alerts.
 
-<p class="note"><strong>Note</strong>: To enable alerts after installing “Altoros Heartbeat for PCF Tile”,
+<p class="note"><strong>Note</strong>: To enable alerts after installing "Altoros Heartbeat for PCF Tile",
    open these dashboards and click the save icon:</p>
 
 <%= image_tag("images/diego-alerts.png") %>
