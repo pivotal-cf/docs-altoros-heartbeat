@@ -53,11 +53,11 @@ The following table provides version and version-support information about Altor
     <th>Details</th>
     <tr>
         <td>Tile version</td>
-        <td>v0.8.91</td>
+        <td>v0.8.92</td>
     </tr>
     <tr>
         <td>Release date</td>
-        <td>August 3, 2017</td>
+        <td>August 16, 2017</td>
     </tr>
     <tr>
         <td>Software component version</td>
@@ -65,11 +65,11 @@ The following table provides version and version-support information about Altor
     </tr>
     <tr>
         <td>Compatible Ops Manager version(s)</td>
-        <td>v1.9.x and v1.10.x</td>
+        <td>v1.9.x, v1.10.x and v1.11.x</td>
     </tr>
     <tr>
         <td>Compatible Elastic Runtime version(s)</td>
-        <td>v1.9.x and v1.10.x</td>
+        <td>v1.9.x, v1.10.x and v1.11.x</td>
     </tr>
     <tr>
         <td>IaaS support</td>
@@ -95,8 +95,8 @@ To complete installation of Altoros Heartbeat for PCF, you need the following:
 
 Altoros Heartbeat for PCF has the following requirements:
 
-* [Elastic Runtime](https://network.pivotal.io/products/elastic-runtime) v1.9.x, 1.10.x
-* [Ops Manager](https://network.pivotal.io/products/ops-manager) v.1.9.x, 1.10.x
+* [Elastic Runtime](https://network.pivotal.io/products/elastic-runtime) v1.9.x, 1.10.x, 1.11.x
+* [Ops Manager](https://network.pivotal.io/products/ops-manager) v.1.9.x, 1.10.x, 1.11.x
 * Installation of the collectd add-on for PCF to enable PCF component VMs and
   the VMs of any other BOSH-deployed services expose system metrics to Heartbeat. 
 For more information, see [Installing collectd Add-on for PCF](installing.html). 
@@ -109,7 +109,7 @@ For more information, see [JMXTrans Agent Integration](jmxtrans.html).
 
 The Altoros Heartbeat for PCF tile has the following limitations:
 
-* Offline buildpacks are unavailable. Only the online version of the buildpack from 
+* Offline buildpack for collecting JMX metrics is unavailable. Only the online version of the buildpack from 
   [this GitHub repository](https://github.com/Altoros/java-buildpack#jmx-agent-integration) can be used to collect JMX metrics from Java apps. 
 * Users are limited to using internal MariaDB to store internal Heartbeat data such as user sessions, mappings, dashboards, UI configs, etc.
 * High availability mode is currently not supported.
