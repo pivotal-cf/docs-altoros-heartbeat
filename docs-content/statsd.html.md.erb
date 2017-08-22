@@ -7,9 +7,9 @@ owner: Partners
 
 This section is intended for app developers who are going to use the Altoros Heartbeat service to collect custom metrics from their apps.
 The section describes how to enable an app to send metrics to the StatsD server.
-These metrics are subsequently pushed to Graphite’s Carbon component for caching and persistence.
+These metrics are subsequently pushed to Graphite's Carbon component for caching and persistence.
 
-##<a id='integration'></a> Integrating Heartbeat’s StatsD into the App
+##<a id='integration'></a> Integrating Heartbeat's StatsD into the App
 
 1. Download a language-specific StatsD client library from [this Github page](https://github.com/etsy/statsd/wiki#client-implementations) and add it into your app code.
 
@@ -42,15 +42,15 @@ These metrics are subsequently pushed to Graphite’s Carbon component for cachi
 
       `statsd_prefix`: statsd_prefix is described in the previous step.
 
-      `app_name`: For information about the app’s name, see [this documentation](http://docs.cloudfoundry.org/devguide/deploy-apps/environment-variable.html#VCAP-APPLICATION).
+      `app_name`: For information about the app's name, see [this documentation](http://docs.cloudfoundry.org/devguide/deploy-apps/environment-variable.html#VCAP-APPLICATION).
 
-      `app_index`: For information about the app’s index, see [this documentation](http://docs.cloudfoundry.org/devguide/deploy-apps/environment-variable.html#CF-INSTANCE-INDEX).
+      `app_index`: For information about the app's index, see [this documentation](http://docs.cloudfoundry.org/devguide/deploy-apps/environment-variable.html#CF-INSTANCE-INDEX).
 
       For an example, see [this GitHub repository](https://github.com/Altoros/tweets-fetcher/blob/23e1fe7a3c2fbccaca1e0ca1dc09590e8f285c88/main.go#L130).
 
 1. Configure the StatsD client library (e.g. set host, port, prefix). For an example, see [this GitHub repository](https://github.com/Altoros/tweets-fetcher/blob/23e1fe7a3c2fbccaca1e0ca1dc09590e8f285c88/main.go#L125-L132).
 
-1. Define custom metrics inside the app’s code (using the StatsD library).
+1. Define custom metrics inside the app's code (using the StatsD library).
    For an example, see [this GitHub repository]
 (https://github.com/Altoros/tweets-fetcher/blob/5018d3753dc67c38bb6d89c9fbe6d84cb547b43b/fetcher/fetcher.go#L103).
 
@@ -88,4 +88,4 @@ For an example of an app (written in golang) that sends custom metrics to a Graf
 ##<a id='create'></a> Create a Custom Dashboard
 
 For information about creating and editing Grafana graphs and panels, see [Grafana documentation](http://docs.grafana.org/guides/getting_started/).
-For an example of an app’s dashboard, see [this Github repository](https://github.com/Altoros/tweets-fetcher/tree/master/grafana-dashboard).
+For an example of an app's dashboard, see [this Github repository](https://github.com/Altoros/tweets-fetcher/tree/master/grafana-dashboard).
