@@ -202,7 +202,27 @@ For more information about this feature, see [**Altoros Log Search for PCF Integ
 
 1. Click **Save**.
 
-1. Return to the Ops Manager Installation Dashboard and click **Apply Changes** to apply the configuration settings.
+##<a id='errands'></a>Configure Errands
+
+1. In the **Settings** tab, click **Errands**.
+
+    <%= image_tag("images/errands.png") %>
+
+1. Select options for the following post-deploy errands:
+
+    1. **Create Heartbeat UAA Client**: creates an UAA Client for Heartbeat. The recommended option is `When Changed`.
+
+    1. **Heartbeat Grafana Bootstrap**: configures/updates Grafana for admin view; updates all service instances for Heartbeat (developer views). The recommended option is `On`.
+
+    1. **Broker Registrar**: registers Heartbeat's service broker. The recommended option is `When Changed`.
+
+1. Select options for the following pre-delete errands:
+
+    1. **Delete Heartbeat UAA Client**: deletes the UAA Client for Heartbeat. The recommended option is `On`.
+
+    1. **Broker Deregistrar**: deregisters Heartbeat's service broker. The recommended option is `On`.
+
+1. Click **Save**.
 
 ##<a id='resourceconfig'></a>Configure Resource Config
 
@@ -217,6 +237,8 @@ If you are using the **gp2** volume type with **Amazon EC2** instances and expec
 1. Click **Save**.
 
 1. Return to the **Ops Manager Installation Dashboard** and click **Apply Changes** to apply the configuration settings.
+
+<p class="note"><strong>Note</strong>: After you complete all procedures described on this page, follow the instructions in the <a href="installing-collectd.html">Installing collectd Add-on for PCF</a> topic.</p>
 
 ##<a id='opsmanager'></a>Configure Ops Manager Director
 
@@ -266,3 +288,4 @@ To set the metrics polling interval in RabbitMQ:
 
 1. Return to the **Ops Manager Installation Dashboard** and click **Apply Changes** to apply the configuration settings.
 
+<p class="note"><strong>Note</strong>: After you complete all procedures described on this page, follow the instructions in the <a href="installing-collectd.html">Installing collectd Add-on for PCF</a> topic.</p>
