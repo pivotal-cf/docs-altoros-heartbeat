@@ -5,6 +5,8 @@ owner: Partners
 
 This topic describes how to install and configure Altoros Heartbeat for Pivotal Cloud Foundry (PCF).
 
+<p class="note"><strong>Note</strong>: If you update the Altoros Heartbeat for PCF tile, the collectd BOSH add-on must be <a href="installing-collectd.html">updated</a> as well.</p>
+
 ##<a id='install'></a>Install and Configure Altoros Heartbeat for PCF
 
 1. Download the product file and the collectD add-on from [Pivotal Network](https://network.pivotal.io/products/altoros-heartbeat).
@@ -159,6 +161,72 @@ To enable integration with the Log Search for PCF tile from Altoros:
 1. Click **Save**.
 
 For more information about this feature, see [**Altoros Log Search for PCF Integration**](integration-with-logsearch.html).
+
+##<a id='external_services'></a>Configure External Services Monitoring
+
+<p class="note"><strong>Note</strong>: Prior to configuring External Services Monitoring, make sure you have the latest version of the <a href="https://network.pivotal.io/products/altoros-heartbeat">collectd BOSH add-on installed</a>.</p>
+
+1. In the **Settings** tab, click **External Services Monitoring Configuration**.
+
+    <%= image_tag("images/external_services.png") %>
+
+1. Click **Add** next to the services you want to monitor and complete the following fields:
+
+    1. For MySQL Servers:
+
+        **Host**: the IP address or hostname of the MySQL server
+
+        **Port**: the port number on which the server listens
+
+        **User** and **Password**: the username and password used to access the MySQL server
+
+    1. For PostgreSQL Databases:
+
+        **Host**: the IP address or hostname of the database
+
+        **Port**: the port number on which the PostgreSQL database listens
+
+        **User** and **Password**: the username and password used to access the database
+
+        The **Enable disk IO by table** checkbox, when selected, measures the disc I/O usage by each specific table. **Note** that enabling this feature escalates significantly the number of generated metrics, so, by default, the checkbox is disabled.
+
+    1. For MongoDB Servers:
+
+        **Host**: the IP address or hostname of the MongoDB server
+
+        **Port**: the port number on which the server listens
+
+        **User** and **Password**: (optional) the username and password used to access the server
+
+        **A space-separated list of MongoDB databases**: names of the monitored databases. The **admin** database will be added automatically.
+
+    1. For Memcached Servers:
+
+        **Host**: the IP address or hostname of the Memcached server
+
+        **Port**: the port number on which the server listens
+
+    1. For Redis Servers:
+
+        **Host**: the IP address or hostname of the Redis server
+
+        **Port**: the port number on which the server listens
+
+        **Password**: (optional) the password used to access the server 
+
+    1. For RabbitMQ Servers:
+
+        **Host**: the IP address or hostname of the RabbitMQ  server
+
+        **Port**: the port number on which the  server listens
+
+        **User** and **Password**: the username and password used to access the server
+
+1. Click **Save**.
+
+<p class="note"><strong>Note</strong>: Currently, only one instance of the MongoDB, MySQL or RabbitMQ services can be monitored.</p>
+
+For more information about 3rd party services monitoring, see [3rd Party Services Monitoring](services-monitoring.html).
 
 ##<a id='mysqlproxy'></a>Configure MySQL Proxy
 
