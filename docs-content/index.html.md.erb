@@ -5,8 +5,7 @@ owner: Partners
 
 <p class="note warning">
 <strong>WARNING! </strong>
-The Altoros Heartbeat for PCF tile is currently in beta and is intended for evaluation and test purposes only. 
-Do not use this product in a PCF production environment.
+The Altoros Heartbeat for PCF tile is currently in beta and is intended for evaluation and test purposes only. Do not use this product in a PCF production environment.
 </p>
 
 This documentation describes the Altoros Heartbeat for Pivotal Cloud Foundry (PCF) tile. Installing this tile
@@ -19,15 +18,27 @@ Altoros Heartbeat for PCF is a multi-tenant monitoring service that uses Cloud F
 server to grant access to apps and resources based on the user roles and rights within a PCF deployment. The service pulls,
 stores, visualizes, and sends alerts on the metrics emitted by VMs, PCF components, services, and apps running on PCF. 
 
-The tile comes with pre-built integration with the following services available as PCF tiles: 
+The tile comes with pre-built integration with the following services available as PCF tiles:
 
 - [MySQL for PCF](https://network.pivotal.io/products/p-mysql)
 - [RabbitMQ for PCF](https://network.pivotal.io/products/pivotal-rabbitmq-service)
 - [Redis for PCF](https://network.pivotal.io/products/p-redis0)
 - [Crunchy PostgreSQL for PCF](https://network.pivotal.io/products/crunchy-postgresql)
 - [Dingo PostgreSQL for PCF](https://network.pivotal.io/products/dingo-postgresql-for-pcf)
+- [Altoros Log Search for PCF](https://network.pivotal.io/products/altoros-log-search/)
 
 This integration enables operators to monitor these services without any additional configuration.
+
+The tile comes with pre-built integration with the following external deployed services:
+
+- MySQL
+- PostgreSQL
+- MongoDB
+- Memcached
+- Redis
+- RabbitMQ
+
+This integration enables operators to monitor these services with additional configuration.
 
 ## <a id='features'></a>Key Features
 
@@ -53,15 +64,15 @@ The following table provides version and version-support information about Altor
     <th>Details</th>
     <tr>
         <td>Tile version</td>
-        <td>v0.8.94</td>
+        <td>v0.8.95</td>
     </tr>
     <tr>
         <td>Release date</td>
-        <td>August 28, 2017</td>
+        <td>September 4, 2017</td>
     </tr>
     <tr>
         <td>Software component version</td>
-        <td>Grafana v4.4, collectd v5.7.1, StatsD v0.8.0, Carbon API 0.8.0, and GoCarbon 0.9.1</td>
+        <td>Grafana v4.4.1, collectd v5.7.2, StatsD v0.8.0, Carbon API 0.8.0, and GoCarbon 0.9.1</td>
     </tr>
     <tr>
         <td>Compatible Ops Manager version(s)</td>
