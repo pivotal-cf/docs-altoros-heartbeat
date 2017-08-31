@@ -1,0 +1,740 @@
+{
+  "__inputs": [
+    {
+      "name": "DS_GRAPHITE-SYSTEM",
+      "label": "graphite-system",
+      "description": "",
+      "type": "datasource",
+      "pluginId": "graphite",
+      "pluginName": "Graphite"
+    },
+    {
+      "name": "VAR_DIEGO_DEPLOYMENT",
+      "type": "constant",
+      "label": "Diego Deployment",
+      "value": "cf-4b1e72e2f49965b285c6",
+      "description": ""
+    }
+  ],
+  "__requires": [
+    {
+      "type": "panel",
+      "id": "alertlist",
+      "name": "Alert List",
+      "version": ""
+    },
+    {
+      "type": "grafana",
+      "id": "grafana",
+      "name": "Grafana",
+      "version": "4.4.1"
+    },
+    {
+      "type": "panel",
+      "id": "graph",
+      "name": "Graph",
+      "version": ""
+    },
+    {
+      "type": "datasource",
+      "id": "graphite",
+      "name": "Graphite",
+      "version": "1.0.0"
+    }
+  ],
+  "annotations": {
+    "list": []
+  },
+  "editable": true,
+  "gnetId": null,
+  "graphTooltip": 0,
+  "hideControls": false,
+  "id": null,
+  "links": [
+    {
+      "icon": "doc",
+      "tags": [],
+      "targetBlank": true,
+      "timeFormat": "grafana",
+      "title": "Documentation",
+      "type": "link",
+      "url": "http://docs.grafana.org/alerting/rules/"
+    }
+  ],
+  "refresh": false,
+  "rows": [
+    {
+      "collapse": false,
+      "height": "250",
+      "panels": [
+        {
+          "editable": true,
+          "error": false,
+          "height": "285",
+          "id": 9,
+          "limit": 10,
+          "links": [],
+          "onlyAlertsOnDashboard": false,
+          "show": "current",
+          "sortOrder": 1,
+          "span": 12,
+          "stateFilter": [],
+          "title": "Alert List",
+          "type": "alertlist"
+        }
+      ],
+      "repeat": null,
+      "repeatIteration": null,
+      "repeatRowId": null,
+      "showTitle": false,
+      "title": "New row",
+      "titleSize": "h6"
+    },
+    {
+      "collapse": false,
+      "height": "250px",
+      "panels": [
+        {
+          "alert": {
+            "conditions": [
+              {
+                "evaluator": {
+                  "params": [
+                    50
+                  ],
+                  "type": "gt"
+                },
+                "query": {
+                  "datasourceId": 1,
+                  "model": {
+                    "hide": true,
+                    "refId": "B",
+                    "target": "averageSeriesWithWildcards(averageSeriesWithWildcards(averageSeriesWithWildcards(cf.collectd.$diego_deployment.*cell*.*.cpu.*.percent.user, 6), 4), 3)",
+                    "textEditor": true
+                  },
+                  "params": [
+                    "B",
+                    "15m",
+                    "now"
+                  ]
+                },
+                "reducer": {
+                  "params": [],
+                  "type": "avg"
+                },
+                "type": "query"
+              }
+            ],
+            "executionErrorState": "alerting",
+            "frequency": "300s",
+            "handler": 1,
+            "message": "",
+            "name": "Average CPU Usage on Cells alert",
+            "noDataState": "alerting",
+            "notifications": [
+              {
+                "id": 1
+              },
+              {
+                "id": 2
+              }
+            ]
+          },
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_GRAPHITE-SYSTEM}",
+          "editable": true,
+          "error": false,
+          "fill": 1,
+          "grid": {},
+          "id": 1,
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 2,
+          "links": [
+            {
+              "dashUri": "db/cf-cells",
+              "dashboard": "CF Cells",
+              "includeVars": true,
+              "keepTime": true,
+              "targetBlank": true,
+              "title": "CF Cells",
+              "type": "dashboard"
+            }
+          ],
+          "nullPointMode": "connected",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "span": 4,
+          "stack": false,
+          "steppedLine": false,
+          "suppress": false,
+          "targets": [
+            {
+              "hide": false,
+              "refId": "A",
+              "target": "aliasByMetric(averageSeriesWithWildcards(averageSeriesWithWildcards(averageSeriesWithWildcards(cf.collectd.$diego_deployment.*cell*.*.cpu.*.percent.*, 6), 4), 3))",
+              "textEditor": false
+            },
+            {
+              "hide": true,
+              "refId": "B",
+              "target": "aliasByMetric(averageSeriesWithWildcards(averageSeriesWithWildcards(averageSeriesWithWildcards(cf.collectd.cf-*.diego_cell.*.cpu.*.percent.user, 6), 4), 3))",
+              "textEditor": false
+            }
+          ],
+          "thresholds": [
+            {
+              "colorMode": "critical",
+              "fill": true,
+              "line": true,
+              "op": "gt",
+              "value": 50
+            }
+          ],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Average CPU Usage on Cells",
+          "tooltip": {
+            "msResolution": false,
+            "shared": true,
+            "sort": 0,
+            "value_type": "cumulative"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        },
+        {
+          "alert": {
+            "conditions": [
+              {
+                "evaluator": {
+                  "params": [
+                    5000000000
+                  ],
+                  "type": "gt"
+                },
+                "query": {
+                  "datasourceId": 1,
+                  "model": {
+                    "refId": "B",
+                    "target": "aliasByMetric(sumSeriesWithWildcards(sumSeriesWithWildcards(cf.collectd.$diego_deployment.*cell*.*.memory.memory.used, 4), 3))",
+                    "textEditor": true
+                  },
+                  "params": [
+                    "E",
+                    "15m",
+                    "now"
+                  ]
+                },
+                "reducer": {
+                  "params": [],
+                  "type": "avg"
+                },
+                "type": "query"
+              }
+            ],
+            "executionErrorState": "alerting",
+            "frequency": "300s",
+            "handler": 1,
+            "name": "Memory Usage on Cells alert",
+            "noDataState": "alerting",
+            "notifications": []
+          },
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_GRAPHITE-SYSTEM}",
+          "editable": true,
+          "error": false,
+          "fill": 1,
+          "grid": {},
+          "id": 2,
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 2,
+          "links": [
+            {
+              "dashUri": "db/cf-cells",
+              "dashboard": "CF Cells",
+              "includeVars": true,
+              "keepTime": true,
+              "targetBlank": true,
+              "title": "CF Cells",
+              "type": "dashboard"
+            }
+          ],
+          "nullPointMode": "connected",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "span": 4,
+          "stack": false,
+          "steppedLine": false,
+          "suppress": false,
+          "targets": [
+            {
+              "refId": "A",
+              "target": "aliasByMetric(sumSeriesWithWildcards(sumSeriesWithWildcards(cf.collectd.$diego_deployment.*cell*.*.memory.memory.free, 4), 3))",
+              "textEditor": false
+            },
+            {
+              "refId": "B",
+              "target": "aliasByMetric(sumSeriesWithWildcards(sumSeriesWithWildcards(cf.collectd.$diego_deployment.*cell*.*.memory.memory.used, 4), 3))",
+              "textEditor": false
+            },
+            {
+              "refId": "C",
+              "target": "aliasByMetric(sumSeriesWithWildcards(sumSeriesWithWildcards(cf.collectd.$diego_deployment.*cell*.*.memory.memory.buffered, 4), 3))",
+              "textEditor": false
+            },
+            {
+              "refId": "D",
+              "target": "aliasByMetric(sumSeriesWithWildcards(sumSeriesWithWildcards(cf.collectd.$diego_deployment.*cell*.*.memory.memory.cached, 4), 3))",
+              "textEditor": false
+            },
+            {
+              "hide": true,
+              "refId": "E",
+              "target": "aliasByMetric(sumSeriesWithWildcards(sumSeriesWithWildcards(cf.collectd.cf-*.diego_cell.*.memory.memory.used, 4), 3))",
+              "textEditor": false
+            }
+          ],
+          "thresholds": [
+            {
+              "colorMode": "critical",
+              "fill": true,
+              "line": true,
+              "op": "gt",
+              "value": 5000000000
+            }
+          ],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Overall Memory Usage on Cells",
+          "tooltip": {
+            "msResolution": false,
+            "shared": true,
+            "sort": 0,
+            "value_type": "cumulative"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "bytes",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        },
+        {
+          "alert": {
+            "conditions": [
+              {
+                "evaluator": {
+                  "params": [
+                    104857600
+                  ],
+                  "type": "gt"
+                },
+                "query": {
+                  "datasourceId": 1,
+                  "model": {
+                    "hide": true,
+                    "refId": "B",
+                    "target": "sumSeriesWithWildcards(sumSeriesWithWildcards(cf.collectd.$diego_deployment.*cell*.*.swap.swap.used, 4), 3)",
+                    "textEditor": true
+                  },
+                  "params": [
+                    "B",
+                    "15m",
+                    "now"
+                  ]
+                },
+                "reducer": {
+                  "params": [],
+                  "type": "avg"
+                },
+                "type": "query"
+              }
+            ],
+            "executionErrorState": "alerting",
+            "frequency": "300s",
+            "handler": 1,
+            "name": "Swap Usage on Cells alert",
+            "noDataState": "alerting",
+            "notifications": []
+          },
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_GRAPHITE-SYSTEM}",
+          "editable": true,
+          "error": false,
+          "fill": 1,
+          "grid": {},
+          "id": 3,
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 2,
+          "links": [
+            {
+              "dashUri": "db/cf-cells",
+              "dashboard": "CF Cells",
+              "includeVars": true,
+              "keepTime": true,
+              "targetBlank": true,
+              "title": "CF Cells",
+              "type": "dashboard"
+            }
+          ],
+          "nullPointMode": "connected",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "span": 4,
+          "stack": false,
+          "steppedLine": false,
+          "suppress": false,
+          "targets": [
+            {
+              "hide": false,
+              "refId": "A",
+              "target": "aliasByMetric(sumSeriesWithWildcards(sumSeriesWithWildcards(cf.collectd.$diego_deployment.*cell*.*.swap.swap.*, 4), 3))",
+              "textEditor": false
+            },
+            {
+              "hide": true,
+              "refId": "B",
+              "target": "aliasByMetric(sumSeriesWithWildcards(sumSeriesWithWildcards(cf.collectd.cf-*.diego_cell.*.swap.swap.used, 4), 3))",
+              "textEditor": false
+            }
+          ],
+          "thresholds": [
+            {
+              "colorMode": "critical",
+              "fill": true,
+              "line": true,
+              "op": "gt",
+              "value": 104857600
+            }
+          ],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Overall Swap Usage on Cells",
+          "tooltip": {
+            "msResolution": false,
+            "shared": true,
+            "sort": 0,
+            "value_type": "cumulative"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "bytes",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        }
+      ],
+      "repeat": null,
+      "repeatIteration": null,
+      "repeatRowId": null,
+      "showTitle": false,
+      "title": "New row",
+      "titleSize": "h6"
+    },
+    {
+      "collapse": false,
+      "height": 250,
+      "panels": [
+        {
+          "alert": {
+            "conditions": [
+              {
+                "evaluator": {
+                  "params": [
+                    95
+                  ],
+                  "type": "lt"
+                },
+                "operator": {
+                  "type": "and"
+                },
+                "query": {
+                  "params": [
+                    "A",
+                    "1h",
+                    "now"
+                  ]
+                },
+                "reducer": {
+                  "params": [],
+                  "type": "avg"
+                },
+                "type": "query"
+              }
+            ],
+            "executionErrorState": "alerting",
+            "frequency": "300s",
+            "handler": 1,
+            "name": "Percentage of running VMs alert",
+            "noDataState": "alerting",
+            "notifications": []
+          },
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_GRAPHITE-SYSTEM}",
+          "fill": 1,
+          "id": 17,
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "span": 12,
+          "stack": false,
+          "steppedLine": false,
+          "suppress": false,
+          "targets": [
+            {
+              "refId": "A",
+              "target": "alias(asPercent(sumSeries(transformNull(removeEmptySeries(stats.gauges.bosh.*.*.*.ops.bosh-hm-forwarder.system.healthy), 1)), #B), 'Running VMs')",
+              "targetFull": "alias(asPercent(sumSeries(transformNull(removeEmptySeries(stats.gauges.bosh.*.*.*.ops.bosh-hm-forwarder.system.healthy), 1)), countSeries(removeEmptySeries(stats.gauges.bosh.*.*.*.ops.bosh-hm-forwarder.system.healthy))), 'Running VMs')",
+              "textEditor": false
+            },
+            {
+              "hide": true,
+              "refId": "B",
+              "target": "countSeries(removeEmptySeries(stats.gauges.bosh.*.*.*.ops.bosh-hm-forwarder.system.healthy))",
+              "textEditor": false
+            }
+          ],
+          "thresholds": [
+            {
+              "colorMode": "critical",
+              "fill": true,
+              "line": true,
+              "op": "lt",
+              "value": 95
+            }
+          ],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Percentage of running VMs",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "percent",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        }
+      ],
+      "repeat": null,
+      "repeatIteration": null,
+      "repeatRowId": null,
+      "showTitle": true,
+      "title": "BOSH",
+      "titleSize": "h6"
+    }
+  ],
+  "schemaVersion": 14,
+  "showSuppressed": false,
+  "style": "dark",
+  "tags": [
+    "overview"
+  ],
+  "templating": {
+    "list": [
+      {
+        "current": {
+          "value": "${VAR_DIEGO_DEPLOYMENT}",
+          "text": "${VAR_DIEGO_DEPLOYMENT}"
+        },
+        "hide": 0,
+        "label": "Diego Deployment",
+        "name": "diego_deployment",
+        "options": [
+          {
+            "value": "${VAR_DIEGO_DEPLOYMENT}",
+            "text": "${VAR_DIEGO_DEPLOYMENT}"
+          }
+        ],
+        "query": "${VAR_DIEGO_DEPLOYMENT}",
+        "type": "constant"
+      }
+    ]
+  },
+  "time": {
+    "from": "now-1h",
+    "to": "now"
+  },
+  "timepicker": {
+    "refresh_intervals": [
+      "5s",
+      "10s",
+      "30s",
+      "1m",
+      "5m",
+      "15m",
+      "30m",
+      "1h",
+      "2h",
+      "1d"
+    ],
+    "time_options": [
+      "5m",
+      "15m",
+      "1h",
+      "6h",
+      "12h",
+      "24h",
+      "2d",
+      "7d",
+      "30d"
+    ]
+  },
+  "timezone": "browser",
+  "title": "Example of Alerting Dashboard",
+  "version": 5
+}
