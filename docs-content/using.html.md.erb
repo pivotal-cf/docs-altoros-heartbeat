@@ -8,7 +8,7 @@ This topic describes how to use Altoros Heartbeat for Pivotal Cloud Foundry (PCF
 ##<a id='create'></a>Creating a Service Instance, Heartbeat for Developers
 
 To start using Heartbeat, a developer needs to create an Altoros Heartbeat service instance inside their org/space.
-After this, they are able to navigate to a URL in a browser to access Altoros Heartbeat's Grafana dashboard and log in using their PCF login and password.
+After this, they are able to navigate to a URL in a browser to access the Altoros Heartbeat Grafana dashboard and log in using their PCF login and password.
 After login, the developer gets access to Developer View.
 
 <p class="note"><strong>Note</strong>: You do not need to create service instances inside the org/space
@@ -52,11 +52,13 @@ The most convenient approach is to use a Unix timestamp as `some_new_number`:
 
 <pre class="terminal">cf update-service heartbeat -c "{\"version\":$(date +%s)}"</pre>
 
-<p class="note"><strong>Note</strong>: the <b>date</b> command is only available in Linux and macOS. For Windows, use a Unix timestamp generator, e.g. <a href="http://www.unixtimestamp.com/">http://www.unixtimestamp.com/</a></p>
+<p class="note"><strong>Note</strong>: The <b>date</b> command is only available in Linux and macOS.
+   For Windows, use a Unix timestamp generator,
+   e.g. <a href="http://www.unixtimestamp.com/">http://www.unixtimestamp.com/</a>.</p>
 
-##<a id='access'></a>Accessing Altoros Heartbeat's Dashboard
+##<a id='access'></a>Accessing the Altoros Heartbeat Dashboard
 
-To access Altoros Heartbeat's dashboard, perform the following steps:
+To access the Altoros Heartbeat dashboard, perform the following steps:
 
 1. Navigate to the **Ops Manager Installation Dashboard** and click the **Pivotal Elastic Runtime** tile.
 
@@ -68,19 +70,19 @@ To access Altoros Heartbeat's dashboard, perform the following steps:
 
 1. Navigate to `https://monitoring.YOUR-APPS-DOMAIN.com`.
 
-1. Log in to **Altoros Heartbeat** using your **Pivotal Elastin Runtime** credentials.
+1. Log in to **Altoros Heartbeat** using your **Pivotal Elastic Runtime** credentials.
 
       <%= image_tag("images/using-pcf-authorization.png") %>
 
-1. A prompt requesting permission to access Altoros Heartbeat appears.
+    A prompt requesting permission to access Altoros Heartbeat appears.
 
       <%= image_tag("images/using-prompt.png") %>
 
 1. Click **Authorize**.
 
-##<a id='configure'></a>Configuring Altoros Heartbeat's Dashboard
+##<a id='configure'></a>Configuring the Altoros Heartbeat Dashboard
 
-Altoros Heartbeat's dashboard is based on open source Grafana software.
+The Altoros Heartbeat dashboard is based on open source Grafana software.
 For information about creating and editing Grafana graphs and panels, see [Grafana documentation](http://docs.grafana.org/guides/getting_started/).
 
 ##<a id='viewing'></a>Viewing Metrics from PCF
@@ -97,7 +99,7 @@ The dashboards accessible from the Admin view are:
 
 **Overview** dashboards:
 
-* The **Pivotal BOSH Overview dashboard** contains panels with BOSH health metrics, such as sum CPU and memory/swap usage, and VM's availability.
+* The **Pivotal BOSH Overview dashboard** contains panels with BOSH health metrics, such as sum CPU and memory/swap usage, and VMs availability.
 
 * The **Pivotal Cloud Foundry Overview** dashboard contain panels with metrics on the state of long-running processes,
   container count and capacity of remaining containers, % of running VMs, average CPU usage on cells,
@@ -110,7 +112,7 @@ The dashboards accessible from the Admin view are:
 **BOSH** dashboards:
 
 * The Pivotal BOSH Overview dashboard contains panels with BOSH health metrics,
-  such as sum CPU and memory/swap usage, and VM's availability.
+  such as sum CPU and memory/swap usage, and VMs availability.
 
 * The Pivotal BOSH VMs dashboard contains panels with metrics of any VM managed by BOSH, including CPU usage,
   LA 1 min, memory/swap usage, health, health timeline, health status, system disc usage, persistent disc usage,
