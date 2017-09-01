@@ -682,7 +682,8 @@
   "showSuppressed": false,
   "style": "dark",
   "tags": [
-    "overview"
+    "example",
+    "alerting"
   ],
   "templating": {
     "list": [
