@@ -1,9 +1,3 @@
-output
-final_app
-.bundle
-Gemfile.lock
-final_app/*
-cached_shas.yml
-**/.sass-cache/*
-bin
-[#]*[#]
+docs-book/final_app/*
+docs-book/output/*
+*.log
