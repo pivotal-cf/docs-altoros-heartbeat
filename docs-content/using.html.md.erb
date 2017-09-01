@@ -5,7 +5,7 @@ owner: Partners
 
 This topic describes how to use Altoros Heartbeat for Pivotal Cloud Foundry (PCF).
 
-##<a id='create'></a>Creating a Service Instance (Heartbeat for Developers)
+##<a id='create'></a>Creating a Service Instance, Heartbeat for Developers
 
 To start using Heartbeat, a developer needs to create an Altoros Heartbeat service instance inside their org/space.
 After this, they will be able to navigate to a URL in a browser to access Altoros Heartbeat's Grafana dashboard and log in using their PCF login and password.
@@ -35,10 +35,12 @@ To create an Altoros Heartbeat service instance:
 
 ##<a id='update'></a>Updating a Service Instance
 
-Every time you rename an org/space, all service instances within this org/space need to be updated. It can be done automatically through the **Heartbeat Grafana Bootstrap** errand or manually through a service update procedure.
+Every time you rename an org/space, all service instances within this org/space need to be updated.
+It can be done automatically through the **Heartbeat Grafana Bootstrap** errand or manually through a service update procedure.
 Another case when you might need to update a service instance is to manually refresh dashboards for a specific org/space when the **Heartbeat Grafana Bootstrap** errand is disabled.
 
-<p class="note"><strong>Note</strong>: It is highly recommended to keep the <b>Heartbeat Grafana Bootstrap</b> errand enabled. For details, see <a href="installing.html#errands">Configure Errands</a>.</p>
+<p class="note"><strong>Note</strong>: Altoros highly recommends keeping the <b>Heartbeat Grafana Bootstrap</b> errand enabled.
+ For details, see <a href="installing.html#errands">Configure Errands</a>.</p>
 
 To update an Altoros Heartbeat service instancem, run:
 
