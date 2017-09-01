@@ -7,10 +7,10 @@ This topic describes how to add collectd to your Pivotal Cloud Foundry (PCF) dep
 
 ## <a id='about'></a>About collectd Add-on for PCF
 
-This add-on is required to enable the Altoros Heartbeat monitoring solution consume system metrics 
+This add-on is required to enable the Altoros Heartbeat monitoring solution consume system metrics
 from the VMs that make up a PCF deployment. The [collectd](https://collectd.org/) add-on gathers VM
 metrics from PCF platform components and any other BOSH-deployed services (e.g., databases)
-and makes this information available to Altoros Heartbeat over the network. 
+and makes this information available to Altoros Heartbeat over the network.
 
 ## <a id='prerequisites'></a>Prerequisites
 
@@ -58,7 +58,7 @@ Follow the steps below to create a collectd manifest for your deployment:
 
 * `collectd: graphite_prefix`: Do not change the graphit_prefix name. It must be `cf.collectd`.
 * `collectd: graphite_servers`: List the IP address of your Heartbeat VM.
-* `collectd: interval`: You can modify the 10 second default interval value. This value specifies how often the collectd add-on gathers metrics from VMs. 
+* `collectd: interval`: You can modify the 10 second default interval value. This value specifies how often the collectd add-on gathers metrics from VMs.
 
 ##<a id='deploy'></a> Downloading and Deploying the collectd Add-on
 
@@ -94,7 +94,7 @@ Follow the steps below to create a collectd manifest for your deployment:
 
 1. From the command line, confirm that the upload of the collectd software binary completed.
    You should see the collectd release.
- 
+
     <pre class="terminal">$ bosh releases</pre>
 
 1. Update your runtime configuration to include the collectd add-on.
@@ -143,13 +143,13 @@ Follow the steps below to create a collectd manifest for your deployment:
 ## <a id='uninstall'></a>Uninstalling the collectd Add-on
 
 Follow the steps below to remove the collectd add-on from your existing runtime config and
-roll back to a previous configuration: 
+roll back to a previous configuration:
 
 1. SSH into Ops Manager.
 
     <pre class="terminal">$ ssh -i PATH-TO-PRIVATE-KEY ubuntu@YOUR-OPS-MANAGER-VM-IP</pre>
 
-1. On the Ops Manager VM, retrieve the latest runtime configuration saved on the BOSH Director. 
+1. On the Ops Manager VM, retrieve the latest runtime configuration saved on the BOSH Director.
 
     <pre class="terminal">$ bosh runtime-config > PATH-TO-SAVE-THE-RUNTIME-CONFIG</pre>
 
@@ -163,11 +163,11 @@ roll back to a previous configuration:
 
 1. Click **Apply Changes**.
 
-If you have no existing runtime configuration, follow the steps below:  
+If you have no existing runtime configuration, follow the steps below:
 
 1. On the Ops Manager VM, create an `empty-runtime.yml` manifest file.
 
-    <pre class="terminal">$ cat empty-runtime.yml 
+    <pre class="terminal">$ cat empty-runtime.yml
     releases: []</pre>
 
 1. Update the runtime configuration with `empty-runtime.yml`.

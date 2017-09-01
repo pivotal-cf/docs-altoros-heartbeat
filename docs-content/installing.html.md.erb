@@ -11,9 +11,9 @@ This topic describes how to install and configure Altoros Heartbeat for Pivotal 
 
 1. Download the product file and the collectD add-on from [Pivotal Network](https://network.pivotal.io/products/altoros-heartbeat).
 
-1. Navigate to the Ops Manager Installation Dashboard and click **Import a Product** to upload the product file. 
+1. Navigate to the Ops Manager Installation Dashboard and click **Import a Product** to upload the product file.
 
-1. Under the **Import a Product** button, click **+** next to the version number of Altoros Heartbeat for PCF. 
+1. Under the **Import a Product** button, click **+** next to the version number of Altoros Heartbeat for PCF.
 This adds the tile to your staging area.
 
 1. Click the newly added **Altoros Heartbeat for PCF** tile.
@@ -36,7 +36,7 @@ This adds the tile to your staging area.
 
 1. Specify the external server for uploading Grafana images so that they can be attached to Slack and email alert notifications:
 
-    1. If you are using [AWS S3](https://aws.amazon.com/s3/) , enable the **S3** checkbox 
+    1. If you are using [AWS S3](https://aws.amazon.com/s3/) , enable the **S3** checkbox
        and provide your Amazon S3 Bucket URL, Amazon API Access Key ID, and Amazon API Secret Key.
 
          <%= image_tag("images/alert.png") %>
@@ -59,7 +59,7 @@ This adds the tile to your staging area.
 
     <%= image_tag("images/alert-mail.png") %>
 
-1. Click **Save**.   
+1. Click **Save**.
 
 ##<a id='nozzle'></a>Configure Graphite Nozzle
 
@@ -67,7 +67,7 @@ This adds the tile to your staging area.
 
 1. To complete the **Credentials** for the **OpsManager Director** fields, provide username and password for the **OpsManager Director**:
 
-    1. Navigate to the **Ops Manager Installation Dashboard** and click the **Ops Manager Director** tile. 
+    1. Navigate to the **Ops Manager Installation Dashboard** and click the **Ops Manager Director** tile.
 
     1. In the **Credentials** tab, click **Link to Credentials** next to **Director Credentials**.
 
@@ -76,7 +76,7 @@ This adds the tile to your staging area.
     1. Copy the identity and password values from the JSON file that opens.
 
          <pre class="terminal">
-    {"credential":{"type":"simple_credentials","value":{"identity":"director","password":"XYXYXYXYXYXYXYXYXXY"}}} 
+    {"credential":{"type":"simple_credentials","value":{"identity":"director","password":"XYXYXYXYXYXYXYXYXXY"}}}
     </pre>
 
     1. Paste the retrieved username and password into the **Credentials** for the **OpsManager Director** fields.
@@ -212,7 +212,7 @@ For more information about this feature, see [**Altoros Log Search for PCF Integ
 
         **Port**: the port number on which the server listens
 
-        **Password**: (optional) the password used to access the server 
+        **Password**: (optional) the password used to access the server
 
     1. For RabbitMQ Servers:
 
@@ -248,7 +248,7 @@ For more information about 3rd party services monitoring, see [3rd Party Service
 
     <%= image_tag("images/mysql-proxy.png") %>
 
-1. Click **Save**. 
+1. Click **Save**.
 
 ##<a id='mysql'></a>Configure MySQL Server
 
@@ -314,26 +314,26 @@ If you are using the **gp2** volume type with **Amazon EC2** instances and expec
 
     <%= image_tag("images/ops-manager-director-1.png") %>
 
-1. In the **Ops Manager Installation Dashboard**, click the **Ops Manager Director** tile. 
+1. In the **Ops Manager Installation Dashboard**, click the **Ops Manager Director** tile.
 
 1. In the **Settings** tab, click **Director Config** and paste the copied BOSH HM Forwarder IP address into the Metrics IP Address field.
 
     <%= image_tag("images/ops-manager-director-2.png") %>
 
 1. Click **Save**.
- 
+
 1. Return to the **Ops Manager Installation Dashboard** and click **Apply Changes** to apply the configuration settings.
 
 ##<a id='redisrabbit'></a>Configure Redis and RabbitMQ
 
-If you have Redis and RabbitMQ for PCF tiles installed and want to collect metrics from these services using Altoros Heartbeat, adjust the Metrics polling interval for these services to `15`. 
+If you have Redis and RabbitMQ for PCF tiles installed and want to collect metrics from these services using Altoros Heartbeat, adjust the Metrics polling interval for these services to `15`.
 
 To set the metrics polling interval in Redis:
 
 1. In the **Ops Manager Installation Dashboard**, click the **Redis tile**.
- 
+
 1. In the **Setting** tab, click **Metrics**.
- 
+
 1. In the **Metrics polling interval field**, enter `15`.
 
     <%= image_tag("images/configure-redis.png") %>
@@ -345,9 +345,9 @@ To set the metrics polling interval in Redis:
 To set the metrics polling interval in RabbitMQ:
 
 1. In the **Ops Manager Installation Dashboard**, click the **RabbitMQ** tile.
- 
+
 1. In the **Setting** tab, click **RabbitMQ**.
- 
+
 1. Complete the **Metrics polling interval field** with `15`.
 
     <%= image_tag("images/configure-rabbitmq.png") %>

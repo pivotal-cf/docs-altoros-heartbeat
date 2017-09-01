@@ -16,7 +16,7 @@ from their PCF installation in one place.
 
 Altoros Heartbeat for PCF is a multi-tenant monitoring service that uses Cloud Foundry's User Account and Authentication (UAA)
 server to grant access to apps and resources based on the user roles and rights within a PCF deployment. The service pulls,
-stores, visualizes, and sends alerts on the metrics emitted by VMs, PCF components, services, and apps running on PCF. 
+stores, visualizes, and sends alerts on the metrics emitted by VMs, PCF components, services, and apps running on PCF.
 
 The tile comes with pre-built integration with the following services available as PCF tiles:
 
@@ -53,7 +53,7 @@ Altoros Heartbeat for PCF includes the following key features:
   to control access to apps and resources based on user roles and rights within the platform.
   Multi-tenancy is implemented according to Cloud Foundry UAA roles.
   Dedicated shares of the solution are deployed to different spaces to collect metrics from the apps and services running within.
-* **Alerts**: Can be defined for each dashboard panel, and users get immediate notifications though email, Slack, and other notification channels. 
+* **Alerts**: Can be defined for each dashboard panel, and users get immediate notifications though email, Slack, and other notification channels.
 
 ## <a id="snapshot"></a>Product Snapshot
 
@@ -98,7 +98,7 @@ To complete installation of Altoros Heartbeat for PCF, you need the following:
 
 * An AWS S3 bucket or WebDAV with credentials to store alert images from Grafana
 * Alert notification endpoint (SMTP server for email notifications, Slack, Sensu) with credentials
-* CPU/RAM/disk resources for 7 VMs 
+* CPU/RAM/disk resources for 7 VMs
 * Internet connectivity between the networks where the PCF deployment and Heartbeat are installed.
   Altoros recommends installing Heartbeat on the same network with PCF.
 
@@ -109,9 +109,9 @@ Altoros Heartbeat for PCF has the following requirements:
 * [Elastic Runtime](https://network.pivotal.io/products/elastic-runtime) v1.9.x, 1.10.x, 1.11.x
 * [Ops Manager](https://network.pivotal.io/products/ops-manager) v.1.9.x, 1.10.x, 1.11.x
 * Installation of the collectd add-on for PCF to enable PCF component VMs and
-  the VMs of any other BOSH-deployed services expose system metrics to Heartbeat. 
-For more information, see [Installing collectd Add-on for PCF](installing.html). 
-* (Optional) To enable collection of JMX metrics from Java apps, the Altoros Heartbeat tile for PCF requires a custom Java buildpack. 
+  the VMs of any other BOSH-deployed services expose system metrics to Heartbeat.
+For more information, see [Installing collectd Add-on for PCF](installing.html).
+* (Optional) To enable collection of JMX metrics from Java apps, the Altoros Heartbeat tile for PCF requires a custom Java buildpack.
 For more information, see [JMXTrans Agent Integration](jmxtrans.html).
 * (Optional) To enable collection of custom application metrics, integration of a StatsD library into the app's code is required.
   For more information, see [StatsD Integration](statsd.html).
@@ -120,8 +120,8 @@ For more information, see [JMXTrans Agent Integration](jmxtrans.html).
 
 The Altoros Heartbeat for PCF tile has the following limitations:
 
-* Offline buildpack for collecting JMX metrics is unavailable. Only the online version of the buildpack from 
-  [this GitHub repository](https://github.com/Altoros/java-buildpack#jmx-agent-integration) can be used to collect JMX metrics from Java apps. 
+* Offline buildpack for collecting JMX metrics is unavailable. Only the online version of the buildpack from
+  [this GitHub repository](https://github.com/Altoros/java-buildpack#jmx-agent-integration) can be used to collect JMX metrics from Java apps.
 * Users are limited to using internal MariaDB to store internal Heartbeat data such as user sessions, mappings, dashboards, UI configs, etc.
 * High availability mode is currently not supported.
 
@@ -132,4 +132,4 @@ Please provide any bugs, feature requests, or questions to the
 
 ## <a id='license'></a>Trial License
 
-Users interested in Heartbeat can sign up for a [free trial](https://www.altoros.com/wp-content/uploads/2017/07/AltorosHeartbeatTileEULA.pdf). 
+Users interested in Heartbeat can sign up for a [free trial](https://www.altoros.com/wp-content/uploads/2017/07/AltorosHeartbeatTileEULA.pdf).
