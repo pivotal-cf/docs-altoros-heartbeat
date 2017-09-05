@@ -134,8 +134,6 @@ Configuration of Altoros Heartbeat's metrics storage helps prevent undesirable e
 
 1. Specify the default port BOSH HM Forwarder will use to forward the metrics collected from BOSH Agents.
 
-    <p class="note"><strong>IMPORTANT</strong>: If you are using PCF v1.10 or later, clear the <storong>use non-secure communication</strong> for metrics checkbox.</p>
-
     <%= image_tag("images/bosh-hm-forwarder.png") %>
 
 1. Click **Save**.
@@ -316,9 +314,15 @@ If you are using the **gp2** volume type with **Amazon EC2** instances and expec
 
 1. In the **Ops Manager Installation Dashboard**, click the **Ops Manager Director** tile.
 
-1. In the **Settings** tab, click **Director Config** and paste the copied BOSH HM Forwarder IP address into the Metrics IP Address field.
+1. In the **Settings** tab, click **Director Config** and paste the copied BOSH HM Forwarder IP address:
+
+    1. for Ops Manager Director v1.10 - into the Metrics IP Address field.
 
     <%= image_tag("images/ops-manager-director-2.png") %>
+
+    1. for Ops Manager Director v1.11+ - into the Bosh HM Forwarder IP Address field.
+
+    <%= image_tag("images/ops-manager-director-3.png") %>
 
 1. Click **Save**.
 
