@@ -76,11 +76,11 @@ The following table provides version and version-support information about Altor
     </tr>
     <tr>
         <td>Compatible Ops Manager version(s)</td>
-        <td>v1.10.x, and v1.11.x</td>
+        <td>v1.10.x and v1.11.x</td>
     </tr>
     <tr>
         <td>Compatible Elastic Runtime version(s)</td>
-        <td>v1.10.x, and v1.11.x</td>
+        <td>v1.10.x and v1.11.x</td>
     </tr>
     <tr>
         <td>IaaS support</td>
@@ -98,7 +98,7 @@ To complete installation of Altoros Heartbeat for PCF, you need the following:
 
 * An AWS S3 bucket or WebDAV with credentials to store alert images from Grafana
 * Alert notification endpoint (SMTP server for email notifications, Slack, Sensu) with credentials
-* CPU/RAM/disk resources for 7 VMs
+* CPU, RAM, and disk resources for seven VMs
 * Internet connectivity between the networks where the PCF deployment and Heartbeat are installed.
   Altoros recommends installing Heartbeat on the same network with PCF.
 
@@ -111,7 +111,7 @@ Altoros Heartbeat for PCF has the following requirements:
 * Installation of the collectd add-on for PCF to enable PCF component VMs and
   the VMs of any other BOSH-deployed services expose system metrics to Heartbeat.
 For more information, see [Installing collectd Add-on for PCF](installing.html).
-* (Optional) To enable collection of JMX metrics from Java apps, the Altoros Heartbeat tile for PCF requires a custom Java buildpack.
+* (Optional) To enable collection of JMX metrics from Java apps, the Altoros Heartbeat for PCF requires a custom Java buildpack.
 For more information, see [JMXTrans Agent Integration](jmxtrans.html).
 * (Optional) To enable collection of custom application metrics, integration of a StatsD library into the app's code is required.
   For more information, see [StatsD Integration](statsd.html).
