@@ -9,33 +9,41 @@ This topic describes how to use dashboards for third-party services.
 
 <%= image_tag("images/mysql-dashboard-header.png") %>
 
-1. To track metrics from internal MySQL databases used by PCF Elastic Runtime on the **Service - MySQL \*** dashboards, choose `cf-*` from the **Deployment** drop-down menu and `mysql` from the **Host** drop-down menu.
+1. To track metrics from internal MySQL databases used by PCF Elastic Runtime, open the **Service - MySQL \*** dashboards, choose `cf-*` from the **Deployment** drop-down menu and `mysql` from the **Host** drop-down menu.
 
-1. To track metrics from external MySQL databases used by PCF Elastic Runtime on the **Service - MySQL \*** dashboards, choose `cf-*` from the **Deployment** drop-down menu and `cloud_controller` from the **Host** drop-down menu.
+1. To track metrics from external MySQL databases used by PCF Elastic Runtime, open the **Service - MySQL \*** dashboards, choose `cf-*` from the **Deployment** drop-down menu and `cloud_controller` from the **Host** drop-down menu.
 
-1. To track metrics from the MySQL for PCF tile on the **Service - MySQL \*** dashboards, choose `p-mysql-*` from the **Deployment** drop-down menu and `mysql` from the **Host** drop-down menu.
+1. To track metrics from the MySQL for PCF tile, open the **Service - MySQL \*** dashboards, choose `p-mysql-*` from the **Deployment** drop-down menu and `mysql` from the **Host** drop-down menu.
+
+1. To track metrics from an external MySQL installation, open the **Service - Mysql \*** dashboards, choose `altoros-heartbeat-*` from the **Deployment** drop-down menu and `external-collectd` from the **Host** drop-down menu.
 
 ##<a id='postgresql'></a>PostgreSQL
 
 <%= image_tag("images/postgresql-dashboard-header.png") %>
 
-1. To track metrics from the Crunchy PostgreSQL (on-demand version) deployment on the **Service - PostgreSQL Overview** dashboard, choose `service-instance_*` from the **Deployment** drop-down menu and `postgresql` from the **Host** drop-down menu.
+1. To track metrics from the Crunchy PostgreSQL (on-demand version) deployment, open the **Service - PostgreSQL Overview** dashboard, choose `service-instance_*` from the **Deployment** drop-down menu and `postgresql` from the **Host** drop-down menu.
 
-1. To track metrics from the Dingo PostgreSQL deployment on the **Service - PostgreSQL Overview** dashboard, choose `dingo-postgresql-*` from the **Deployment** drop-down menu and `router` from the **Host** drop-down menu.
+1. To track metrics from the Dingo PostgreSQL deployment, open the **Service - PostgreSQL Overview** dashboard, choose `dingo-postgresql-*` from the **Deployment** drop-down menu and `router` from the **Host** drop-down menu.
 
-1. To track metrics from an internal PostgreSQL databases used by PCF Elastic Runtime on the **Service - PostgreSQL Overview** dashboard, choose `cf-*` from the **Deployment** drop-down menu and `postgres` from the **Host** drop-down menu.
+1. To track metrics from an internal PostgreSQL databases used by PCF Elastic Runtime, open the **Service - PostgreSQL Overview** dashboard, choose `cf-*` from the **Deployment** drop-down menu and `postgres` from the **Host** drop-down menu.
+
+1. To track metrics from an external PostgreSQL installation, open the **Service - Postgresql Overview** dashboard, choose `altoros-heartbeat-*` from the **Deployment** drop-down menu and `name of your PostgreSQL host` from the **Host** drop-down menu.
 
 ##<a id='rabbitmq'></a>RabbitMQ
 
 <%= image_tag("images/rabbitmq-dashboard-header.png") %>
 
-1. To track metrics from the RabbitMQ for PCF tile on the **Service - RabbitMQ \*** dashboards, choose `p-rabbitmq-*` from the **Deployment** drop-down menu and `rabbitmq-broker` from the **Host** drop-down menu.
+1. To track metrics from the RabbitMQ for PCF tile, open the **Service - RabbitMQ \*** dashboards, choose `p-rabbitmq-*` from the **Deployment** drop-down menu and `rabbitmq-broker` from the **Host** drop-down menu.
+
+1. To track metrics from an external RabbitMQ installation, open the **Service - RabbitMQ \*** dashboards, choose `altoros-heartbeat-*` from the **Deployment** drop-down menu and `external-collectd` from the Host drop-down menu.
 
 ##<a id='redis'></a>Redis
 
 <%= image_tag("images/redis-dashboard-header.png") %>
 
-1. To track metrics from the Redis for PCF tile on the **Service - Redis Overview** dashboard, choose `p-redis-*` from the **Deployment** drop-down menu and `cf-redis-broker` or `dedicated-node` from the **Host** drop-down menu.
+1. To track metrics from the Redis for PCF tile, open the **Service - Redis Overview** dashboard, choose `p-redis-*` from the **Deployment** drop-down menu and `cf-redis-broker` or `dedicated-node` from the **Host** drop-down menu.
+
+1. To track metrics from an external Redis installation, open the **Service - Redis Overview** dashboard, choose `altoros-heartbeat-*` from the **Deployment** drop-down menu and `name of your Redis host` from the **Host** drop-down menu.
 
 ##<a id='elasticsearch'></a>Elasticsearch
 
@@ -43,5 +51,17 @@ This topic describes how to use dashboards for third-party services.
 
 <%= image_tag("images/elasticsearch-dashboard-header.png") %>
 
-1. To track metrics from the Altoros Log Search for PCF tile on the **Service - Elasticsearch Overview** dashboard, choose `logsearch-*` from the **Deployment** drop-down menu and `elasticsearch_data` or `cluster_monitor` from the **Host** drop-down menu.
+1. To track metrics from the Altoros Log Search for PCF tile, open the **Service - Elasticsearch Overview** dashboard, choose `logsearch-*` from the **Deployment** drop-down menu and `elasticsearch_data` or `cluster_monitor` from the **Host** drop-down menu.
+
+##<a id='mongodb'></a>MongoDB
+
+<%= image_tag("images/mongodb-dashboard-header.png") %>
+
+1. To track metrics from an external MongoDB installation, open the **Service - MongoDB Overview** dashboard, choose `altoros-heartbeat-*` from the **Deployment** drop-down menu and `external-collectd` from the **Host** drop-down menu.
+
+##<a id='memcached'></a>Memcached
+
+<%= image_tag("images/memcached-dashboard-header.png") %>
+
+1. To track metrics from an external Memcached installation, open the **Service - Memcached Overview** dashboard, choose `altoros-heartbeat-*` from the **Deployment** drop-down menu and `name of your Memcached host` from the **Host** drop-down menu.
 

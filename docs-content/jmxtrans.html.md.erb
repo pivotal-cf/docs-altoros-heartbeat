@@ -9,7 +9,7 @@ This topic is intended for app developers who are going to use the Heartbeat ser
 
 A custom Java buildpack is required to integrate the JMXTrans agent into a Java app for JMX monitoring.
 JMXTrans agent integration enables the app to send performance metrics to the StatsD server.
-These metrics are subsequently pushed to Graphite's Carbon component for caching and persistence. 
+These metrics are subsequently pushed to Graphite's Carbon component for caching and persistence.
 
 ##<a id='compile'></a> Downloading and Compiling a Java App
 
@@ -35,7 +35,7 @@ These metrics are subsequently pushed to Graphite's Carbon component for caching
       buildpack: https://github.com/Altoros/java-buildpack#jmx-agent-integration
     ```
 
-1. Add the manifest to your project: 
+1. Add the manifest to your project:
 
       <pre class="terminal">cd spring-petclinic
     vim manifest.yml</pre>
@@ -50,7 +50,7 @@ These metrics are subsequently pushed to Graphite's Carbon component for caching
 
       <pre class="terminal">cd spring-petclinic</pre>
 
-1. Push the app. 
+1. Push the app.
 
       <pre class="terminal">cf push</pre>
 

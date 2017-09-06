@@ -5,13 +5,15 @@ owner: Partners
 
 This topic describes how to install and configure Altoros Heartbeat for Pivotal Cloud Foundry (PCF).
 
+<p class="note"><strong>Note</strong>: If you update the Altoros Heartbeat for PCF tile, the collectd BOSH add-on must be <a href="installing-collectd.html">updated</a> as well.</p>
+
 ##<a id='install'></a>Install and Configure Altoros Heartbeat for PCF
 
 1. Download the product file and the collectD add-on from [Pivotal Network](https://network.pivotal.io/products/altoros-heartbeat).
 
-1. Navigate to the Ops Manager Installation Dashboard and click **Import a Product** to upload the product file. 
+1. Navigate to the Ops Manager Installation Dashboard and click **Import a Product** to upload the product file.
 
-1. Under the **Import a Product** button, click **+** next to the version number of Altoros Heartbeat for PCF. 
+1. Under the **Import a Product** button, click **+** next to the version number of Altoros Heartbeat for PCF.
 This adds the tile to your staging area.
 
 1. Click the newly added **Altoros Heartbeat for PCF** tile.
@@ -34,7 +36,7 @@ This adds the tile to your staging area.
 
 1. Specify the external server for uploading Grafana images so that they can be attached to Slack and email alert notifications:
 
-    1. If you are using [AWS S3](https://aws.amazon.com/s3/) , enable the **S3** checkbox 
+    1. If you are using [AWS S3](https://aws.amazon.com/s3/) , enable the **S3** checkbox
        and provide your Amazon S3 Bucket URL, Amazon API Access Key ID, and Amazon API Secret Key.
 
          <%= image_tag("images/alert.png") %>
@@ -57,7 +59,7 @@ This adds the tile to your staging area.
 
     <%= image_tag("images/alert-mail.png") %>
 
-1. Click **Save**.   
+1. Click **Save**.
 
 ##<a id='nozzle'></a>Configure Graphite Nozzle
 
@@ -65,7 +67,7 @@ This adds the tile to your staging area.
 
 1. To complete the **Credentials** for the **OpsManager Director** fields, provide username and password for the **OpsManager Director**:
 
-    1. Navigate to the **Ops Manager Installation Dashboard** and click the **Ops Manager Director** tile. 
+    1. Navigate to the **Ops Manager Installation Dashboard** and click the **Ops Manager Director** tile.
 
     1. In the **Credentials** tab, click **Link to Credentials** next to **Director Credentials**.
 
@@ -74,7 +76,7 @@ This adds the tile to your staging area.
     1. Copy the identity and password values from the JSON file that opens.
 
          <pre class="terminal">
-    {"credential":{"type":"simple_credentials","value":{"identity":"director","password":"XYXYXYXYXYXYXYXYXXY"}}} 
+    {"credential":{"type":"simple_credentials","value":{"identity":"director","password":"XYXYXYXYXYXYXYXYXXY"}}}
     </pre>
 
     1. Paste the retrieved username and password into the **Credentials** for the **OpsManager Director** fields.
@@ -132,8 +134,6 @@ Configuration of Altoros Heartbeat's metrics storage helps prevent undesirable e
 
 1. Specify the default port BOSH HM Forwarder will use to forward the metrics collected from BOSH Agents.
 
-    <p class="note"><strong>IMPORTANT</strong>: If you are using PCF v1.10 or later, clear the <storong>use non-secure communication</strong> for metrics checkbox.</p>
-
     <%= image_tag("images/bosh-hm-forwarder.png") %>
 
 1. Click **Save**.
@@ -160,6 +160,72 @@ To enable integration with the Log Search for PCF tile from Altoros:
 
 For more information about this feature, see [**Altoros Log Search for PCF Integration**](integration-with-logsearch.html).
 
+##<a id='external_services'></a>Configure External Services Monitoring
+
+<p class="note"><strong>Note</strong>: Prior to configuring External Services Monitoring, make sure you have the latest version of the <a href="https://network.pivotal.io/products/altoros-heartbeat">collectd BOSH add-on installed</a>.</p>
+
+1. In the **Settings** tab, click **External Services Monitoring Configuration**.
+
+    <%= image_tag("images/external_services.png") %>
+
+1. Click **Add** next to the services you want to monitor and complete the following fields:
+
+    1. For MySQL Servers:
+
+        **Host**: the IP address or hostname of the MySQL server
+
+        **Port**: the port number on which the server listens
+
+        **User** and **Password**: the username and password used to access the MySQL server
+
+    1. For PostgreSQL Databases:
+
+        **Host**: the IP address or hostname of the database
+
+        **Port**: the port number on which the PostgreSQL database listens
+
+        **User** and **Password**: the username and password used to access the database
+
+        The **Enable disk IO by table** checkbox, when selected, measures the disc I/O usage by each specific table. **Note** that enabling this feature escalates significantly the number of generated metrics, so, by default, the checkbox is disabled.
+
+    1. For MongoDB Servers:
+
+        **Host**: the IP address or hostname of the MongoDB server
+
+        **Port**: the port number on which the server listens
+
+        **User** and **Password**: (optional) the username and password used to access the server
+
+        **A space-separated list of MongoDB databases**: names of the monitored databases. The **admin** database will be added automatically.
+
+    1. For Memcached Servers:
+
+        **Host**: the IP address or hostname of the Memcached server
+
+        **Port**: the port number on which the server listens
+
+    1. For Redis Servers:
+
+        **Host**: the IP address or hostname of the Redis server
+
+        **Port**: the port number on which the server listens
+
+        **Password**: (optional) the password used to access the server
+
+    1. For RabbitMQ Servers:
+
+        **Host**: the IP address or hostname of the RabbitMQ  server
+
+        **Port**: the port number on which the  server listens
+
+        **User** and **Password**: the username and password used to access the server
+
+1. Click **Save**.
+
+<p class="note"><strong>Note</strong>: Currently, only one instance of the MongoDB, MySQL or RabbitMQ services can be monitored.</p>
+
+For more information about 3rd party services monitoring, see [3rd Party Services Monitoring](services-monitoring.html).
+
 ##<a id='mysqlproxy'></a>Configure MySQL Proxy
 
 1. In the **Settings** tab, click **MySQL Proxy Configuration**.
@@ -180,7 +246,7 @@ For more information about this feature, see [**Altoros Log Search for PCF Integ
 
     <%= image_tag("images/mysql-proxy.png") %>
 
-1. Click **Save**. 
+1. Click **Save**.
 
 ##<a id='mysql'></a>Configure MySQL Server
 
@@ -249,27 +315,33 @@ follow the instructions in <a href="installing-collectd.html">Installing collect
 
     <%= image_tag("images/ops-manager-director-1.png") %>
 
-1. In the **Ops Manager Installation Dashboard**, click the **Ops Manager Director** tile. 
+1. In the **Ops Manager Installation Dashboard**, click the **Ops Manager Director** tile.
 
-1. In the **Settings** tab, click **Director Config** and paste the copied BOSH HM Forwarder IP address into the Metrics IP Address field.
+1. In the **Settings** tab, click **Director Config** and paste the copied BOSH HM Forwarder IP address:
+
+    1. for Ops Manager Director v1.10 - into the Metrics IP Address field.
 
     <%= image_tag("images/ops-manager-director-2.png") %>
 
+    1. for Ops Manager Director v1.11+ - into the Bosh HM Forwarder IP Address field.
+
+    <%= image_tag("images/ops-manager-director-3.png") %>
+
 1. Click **Save**.
- 
+
 1. Return to the **Ops Manager Installation Dashboard** and click **Apply Changes** to apply the configuration settings.
 
 ##<a id='redisrabbit'></a>Configure Redis and RabbitMQ
 
 If you have Redis and RabbitMQ for PCF tiles installed and want to collect metrics from these services using Altoros Heartbeat,
-adjust the Metrics polling interval for these services to `15`. 
+adjust the Metrics polling interval for these services to `15`.
 
 To set the metrics polling interval in Redis:
 
 1. In the **Ops Manager Installation Dashboard**, click the **Redis tile**.
- 
+
 1. In the **Setting** tab, click **Metrics**.
- 
+
 1. In the **Metrics polling interval field**, enter `15`.
 
     <%= image_tag("images/configure-redis.png") %>
@@ -281,9 +353,9 @@ To set the metrics polling interval in Redis:
 To set the metrics polling interval in RabbitMQ:
 
 1. In the **Ops Manager Installation Dashboard**, click the **RabbitMQ** tile.
- 
+
 1. In the **Setting** tab, click **RabbitMQ**.
- 
+
 1. Complete the **Metrics polling interval field** with `15`.
 
     <%= image_tag("images/configure-rabbitmq.png") %>
