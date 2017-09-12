@@ -42,11 +42,11 @@ Another case when you might need to update a service instance is to manually ref
 <p class="note"><strong>Note</strong>: Altoros highly recommends keeping the <b>Heartbeat Grafana Bootstrap</b> errand enabled.
  For details, see <a href="installing.html#errands">Configure Errands</a>.</p>
 
-To update an Altoros Heartbeat service instancem, run:
+To update an Altoros Heartbeat service instances, run:
 
 <pre class="terminal">cf update-service heartbeat -c '{"version":some_new_number}'</pre>
 
-where `some_new_number` is a number greater than that assigned to the service instance during the previous update. If it’s the first time the service instance is being updated, provide any number, e.g. `1`.
+where `some_new_number` is a number greater than that assigned to the service instance during the previous update. If it's the first time the service instance is being updated, provide any number, e.g. `1`.
 
 The most convenient approach is to use a Unix timestamp as `some_new_number`:
 
@@ -64,11 +64,11 @@ To access the Altoros Heartbeat dashboard, perform the following steps:
 
 1. From the **Settings** tab, click **Domain**.
 
-1. Record the value for **Apps Domain**.
+1. Record the value for **System Domain**.
 
       <%= image_tag("images/monitoring-url.png") %>
 
-1. Navigate to `https://monitoring.YOUR-APPS-DOMAIN.com`.
+1. Navigate to `https://monitoring.YOUR-SYSTEM-DOMAIN.com`.
 
 1. Log in to **Altoros Heartbeat** using your **Pivotal Elastic Runtime** credentials.
 
@@ -157,3 +157,26 @@ The dashboards accessible from the Developer view are:
 * The **JMX Metrics for Java Apps dashboard** includes panes with metrics on system swap usage,
   system CPU LA, JVM HEAP and non-HEAP memory usage, system memory usage, JVM loaded classes, thread, GC count, and GC crime.
 
+##<a id='manage-licenses'></a>Manage Licenses
+
+Upon expiration of the trial period or five days prior to expiration of your current license key, a notification will appear on the top of the screen:
+
+<%= image_tag("images/licence-expired.png") %>
+
+Clicking on the notification will take you to the page for entering a new license key. To activate Altoros Heartbeat for PCF:
+
+1. [Contact](mailto:heartbeat@altoros.com?subject=Heartbeat license key renewal) Altoros's sales team for a commercial license.
+1. Enter the provided license key.
+
+    <%= image_tag("images/licence-key-window.png") %>
+
+1. Click **Submit**. A confirmation window will appear.
+
+    <%= image_tag("images/licence-accepted.png") %>
+
+To view the expiration date for your current license key:
+
+1. In **Admin** menu, click **Server Settings**.
+1. Scroll down to the **license** section.
+
+    <%= image_tag("images/licence-menu.png") %>

@@ -269,6 +269,26 @@ For more information about third-party services monitoring, see [Third-Party Ser
 
 1. Click **Save**.
 
+##<a id='lb-for-ha'></a>Configure Load Balancer for High Availability
+
+1. From the **Settings** tab, click **Load Balancer Configuration for HA**.
+
+    <%= image_tag("images/balancer-for-ha.png") %>
+
+1. Complete the following fields:
+
+   1. **Load Balancer host for graphite endpoint**: IP address or hostname of your external Load Balancer configured for Heartbeat. For information about getting backend IP addresses for your configuration, see [**Finding Backend IPs**](ha-with-external-lb.html#finding-backend-ip). Leave blank if high availability is not required.
+
+   1. **Load Balancer port for graphite endpoint**: port number for the Load Balancer configured to accept metrics from the collectd addon.
+
+   1. **Load Balancer host for statsd endpoint**: IP address or hostname of the Load Balancer configured to accept  application metrics. For information about getting backend IP addresses for your configuration, see [**Finding Backend IPs**](ha-with-external-lb.html#finding-backend-ip). The properties are separate, so two separate load balancers for collectd and application metrics can be used. Leave blank if high availability is not required.
+
+   1. **Load Balancer port for statsd endpoint**: port number for the external Load Balancer configured to accept statsd connections. Note that you need to provide the port accepting metrics, not the port accepting health checks. 
+
+1. Click **Save**.
+
+For more information about this feature, see [**High Availability**](ha-with-external-lb.html).
+
 ##<a id='errands'></a>Configure Errands
 
 1. In the **Settings** tab, click **Errands**.
@@ -294,12 +314,13 @@ For more information about third-party services monitoring, see [Third-Party Ser
 ##<a id='resourceconfig'></a>Configure Resource Config
 
 If you are using the **gp2** volume type with **Amazon EC2** instances and expect an intensive influx of metrics,
-Altoros recommends provisioning at least 300&nbsp;GB of persistent disk volume to the Heartbeat PCF Monitoring service to ensure sustained IOPS performance.
+Altoros recommends provisioning at least 300&nbsp;GB of persistent disk volume to the Heartbeat PCF Monitoring backend VMs to ensure sustained IOPS performance.
+
 Perform the following steps to increase the default disk volume value:
 
 1. In the **Settings** tab, click **Resource Config**.
 
-1. Change the default value in the Persistent disk type column next to Heartbeat PCF Monitoring from `100 GB` to `300 GB`.
+1. Change the default value in the Persistent disk type column next to Heartbeat PCF Monitoring backend job from `100 GB` to `300 GB`.
 
     <%= image_tag("images/resource-config.png") %>
 
