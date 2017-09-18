@@ -14,7 +14,7 @@ Heartbeat uses the following two ports to accept metrics:
 * TCP 2003
 * UDP 8125
 
-**TCP 2003** is the Load Balancer port for the Graphite endpoint. It is used to receive system metrics from PCF and external services sent by the collectd agent.  To implement high availability in your Altoros Heartbeat installation, configure your Load Balancer to accept this TCP connections and balance them across Heartbeat  backends. For information about getting backend IP addresses for your configuration, see [Finding Backend IPs](#finding-backend-ip) below. If high availability is not required, configure your collectd agent to send metrics to any backend as described in [Installing collectd Add-on for PCF](installing-collectd.html).
+**TCP 2003** is the Load Balancer port for the Graphite endpoint. It is used to receive system metrics from PCF and external services sent by the collectd agent.  To implement high availability in your Altoros Heartbeat installation, configure your Load Balancer to accept these TCP connections and balance them across Heartbeat backends. For information about getting backend IP addresses for your configuration, see [Finding Backend IPs](#finding-backend-ip) below. If high availability is not required, configure your collectd agent to send metrics to any backend as described in [Installing collectd Add-on for PCF](installing-collectd.html).
 
 **UDP 8125** is the Load Balancer port for the Statsd endpoint. It is used to receive metrics from PCF deployed applications, both built-in (e.g., JMX) and custom (sent to Statsd from an app).
 
