@@ -1,0 +1,54 @@
+---
+title: High Availability
+owner: Partners
+---
+
+This topic describes implementation of high availability for Altoros Heartbeat for PCF using an external load balancer.
+
+##<a id='lb-config'></a>External Load Balancer Configuration
+
+Setup and proper configuration of an external Load Balancer is required to implement high availability of the installation. Any highly available TCP and UDP Load Balancer is acceptable.
+
+Heartbeat uses the following two ports to accept metrics:
+
+* TCP 2003
+* UDP 8125
+
+**TCP 2003** is the Load Balancer port for the Graphite endpoint. It is used to receive system metrics from PCF and external services sent by the collectd agent.  To implement high availability in your Altoros Heartbeat installation, configure your Load Balancer to accept these TCP connections and balance them across Heartbeat backends. For information about getting backend IP addresses for your configuration, see [Finding Backend IPs](#finding-backend-ip) below. If high availability is not required, configure your collectd agent to send metrics to any backend as described in [Installing collectd Add-on for PCF](installing-collectd.html).
+
+**UDP 8125** is the Load Balancer port for the Statsd endpoint. It is used to receive metrics from PCF deployed applications, both built-in (e.g., JMX) and custom (sent to Statsd from an app).
+
+Because the UDP port is used to receive metrics, your Load Balancer may not support health checks. In this case, use TCP port 8126 to test server availability. Besides simple configuration, advanced TCP health check is available.  You can pass the `health` command to the TCP port and analyze the output, which can be `up` or `down`.
+
+Similar to Graphite metrics, metrics from StatsD shall be sent to the VMs with heartbeat-backend in their names. For information about getting backend IP addresses for these VMs, see [Finding Backend IPs](#finding-backend-ip) below. These IP addresses can be used for configuring the Load Balancer.
+
+##<a id='finding-backend-ip'></a>Finding Backend IPs
+
+To find the IP address for your Heartbeat backend:
+
+1. Open the Status tab.
+1. Copy the value in the Jobs column for Heartbeat PCF Monitoring backend job.
+
+<%= image_tag("images/finding-backend-ip.png") %>
+
+##<a id='upscaling'></a> Upscaling
+
+The default installation can be upscaled to improve performance. Upscaling is achieved by increasing the number of backend and frontend jobs. As a matter of fact, upscaling can be done without a Load Balancer and high availability. However, in this case backend operation and the metrics flow can be compromised.
+
+<p class="note"><strong>Note</strong>:The default installation of the Altoros Heartbeat for PCF tile is highly performant and has large capacity for receiving and processing metrics.  Lack of performance may not be related to insufficient number of instances. <a href="index.html#feedback">Contact Altoros</a> for assistance with detecting and eliminating performance problems of your installation.</p>
+
+To increase the number of backend and frontend jobs:
+
+1. From the **Settings** tab, click **Resource Config**.
+
+<%= image_tag("images/increase-backend-number.png") %>
+
+1. In the **Instances** column, select the required number of frontend and backend instances.
+1. Navigate to the **Ops Manager Installation Dashboard** and click **Apply Changes**.
+
+##<a id='upscaling'></a> Downscaling
+
+The installation can be downscaled to adjust to decreased consumption of resources.
+To decrease the number of backend and frontend jobs, follow the steps described in [Upscaling](#upscaling) above.
+
+While downscaling frontend jobs is unrestricted, with backend jobs, avoid selecting fewer than two instances to prevent metrics loss. Note that downscaling can lead to a loss in high availability for some previously received metrics, because only one copy thereof will be retained. New values of these metrics will have multiple copies according to a new configuration. Downscale with care, and contact [Altoros support](index.html#feedback) for assistance if required.
