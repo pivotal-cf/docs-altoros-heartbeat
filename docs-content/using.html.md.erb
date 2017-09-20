@@ -46,7 +46,8 @@ To update an Altoros Heartbeat service instance, run:
 
 <pre class="terminal">cf update-service heartbeat -c '{"version":some_new_number}'</pre>
 
-where `some_new_number` is a number greater than that assigned to the service instance during the previous update. If it's the first time the service instance is being updated, provide any number, e.g. `1`.
+where `some_new_number` is a number greater than that assigned to the service instance during the previous update.
+If it's the first time the service instance is being updated, provide any number, for example, `1`.
 
 The most convenient approach is to use a Unix timestamp as `some_new_number`:
 
@@ -159,18 +160,18 @@ The dashboards accessible from the Developer view are:
 
 ##<a id='manage-licenses'></a>Manage Licenses
 
-Upon expiration of the trial period or five days prior to expiration of your current license key, a notification will appear on the top of the screen:
+Upon expiration of the trial period or five days prior to expiration of your current license key, a notification appears on the top of the screen:
 
 <%= image_tag("images/licence-expired.png") %>
 
-Clicking on the notification will take you to the page for entering a new license key. To activate Altoros Heartbeat for PCF:
+Clicking on the notification takes you to the page for entering a new license key. To activate Altoros Heartbeat for PCF:
 
 1. [Contact](mailto:heartbeat@altoros.com?subject=Heartbeat license key renewal) Altoros's sales team for a commercial license.
 1. Enter the provided license key.
 
     <%= image_tag("images/licence-key-window.png") %>
 
-1. Click **Submit**. A confirmation window will appear.
+1. Click **Submit**. A confirmation window appears.
 
     <%= image_tag("images/licence-accepted.png") %>
 
