@@ -187,7 +187,9 @@ For more information about this feature, see [**Altoros Log Search for PCF Integ
 
         **User** and **Password**: the username and password used to access the database
 
-        The **Enable disk IO by table** checkbox, when selected, measures the disc I/O usage by each specific table. **Note** that enabling this feature escalates significantly the number of generated metrics, so, by default, the checkbox is disabled.
+        The **Enable disk IO by table** checkbox, when selected, measures the disc I/O usage by each specific table.
+        <p class="note"><strong>Note</strong>: Selecting **Enable disk IO by table** significantly escalates 
+           the number of generated metrics, so, by default, the checkbox is disabled.</p>
 
     1. For MongoDB Servers:
 
@@ -197,7 +199,8 @@ For more information about this feature, see [**Altoros Log Search for PCF Integ
 
         **User** and **Password**: (optional) the username and password used to access the server
 
-        **A space-separated list of MongoDB databases**: names of the monitored databases. The **admin** database will be added automatically.
+        **A space-separated list of MongoDB databases**: names of the monitored databases.
+          The **admin** database is added automatically.
 
     1. For Memcached Servers:
 
