@@ -3,7 +3,8 @@ title: High Availability
 owner: Partners
 ---
 
-This topic describes implementation of high availability for Altoros Heartbeat for PCF using an external load balancer.
+This topic describes implementation of high availability for Altoros Heartbeat for Pivotal Cloud Foundry (PCF)
+using an external load balancer.
 
 ##<a id='lb-config'></a>External Load Balancer Configuration
 
@@ -55,17 +56,17 @@ Scaling up is achieved by increasing the number of backend and frontend jobs.
 In fact, scaling up can be done without a load balancer and high availability.
 However, in this case, backend operation and the metrics flow can be compromised.
 
-<p class="note"><strong>Note</strong>:The default installation of the Altoros Heartbeat for PCF tile is highly performant
+<p class="note"><strong>Note</strong>: The default installation of the Altoros Heartbeat for PCF tile is highly performant
 and has large capacity for receiving and processing metrics.
 Lack of performance might not be related to insufficient number of instances.
-<a href="index.html#feedback">Contact Altoros</a> for assistance with detecting
-and eliminating performance problems of your installation.</p>
+For assistance with detecting and eliminating performance problems with your installation,
+contact <a href="index.html#feedback">Contact Altoros</a>.</p>
 
 To increase the number of backend and frontend jobs:
 
 1. From the **Settings** tab, click **Resource Config**.
 
-<%= image_tag("images/increase-backend-number.png") %>
+    <%= image_tag("images/increase-backend-number.png") %>
 
 1. In the **Instances** column, select the required number of frontend and backend instances.
 1. Navigate to the **Ops Manager Installation Dashboard** and click **Apply Changes**.
@@ -80,4 +81,4 @@ avoid selecting fewer than two instances to prevent metrics loss.
 scaling down can lead to a loss in high availability for some previously received metrics,
 because only one copy thereof is retained.
 New values of these metrics have multiple copies according to a new configuration.
-Scale down carefully, if you need assistance, contact [Altoros support](index.html#feedback).
+Scale down carefully, if you need assistance contact [Altoros support](index.html#feedback).
