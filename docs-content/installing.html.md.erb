@@ -49,11 +49,13 @@ This adds the tile to your staging area.
 
 1. To define email server settings, select the **SMTP** checkbox and complete the following fields:
 
-    **Host**: The hostname of the outgoing SMTP server
+    **Host:port**: The hostname and port of the outgoing SMTP server
 
     **Username**: Your SMTP server username
 
     **Password**: Your SMTP server password
+
+    **Disable SSL certificate verification**: You can disable SSL verification if you are using your own self-signed certificates that are not from a trusted CA
 
     **Address used when sending out emails**: The address from which emails will be sent
 
@@ -331,8 +333,11 @@ Perform the following steps to increase the default disk volume value:
 
 1. Return to the **Ops Manager Installation Dashboard** and click **Apply Changes** to apply the configuration settings.
 
+<p class="note"><strong>Note</strong>: If you are not monitoring external services, we recommend selecting 0 instances for <strong>Collectd VM to monitor external services</strong>. If you are going to monitor external services, reset the number of instances for this VM to 1. </p>
+
 <p class="note"><strong>Note</strong>: After you complete the procedures on this page,
 follow the instructions in <a href="installing-collectd.html">Installing collectd Add-on for PCF</a>.</p>
+
 
 ##<a id='opsmanager'></a>Configure Ops Manager Director
 
