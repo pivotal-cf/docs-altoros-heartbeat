@@ -19,10 +19,10 @@ Heartbeat uses the following two ports to accept metrics:
 **TCP 2003** is the load balancer port for the Graphite endpoint.
 It is used to receive system metrics from PCF and external services sent by the collectd agent.
 To implement high availability in your Altoros Heartbeat installation,
-configure your load balancer to accept these TCP connections and balance them across Heartbeat backends.
-For information about getting backend IP addresses for your configuration,
-see [Finding Backend IPs](#finding-backend-ip) below.
-If high availability is not required, configure your collectd agent to send metrics to any backend
+configure your load balancer to accept these TCP connections and balance them across Heartbeat back ends.
+For information about getting back-end IP addresses for your configuration,
+see [Finding Back-End IPs](#finding-backend-ip) below.
+If high availability is not required, configure your collectd agent to send metrics to any back end
 as described in [Installing collectd Add-on for PCF](installing-collectd.html).
 
 **UDP 8125** is the load balancer port for the Statsd endpoint.
@@ -36,25 +36,25 @@ Besides simple configuration, advanced TCP health check is available.
 You can pass the `health` command to the TCP port and analyze the output, which can be `up` or `down`.
 
 Similar to Graphite metrics, metrics from StatsD are sent to the VMs with heartbeat-backend in their names.
-For information about getting backend IP addresses for these VMs,
-see [Finding Backend IPs](#finding-backend-ip) below.
+For information about getting back-end IP addresses for these VMs,
+see [Finding Back-End IPs](#finding-backend-ip) below.
 These IP addresses can be used for configuring the load balancer.
 
-##<a id='finding-backend-ip'></a>Finding Backend IPs
+##<a id='finding-backend-ip'></a>Finding Back-End IPs
 
-To find the IP address for your Heartbeat backend:
+To find the IP address for your Heartbeat back end:
 
 1. Open the Status tab.
-1. Copy the value in the Jobs column for Heartbeat PCF Monitoring backend job.
+1. Copy the value in the Jobs column for Heartbeat PCF Monitoring back-end job.
 
 <%= image_tag("images/finding-backend-ip.png") %>
 
 ##<a id='upscaling'></a> Scaling Up
 
 The default installation can be scaled up to improve performance.
-Scaling up is achieved by increasing the number of backend and frontend jobs.
+Scaling up is achieved by increasing the number of back-end and front-end jobs.
 In fact, scaling up can be done without a load balancer and high availability.
-However, in this case, backend operation and the metrics flow can be compromised.
+However, in this case, back-end operation and the metrics flow can be compromised.
 
 <p class="note"><strong>Note</strong>: The default installation of the Altoros Heartbeat for PCF tile is highly performant
 and has large capacity for receiving and processing metrics.
@@ -62,21 +62,21 @@ Lack of performance might not be related to insufficient number of instances.
 For assistance with detecting and eliminating performance problems with your installation,
 contact <a href="index.html#feedback">Contact Altoros</a>.</p>
 
-To increase the number of backend and frontend jobs:
+To increase the number of back-end and front-end jobs:
 
 1. From the **Settings** tab, click **Resource Config**.
 
     <%= image_tag("images/increase-backend-number.png") %>
 
-1. In the **Instances** column, select the required number of frontend and backend instances.
+1. In the **Instances** column, select the required number of front-end and back-end instances.
 1. Navigate to the **Ops Manager Installation Dashboard** and click **Apply Changes**.
 
 ##<a id='downscaling'></a> Scaling Down
 
 The installation can be scaled down to adjust to decreased consumption of resources.
-To decrease the number of backend and frontend jobs, follow the steps described in [Scaling Up](#upscaling) above.
+To decrease the number of back-end and front-end jobs, follow the steps described in [Scaling Up](#upscaling) above.
 
-Although scaling down frontend jobs is unrestricted, with backend jobs,
+Although scaling down front-end jobs is unrestricted, with back-end jobs,
 avoid selecting fewer than two instances to prevent metrics loss.
 scaling down can lead to a loss in high availability for some previously received metrics,
 because only one copy thereof is retained.
