@@ -30,25 +30,23 @@ A collectd manifest is a YML file that contains runtime configuration informatio
 Follow the steps below to create a collectd manifest for your deployment:
 
 1. <a id='createmanifest'></a>Create a file named `collectd.yml`, starting with the code below as a template:
-
-    ```
-    releases:
-    - name: collectd
-      version: 10
-    addons:
-    - name: collectd
+  <pre>releases:
+  \- name: collectd
+      <strong>version:</strong> 10.0.3
+  addons:
+  \- name: collectd
       jobs:
-      - name: collectd
+      \- name: collectd
         release: collectd
       exclude:
-        deployments: ['some-deployment-name-to-exclude']
+        <strong>deployments</strong>: ['some-deployment-name-to-exclude']
       properties:
         collectd:
-          graphite_prefix: cf.collectd.
-          graphite_servers:
-          - 192.168.1.190
-          interval: 10
-    ```
+          <strong>graphite\_prefix</strong>: cf.collectd.
+          <strong>graphite\_servers</strong>:
+          \- 192.168.1.190
+          <strong>interval</strong>: 10
+  </pre>
 
 1. Replace the values listed in the template as follows:
 
@@ -114,7 +112,7 @@ If you are not going to use the high availability mode, use the IP address of an
     Acting as user 'admin' on 'micro'
     releases:
     - name: collectd
-      version: 10
+      version: 10.0.3
     addons:
     - name: collectd
       jobs:
