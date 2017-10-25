@@ -68,22 +68,6 @@ This adds the tile to your staging area.
 
 1. From the **Settings** tab, click **Heartbeat Graphite Nozzle Configuration**.
 
-1. To complete the **Credentials** for the **OpsManager Director** fields, provide username and password for the **OpsManager Director**:
-
-    1. Navigate to the **Ops Manager Installation Dashboard** and click the **Ops Manager Director** tile.
-
-    1. In the **Credentials** tab, click **Link to Credentials** next to **Director Credentials**.
-
-         <%= image_tag("images/graphite-nozzle-1.png") %>
-
-    1. Copy the identity and password values from the JSON file that opens.
-
-         <pre class="terminal">
-    {"credential":{"type":"simple_credentials","value":{"identity":"director","password":"XYXYXYXYXYXYXYXYXXY"}}}
-    </pre>
-
-    1. Paste the retrieved username and password into the **Credentials** for the **OpsManager Director** fields.
-
 1. If you are using several apps domains in PCF, provide a comma-separated list of additional (other than the apps domain indicated in the Pivotal Elastic Runtime, which needs not to be provided) domains to filter **HttpStartStop** metrics out.
 
     <%= image_tag("images/graphite-nozzle-2.png") %>
