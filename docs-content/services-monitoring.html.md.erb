@@ -53,12 +53,12 @@ This topic describes how to use dashboards for third-party services.
 <%= image_tag("images/rabbitmq-dashboard-header.png") %>
 
 1. To track metrics from the RabbitMQ for PCF tile:
-    1. Open the **Service - RabbitMQ \*** dashboards.
+    1. Open the **Service - RabbitMQ \** dashboards.
     1. Select `p-rabbitmq-*` from the **Deployment** drop-down menu.
     1. Select `rabbitmq-broker` from the **Host** drop-down menu.
 
 1. To track metrics from an external RabbitMQ installation:
-    1. Open the **Service - RabbitMQ \*** dashboards.
+    1. Open the **Service - RabbitMQ \** dashboards.
     1. Select `altoros-heartbeat-*` from the **Deployment** drop-down menu.
     1. Select `external-collectd` from the Host drop-down menu.
 
@@ -117,8 +117,8 @@ Configure Concourse web worker (aka [ATC](https://github.com/concourse/atc)) to 
     <%= image_tag("images/external-services-vm.png") %>
 
 1. Run Concourse web worker (aka ATC) using the following CLI parameters or environment variables:
-    1. `--metrics-host-name=` or `CONCOURSE_RIEMANN_HOST=<the VM IP address copied in the previous step>`
-    1. `--riemann-host=` or `CONCOURSE_METRICS_HOST_NAME=<the name of Concourse web worker>`. Set a name starting with `web`, for example `web-0`.
+    1. `--metrics-host-name=` or `CONCOURSE_RIEMANN_HOST=<\VM-IP-ADDRESS>`
+    1. `--riemann-host=` or `CONCOURSE_METRICS_HOST_NAME=<\CONCOURSE-WEB-WORKER>`. Set a name starting with `web`, for example `web-0`.
 
 <%= image_tag("images/external-concourse-grafana-header.png") %>
 
