@@ -41,13 +41,13 @@ Altoros Heartbeat for PCF includes the following key features:
 * **PCF monitoring**: Collects metrics emitted by all components of PCF
 * **IaaS-level monitoring**: Collects metrics from CPU, memory usage, IO, network, VM states, and more, regardless of the underlying infrastructure
 * **Third-party services monitoring**: Provides the ability to collect metrics from MySQL, PostgreSQL, Redis, and RabbitMQ
-* **Application monitoring**: Gathers standard (CPU, memory, or disk usage), arbitrary (gauges, counters, timings, sets),
-  and HTTP-specific (requests per second, status codes, error rates, and more) metrics
+* **Application monitoring**: Gathers standard metrics (CPU, memory, or disk usage), arbitrary metrics (gauges, counters, timings, sets),
+  and HTTP-specific metrics (requests per second, status codes, error rates, and more)
 * **SSO and multi-tenancy**: Uses the Cloud Foundry UAA service
   to control access to apps and resources based on user roles and rights within the platform.
   Multi-tenancy is implemented according to Cloud Foundry UAA roles.
   Dedicated shares of the solution are deployed to different spaces to collect metrics from the apps and services running within.
-* **Alerts**: Can be defined for each dashboard panel, and users get immediate notifications though email, Slack, and other notification channels.
+* **Alerts**: Can be defined for each dashboard panel, and allow users to get immediate notifications though email, Slack, and other notification channels.
 
 ## <a id="snapshot"></a>Product Snapshot
 
@@ -95,7 +95,7 @@ To complete installation of Altoros Heartbeat for PCF, you need the following:
 * CPU, RAM, and disk resources for seven VMs
 * Internet connectivity between the networks where the PCF deployment and Heartbeat are installed.
   Altoros recommends installing Heartbeat on the same network with PCF.
-* TCP 2003 and UDP 8125 ports are used to receive metrics. TCP 8126 is nessesary for Load Balancer health checks. These ports need to be open in the firewall to accept connections from PCF and services networks.
+* TCP 2003 and 8126, and UDP 8125 ports open in the firewall to accept connections from PCF and services networks. Ports 2003 and 8125 are used to receive metrics. TCP 8126 is necessary for Load Balancer health checks.
 
 ## <a id="reqs"></a>Requirements
 
@@ -106,9 +106,9 @@ Altoros Heartbeat for PCF has the following requirements:
 * Installation of the collectd add-on for PCF to enable PCF component VMs and
   the VMs of any other BOSH-deployed services expose system metrics to Heartbeat.
 For more information, see [Installing collectd Add-on for PCF](installing.html).
-* (Optional) To enable collection of JMX metrics from Java apps, the Altoros Heartbeat for PCF requires a custom Java buildpack.
+* (Optional) If you want to enable collection of JMX metrics from Java apps, you will need a custom Java buildpack for Altoros Heartbeat for PCF.
 For more information, see [JMXTrans Agent Integration](jmxtrans.html).
-* (Optional) To enable collection of custom application metrics, integration of a StatsD library into the app's code is required.
+* (Optional) If you want to enable collection of custom application metrics, you must integrate a StatsD library into the app's code.
   For more information, see [StatsD Integration](statsd.html).
 
 ## <a id="limitations"></a>Limitations
