@@ -23,7 +23,7 @@ To complete the collectd Add-on installation:
 * You must have Pivotal Operations Manager (Ops Manager) v1.10 or later.
 * Ensure you have at least 128 MB of memory free on each VM before deploying collectd Add-on. The collectd Add-on uses 50 MB of memory.
 
-## <a id='manifest'></a>Creating a collectd Manifest
+## <a id='manifest'></a>Create a collectd Manifest
 
 A collectd manifest is a YML file that contains runtime configuration information for the collectd Add-on.
 Follow the steps below to create a collectd manifest for your deployment:
@@ -59,7 +59,7 @@ Follow the steps below to create a collectd manifest for your deployment:
 If you are not going to use HA mode, use the IP address of any of Altoros Heartbeat's back-ends. For details, see [Finding Back-End IPs](ha-with-external-lb.html#finding-backend-ip).
 * `collectd: interval`: You can modify the 10 second default interval value. This value specifies how often the collectd Add-on gathers metrics from VMs.
 
-##<a id='deploy'></a> Downloading and Deploying the collectd Add-on
+## <a id='deploy'></a>Download and Deploy the collectd Add-on
 
 1. Download the collectd Add-on software binary from the [Pivotal Network](https://network.pivotal.io/products/altoros-heartbeat) to your local machine.
 
@@ -123,7 +123,7 @@ If you are not going to use HA mode, use the IP address of any of Altoros Heartb
 
 1. Click **Apply Changes**.
 
-## <a id='verify'></a>Verifying the Installation
+## <a id='verify'></a>Verify the Installation
 
 1. [BOSH SSH](https://docs.pivotal.io/pivotalcf/1-11/customizing/trouble-advanced.html#bosh-ssh) into one of the VMs in your deployment.
 
@@ -139,7 +139,7 @@ If you are not going to use HA mode, use the IP address of any of Altoros Heartb
     1. Run the `monit summary` again. If you do not see the processes mentioned above,
     check `/var/vcap/sys/log/collectd` logs for errors.
 
-## <a id='uninstall'></a>Uninstalling the collectd Add-on
+## <a id='uninstall'></a>Uninstall the collectd Add-on
 
 Follow the steps below to remove the collectd Add-on from your existing runtime config and
 roll back to a previous configuration:
