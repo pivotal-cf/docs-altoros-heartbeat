@@ -57,11 +57,11 @@ Follow the steps below to create a collectd manifest for your deployment:
 * `collectd: graphite_prefix`: Do not change the graphite_prefix name. It must be `cf.collectd.`.
 * `collectd: graphite_servers`: If you are using Heartbeat in high availability (HA) mode, use your load balancer endpoint for collectd. For details, see [External Load Balancer configuration](ha-with-external-lb.html#lb-config).
 If you are not going to use HA mode, use the IP address of any of Altoros Heartbeat's back-ends. For details, see [Finding Back-End IPs](ha-with-external-lb.html#finding-backend-ip).
-* `collectd: interval`: You can modify the 10 second default interval value. This value specifies how often the collectd Add-on gathers metrics from VMs.
+* `collectd: interval`: You can modify the default 10-second interval value. This value specifies how often the collectd Add-on gathers metrics from VMs.
 
 ## <a id='deploy'></a>Download and Deploy the collectd Add-on
 
-1. Download the collectd Add-on software binary from the [Pivotal Network](https://network.pivotal.io/products/altoros-heartbeat) to your local machine.
+1. Download the collectd Add-on software binary from [Pivotal Network](https://network.pivotal.io/products/altoros-heartbeat) to your local machine.
 
 1. Copy the software binary to your Ops Manager VM.
 
@@ -197,7 +197,7 @@ roll back to a previous configuration:
     1. If you are using PCF v1.11 or later, use the BOSH CLI v2 command:
         <pre class="terminal">$ bosh2 -e my-env runtime-config > PATH-TO-SAVE-THE-RUNTIME-CONFIG</pre>
 
-1. From the retrieved file, delete the lines that were added at the [Create a collectd Manifest](#manifest) step.
+1. From the file you retrieved above, delete the lines that were added at the [Create a collectd Manifest](#manifest) step.
 
 1. Update the runtime configuration.
 
