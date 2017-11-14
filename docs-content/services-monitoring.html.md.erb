@@ -118,7 +118,7 @@ Configure Concourse web worker (aka [ATC](https://github.com/concourse/atc)) to 
 
 1. Run Concourse web worker (aka ATC) using the following CLI parameters or environment variables:
     1. `--riemann-host=<COLLECTD-VM-IP-ADDRESS>` or `CONCOURSE_RIEMANN_HOST=<COLLECTD-VM-IP-ADDRESS>`. Use the IP address copied in the previous step.
-    1. `--metrics-host-name=<CONCOURSE-WEB-WORKER-NAME>` or `CONCOURSE_METRICS_HOST_NAME=<CONCOURSE-WEB-WORKER-NAME>`. Set a name starting with `web`, for example `web-0`. This name is used to find metrics in dashboard.
+    1. `--metrics-host-name=<CONCOURSE-WEB-WORKER-NAME>` or `CONCOURSE_METRICS_HOST_NAME=<CONCOURSE-WEB-WORKER-NAME>`. Set a name starting with `web`, for example `web-0`. This name is used to find metrics in the dashboard.
 
 <%= image_tag("images/external-concourse-grafana-header.png") %>
 
