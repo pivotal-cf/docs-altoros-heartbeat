@@ -53,12 +53,12 @@ This topic describes how to use dashboards for third-party services.
 <%= image_tag("images/rabbitmq-dashboard-header.png") %>
 
 1. To track metrics from the RabbitMQ for PCF tile:
-    1. Open the **Service - RabbitMQ \** dashboards.
+    1. Open the **Service - RabbitMQ \*** dashboards.
     1. Select `p-rabbitmq-*` from the **Deployment** drop-down menu.
     1. Select `rabbitmq-broker` from the **Host** drop-down menu.
 
 1. To track metrics from an external RabbitMQ installation:
-    1. Open the **Service - RabbitMQ \** dashboards.
+    1. Open the **Service - RabbitMQ \*** dashboards.
     1. Select `altoros-heartbeat-*` from the **Deployment** drop-down menu.
     1. Select `external-collectd` from the Host drop-down menu.
 
@@ -112,13 +112,13 @@ Configure Concourse web worker (aka [ATC](https://github.com/concourse/atc)) to 
 
 1. Find the IP address of the Collectd virtual machine that is used to monitor external services:
     1. From the Altoros Heartbeat for PCF tile, select the **Status** tab.
-    1. Scroll down to **Collectd VM to monitor external services** and copy the IP -address in the **IPS** column.
+    1. Scroll down to **Collectd VM to monitor external services** and copy the IP address in the **IPS** column.
 
     <%= image_tag("images/external-services-vm.png") %>
 
 1. Run Concourse web worker (aka ATC) using the following CLI parameters or environment variables:
-    1. `--metrics-host-name=` or `CONCOURSE_RIEMANN_HOST=<\VM-IP-ADDRESS>`
-    1. `--riemann-host=` or `CONCOURSE_METRICS_HOST_NAME=<\CONCOURSE-WEB-WORKER>`. Set a name starting with `web`, for example `web-0`.
+    1. `--riemann-host=<COLLECTD-VM-IP-ADDRESS>` or `CONCOURSE_RIEMANN_HOST=<COLLECTD-VM-IP-ADDRESS>`. Use the IP address copied in the previous step.
+    1. `--metrics-host-name=<CONCOURSE-WEB-WORKER-NAME>` or `CONCOURSE_METRICS_HOST_NAME=<CONCOURSE-WEB-WORKER-NAME>`. Set a name starting with `web`, for example `web-0`. This name is used to find metrics in the dashboard.
 
 <%= image_tag("images/external-concourse-grafana-header.png") %>
 

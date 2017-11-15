@@ -8,30 +8,30 @@ This topic describes how to add collectd to your Pivotal Cloud Foundry (PCF) dep
 ## <a id='about'></a>About collectd Add-on for PCF
 
 This add-on is required to enable the Altoros Heartbeat monitoring solution to consume system metrics
-from the VMs that make up a PCF deployment. The [collectd](https://collectd.org/) add-on gathers VM
+from the VMs that make up a PCF deployment. The [collectd](https://collectd.org/) Add-on gathers VM
 metrics from PCF platform components and any other BOSH-deployed services, such as databases,
 and makes this information available to Altoros Heartbeat over the network.
 
 ## <a id='prerequisites'></a>Prerequisites
 
-<p class="note"><strong>Note</strong>: collectd add-on for PCF does not work on Windows machines.</p>
+<p class="note"><strong>Note</strong>: collectd Add-on for PCF does not work on Windows machines.</p>
 
-To complete the collectd add-on installation:
+To complete the collectd Add-on installation:
 
 * You must be a PCF operator with admin rights.
   For more information, see [Understanding Pivotal Cloud Foundry User Types](https://docs.pivotal.io/pivotalcf/customizing/user-types.html#operator).
 * You must have Pivotal Operations Manager (Ops Manager) v1.10 or later.
-* Ensure you have at least 128 MB of memory free on each VM before deploying collectd add-on. The collectd add-on uses 50 MB of memory.
+* Ensure you have at least 128 MB of memory free on each VM before deploying collectd Add-on. The collectd Add-on uses 50 MB of memory.
 
-## <a id='manifest'></a>Creating a collectd Manifest
+## <a id='manifest'></a>Create a collectd Manifest
 
-A collectd manifest is a YML file that contains runtime configuration information for the collectd add-on.
+A collectd manifest is a YML file that contains runtime configuration information for the collectd Add-on.
 Follow the steps below to create a collectd manifest for your deployment:
 
 1. <a id='createmanifest'></a>Create a file named `collectd.yml`, starting with the code below as a template:
   <pre>releases:
   \- name: collectd
-      <strong>version:</strong> 10.0.3
+      <strong>version:</strong> xx.x.x
   addons:
   \- name: collectd
       jobs:
@@ -49,81 +49,123 @@ Follow the steps below to create a collectd manifest for your deployment:
 
 1. Replace the values listed in the template as follows:
 
-* `exclude: deployments`: (Optional) Specify the name of the deployment to mass exclude from the collectd add-on coverage.
+* `exclude: deployments`: (Optional) Specify the name of the deployment to mass exclude from the collectd Add-on coverage.
 
     <p class="note"><strong>Note:</strong> If this functionality is not required, remove this section.</p>
 
-* `releases: version`: Use the version of collectd downloaded from Pivotal Network
-* `collectd: graphite_prefix`: Do not change the graphite_prefix name. It must be `cf.collectd`.
+* `releases: version`: Use the version of the collectd Add-on downloaded from Pivotal Network.
+* `collectd: graphite_prefix`: Do not change the graphite_prefix name. It must be `cf.collectd.`.
 * `collectd: graphite_servers`: If you are using Heartbeat in high availability (HA) mode, use your load balancer endpoint for collectd. For details, see [External Load Balancer configuration](ha-with-external-lb.html#lb-config).
 If you are not going to use HA mode, use the IP address of any of Altoros Heartbeat's back-ends. For details, see [Finding Back-End IPs](ha-with-external-lb.html#finding-backend-ip).
-* `collectd: interval`: You can modify the 10 second default interval value. This value specifies how often the collectd add-on gathers metrics from VMs.
+* `collectd: interval`: You can modify the default 10-second interval value. This value specifies how often the collectd Add-on gathers metrics from VMs.
 
-##<a id='deploy'></a> Downloading and Deploying the collectd Add-on
+## <a id='deploy'></a>Download and Deploy the collectd Add-on
 
-1. Download the collectd add-on software binary from the [Pivotal Network](https://network.pivotal.io/products/altoros-heartbeat) to your local machine.
+1. Download the collectd Add-on software binary from [Pivotal Network](https://network.pivotal.io/products/altoros-heartbeat) to your local machine.
 
 1. Copy the software binary to your Ops Manager VM.
 
-    <pre class="terminal">$ scp -i PATH/TO/PRIVATE/KEY collectd-10.tgz ubuntu@YOUR-OPS-MANAGER-VM-IP:</pre>
+    <pre class="terminal">$ scp -i PATH/TO/PRIVATE/KEY collectd-xx.x.x.tgz ubuntu@YOUR-OPS-MANAGER-VM-IP:</pre>
 
 1. Copy the collectd manifest, `collectd.yml` file, to your Ops Manager instance.
 
     <pre class="terminal">$ scp -i PATH/TO/PRIVATE/KEY collectd.yml ubuntu@YOUR-OPS-MANAGER-VM-IP:</pre>
 
-1. SSH into Ops Manager.
+1. [SSH](https://docs.pivotal.io/pivotalcf/1-11/customizing/trouble-advanced.html#ssh) into Ops Manager.
 
     <pre class="terminal">$ ssh -i PATH-TO-PRIVATE-KEY ubuntu@YOUR-OPS-MANAGER-VM-IP</pre>
 
 1. On the Ops Manager VM, navigate to the software binary location.
 
-    <pre class="terminal">$ cd ~</pre>
+    <pre class="terminal">$ cd PATH-TO-BINARY</pre>
 
-1. On the Ops Manager VM, target the BOSH director instance.
+If you are using PCF v1.11 or later, follow the [BOSH CLI v2](#bosh-cli-v2) procedures to deploy the collectd Add-on.
 
-    <pre class="terminal">$ bosh target YOUR-OPS-MANAGER-DIRECTOR-IP
-    Target set to 'Ops Manager'
-    Your username: director
-    Enter password: ****
-    Logged in as 'director'</pre>
+If you are using PCF v1.10, follow the [BOSH CLI v1](#bosh-cli-v1) procedures to deploy the collectd Add-on.
+
+### <a id='bosh-cli-v2'></a>Deploy the collectd Add-on with the BOSH CLI v2
+
+1. On the Ops Manager VM, [log in to the BOSH Director](https://docs.pivotal.io/pivotalcf/1-11/customizing/trouble-advanced.html#bosh2-access).
+
+1. Upload your release, specifying the path to the tarballed collectd binary. For example:
+
+    <pre class="terminal">$ bosh2 -e my-env upload-release collectd-xx.x.x.tgz</pre>
+
+1. List the releases and confirm that collectd appears. For example:
+
+    <pre class="terminal">$ bosh2 -e my-env releases</pre>
+
+1. Update your runtime configuration to include the collectd Add-on, specifying the path to the `collectd.yml` file you created above. For example:
+
+    <p class="note"><strong>Note</strong>: If you installed other BOSH add-ons,
+    you must merge the collectd manifest into your existing add-on manifest.
+    Append the contents of <code>collectd.yml</code> to your existing add-on YML file.</p>
+
+    <pre class="terminal">$ bosh2 -e my-env update-runtime-config collectd.yml</pre>
+
+1. Verify your runtime configuration changes match what you specified in the collectd manifest. For example:
+
+    <pre class="terminal">
+    $ bosh2 -e my-env runtime-config
+    releases:
+    <span>-</span> name: collectd
+      version: xx.x.x
+
+    addons:
+    <span>-</span> name: collectd
+      jobs:
+      <span>-</span> name: collectd
+        release: collectd
+    ...
+    </pre>
+
+1. Navigate to your Installation Dashboard in Ops Manager.
+
+1. Click **Apply Changes**.
+
+### <a id='bosh-cli-v1'></a>Deploy the collectd Add-on with the BOSH CLI v1
+
+1. On the Ops Manager VM, [log in to the BOSH Director](https://docs.pivotal.io/pivotalcf/1-11/customizing/trouble-advanced.html#bosh1-access).
 
 1. Upload the release.
 
-    <pre class="terminal">$ bosh upload release ~/BINARY-NAME.tgz</pre>
+    <pre class="terminal">$ bosh upload release collectd-xx.x.x.tgz</pre>
 
 1. From the command line, confirm that the upload of the collectd software binary completed.
    You should see the collectd release.
 
     <pre class="terminal">$ bosh releases</pre>
 
-1. Update your runtime configuration to include the collectd add-on.
+1. Update your runtime configuration to include the collectd Add-on.
 
     <p class="note"><strong>Note</strong>: If you installed other BOSH add-ons,
     you must merge the collectd manifest into your existing add-on manifest.
     Append the contents of <code>collectd.yml</code> to your existing add-on YML file.</p>
 
-    <pre class="terminal">$ bosh update runtime-config PATH/YOUR-ADD-ON-YML.yml</pre>
+    <pre class="terminal">$ bosh update runtime-config collectd.yml</pre>
 
 1. Verify your runtime configuration changes match what you specified in the collectd manifest.
 
-    ```
+    <pre class="terminal">
     $ bosh runtime-config
-    Acting as user 'admin' on 'micro'
+    Acting as user 'director' on 'p-bosh'
     releases:
-    - name: collectd
-      version: 10.0.3
+    <span>-</span> name: collectd
+      version: xx.x.x
+
     addons:
-    - name: collectd
+    <span>-</span> name: collectd
       jobs:
-      - name: collectd
+      <span>-</span> name: collectd
         release: collectd
-    ```
+    ...
+    </pre>
 
 1. Navigate to your Installation Dashboard in Ops Manager.
 
 1. Click **Apply Changes**.
 
-## <a id='verify'></a>Verifying the Installation
+## <a id='verify'></a>Verify the Installation
 
 1. [BOSH SSH](https://docs.pivotal.io/pivotalcf/1-11/customizing/trouble-advanced.html#bosh-ssh) into one of the VMs in your deployment.
 
@@ -139,24 +181,30 @@ If you are not going to use HA mode, use the IP address of any of Altoros Heartb
     1. Run the `monit summary` again. If you do not see the processes mentioned above,
     check `/var/vcap/sys/log/collectd` logs for errors.
 
-## <a id='uninstall'></a>Uninstalling the collectd Add-on
+## <a id='uninstall'></a>Uninstall the collectd Add-on
 
-Follow the steps below to remove the collectd add-on from your existing runtime config and
+Follow the steps below to remove the collectd Add-on from your existing runtime config and
 roll back to a previous configuration:
 
-1. SSH into Ops Manager.
+1. [SSH](https://docs.pivotal.io/pivotalcf/1-11/customizing/trouble-advanced.html#ssh) into Ops Manager.
 
     <pre class="terminal">$ ssh -i PATH-TO-PRIVATE-KEY ubuntu@YOUR-OPS-MANAGER-VM-IP</pre>
 
 1. On the Ops Manager VM, retrieve the latest runtime configuration saved on the BOSH Director.
 
-    <pre class="terminal">$ bosh runtime-config > PATH-TO-SAVE-THE-RUNTIME-CONFIG</pre>
+    1. If you are using PCF v1.10, use the BOSH CLI v1 command:
+        <pre class="terminal">$ bosh runtime-config > PATH-TO-SAVE-THE-RUNTIME-CONFIG</pre>
+    1. If you are using PCF v1.11 or later, use the BOSH CLI v2 command:
+        <pre class="terminal">$ bosh2 -e my-env runtime-config > PATH-TO-SAVE-THE-RUNTIME-CONFIG</pre>
 
-1. Remove the lines added at [step 1](#createmanifest) of [Creating a collectd Manifest](#manifest).
+1. From the file you retrieved above, delete the lines that were added at the [Create a collectd Manifest](#manifest) step.
 
 1. Update the runtime configuration.
 
-    <pre class="terminal">$ bosh update runtime-config PATH-TO-SAVE-THE-RUNTIME-CONFIG</pre>
+    1. If you are using PCF v1.10, use the BOSH CLI v1 command:
+        <pre class="terminal">$ bosh update runtime-config PATH-TO-SAVE-THE-RUNTIME-CONFIG</pre>
+    1. If you are using PCF v1.11 or later, use the BOSH CLI v2 command:
+        <pre class="terminal">$ bosh2 -e my-env update-runtime-config PATH-TO-SAVE-THE-RUNTIME-CONFIG</pre>
 
 1. Navigate to your Installation Dashboard in Ops Manager.
 
@@ -169,12 +217,15 @@ If you have no existing runtime configuration, follow the steps below:
     <pre class="terminal">$ cat empty-runtime.yml
     releases: []</pre>
 
-1. Update the runtime configuration with `empty-runtime.yml`.
+1. Update the runtime configuration with the `empty-runtime.yml` file.
 
-    <pre class="terminal">$ bosh update runtime-config empty-runtime.yml</pre>
+    1. If you are using PCF v1.10, use the BOSH CLI v1 command:
+        <pre class="terminal">$ bosh update runtime-config empty-runtime.yml</pre>
+    1. If you are using PCF v1.11 or later, use the BOSH CLI v2 command:
+        <pre class="terminal">$ bosh2 -e my-env update-runtime-config empty-runtime.yml</pre>
 
 1. Navigate to your Installation Dashboard in Ops Manager.
 
 1. Click **Apply Changes**.
 
-The collectd add-on will be removed from your deployment.
+The collectd Add-on will be removed from your deployment.
