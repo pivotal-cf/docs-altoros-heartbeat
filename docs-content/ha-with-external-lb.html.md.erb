@@ -17,7 +17,7 @@ Heartbeat uses the following two ports to accept metrics:
 * UDP 8125
 
 **TCP 2003** is the load balancer port for the Graphite endpoint.
-It is used to receive system metrics from PCF and external services sent by the collectd agent.
+It is used to receive component metrics from PCF and external services sent by the collectd agent.
 To implement high availability in your Altoros Heartbeat installation,
 configure your load balancer to accept these TCP connections and balance them across Heartbeat back ends.
 For information about getting back-end IP addresses for your configuration,
