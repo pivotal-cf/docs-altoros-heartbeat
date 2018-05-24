@@ -5,7 +5,7 @@ owner: Partners
 
 This topic describes how to use Altoros Heartbeat for Pivotal Cloud Foundry (PCF).
 
-##<a id='create'></a>Creating a Service Instance, Heartbeat for Developers
+##<a id='create'></a>Create a Service Instance, Heartbeat for Developers
 
 To start using Heartbeat, a developer needs to create an Altoros Heartbeat service instance inside their org/space.
 After this, they are able to navigate to a URL in a browser to access the Altoros Heartbeat Grafana dashboard and log in using their PCF login and password.
@@ -33,7 +33,7 @@ To create an Altoros Heartbeat service instance:
 
       <pre class="terminal">cf create-service heartbeat standard heartbeat</pre>
 
-##<a id='update'></a>Updating a Service Instance
+##<a id='update'></a>Update a Service Instance
 
 Every time you rename an org/space, all service instances within this org/space need to be updated.
 It can be done automatically through the **Heartbeat Grafana Bootstrap** errand or manually through a service update procedure.
@@ -57,7 +57,7 @@ The most convenient approach is to use a Unix timestamp as `some_new_number`:
    For Windows, use a Unix timestamp generator,
    e.g. <a href="http://www.unixtimestamp.com/">http://www.unixtimestamp.com/</a>.</p>
 
-##<a id='access'></a>Accessing the Altoros Heartbeat Dashboard
+##<a id='access'></a>Access the Altoros Heartbeat Dashboard
 
 To access the Altoros Heartbeat dashboard, perform the following steps:
 
@@ -81,12 +81,12 @@ To access the Altoros Heartbeat dashboard, perform the following steps:
 
 1. Click **Authorize**.
 
-##<a id='configure'></a>Configuring the Altoros Heartbeat Dashboard
+##<a id='configure'></a>Configure the Altoros Heartbeat Dashboard
 
 The Altoros Heartbeat dashboard is based on open source Grafana software.
 For information about creating and editing Grafana graphs and panels, see [Grafana documentation](http://docs.grafana.org/guides/getting_started/).
 
-##<a id='viewing'></a>Viewing Metrics from PCF
+##<a id='viewing'></a>View Metrics from PCF
 
 Altoros Heartbeat offers the following PCF deployment monitoring views: Admin view and User view.
 
@@ -125,7 +125,7 @@ The dashboards accessible from the Admin view are:
 
 For more information about third-party services monitoring, see [Third-Party Services Monitoring](services-monitoring.html).
 
-<a id='alerting-dashboards'></a>**Alerting dashboards** include panels with BOSH HM alerts and Diego alerts.
+<a id='alerting-dashboards'></a>**Alerting dashboards** include panels with BOSH HM alerts, Diego alerts, and Heartbeat self-alerts.
 
 To enable alerts after installing the Altoros Heartbeat for PCF tile, complete the following steps:
 
@@ -143,6 +143,34 @@ Download and [import](http://docs.grafana.org/reference/export_import/#importing
 <%= image_tag("images/import-example-alerting-dashboard.png") %>
 
 For information about creating and editing alerts in Grafana, see [Grafana documentation](http://docs.grafana.org/alerting/rules/).
+
+####The Drill-Down Feature for Diego Cells
+The drill-down feature is available for the Pivotal Cloud Foundry Overview and Apps on Cell dashboards. 
+It allows users to drill down to a deeper level of detail about Diego cells and the applications deployed to them, a dashboard at a time.
+
+To use the drill-down feature:
+
+1. Select **Apps on Cell** from the dashboard dropdown in the navigation menu.
+
+1. From the **Apps on Cell** dashboard:
+
+    1. On a graph featuring system metrics (CPU/memory), hover over the icon at the top left and click the **CF Components Stats** link 
+    to drill down to detailed system metrics.
+
+        <%= image_tag("images/drill-down-1.png") %>
+
+    1. On a graph featuring application-specific metrics, hover over the icon at the top left and click the **CF Apps Metrics for Ops** link 
+    to drill down to detailed application metrics.
+
+        <%= image_tag("images/drill-down-2.png") %>
+
+You can also drill down to the **CF Apps Metrics for Ops** dashboard right from **Pivotal Cloud Foundry Overview**:
+
+1. Scroll down to the **Apps Usage** section.
+
+1. Hover over the link icon at the top left of any graph and click **CF Apps Metrics for Ops** to open the dashboard.
+
+    <%= image_tag("images/drill-down-3.png") %>
 
 ###Developer View
 

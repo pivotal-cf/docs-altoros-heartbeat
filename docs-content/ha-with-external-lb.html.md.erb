@@ -21,7 +21,7 @@ It is used to receive component metrics from PCF and external services sent by t
 To implement high availability in your Altoros Heartbeat installation,
 configure your load balancer to accept these TCP connections and balance them across Heartbeat back ends.
 For information about getting back-end IP addresses for your configuration,
-see [Finding Back-End IPs](#finding-backend-ip) below.
+see [Find Back-End IPs](#find-backend-ip) below.
 If high availability is not required, configure your collectd agent to send metrics to any back end
 as described in [Installing collectd Add-on for PCF](installing-collectd.html).
 
@@ -37,10 +37,10 @@ You can pass the `health` command to the TCP port and analyze the output, which 
 
 Similar to Graphite metrics, metrics from StatsD are sent to the VMs with heartbeat-backend in their names.
 For information about getting back-end IP addresses for these VMs,
-see [Finding Back-End IPs](#finding-backend-ip) below.
+see [Find Back-End IPs](#find-backend-ip) below.
 These IP addresses can be used for configuring the load balancer.
 
-##<a id='finding-backend-ip'></a>Finding Back-End IPs
+##<a id='find-backend-ip'></a>Find Back-End IPs
 
 To find the IP address for your Heartbeat back end:
 
@@ -49,7 +49,7 @@ To find the IP address for your Heartbeat back end:
 
 <%= image_tag("images/finding-backend-ip.png") %>
 
-##<a id='upscaling'></a> Scaling Up
+##<a id='upscale'></a> Scale Up
 
 The default installation can be scaled up to improve performance.
 Scaling up is achieved by increasing the number of back-end and front-end jobs.
@@ -71,10 +71,10 @@ To increase the number of back-end and front-end jobs:
 1. In the **Instances** column, select the required number of front-end and back-end instances.
 1. Navigate to the **Ops Manager Installation Dashboard** and click **Apply Changes**.
 
-##<a id='downscaling'></a> Scaling Down
+##<a id='downscale'></a> Scale Down
 
 The installation can be scaled down to adjust to decreased consumption of resources.
-To decrease the number of back-end and front-end jobs, follow the steps described in [Scaling Up](#upscaling) above.
+To decrease the number of back-end and front-end jobs, follow the steps described in [Scale Up](#upscale) above.
 
 Although scaling down front-end jobs is unrestricted, with back-end jobs,
 avoid selecting fewer than two instances to prevent metrics loss.

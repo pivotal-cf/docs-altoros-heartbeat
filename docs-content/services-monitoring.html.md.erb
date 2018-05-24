@@ -132,11 +132,16 @@ Configure Concourse web worker (aka [ATC](https://github.com/concourse/atc)) to 
 <%= image_tag("images/haproxy-grafana-header.png") %>
 
 1. To track metrics from the HAProxy that is used by PCF Elastic Runtime:
-    1. Open the **CF HAProxy*** dashboards.
+    1. Open the **CF HAProxy \*** dashboards.
     1. From the **Deployment** drop-down menu, select `cf-*`.
     1. From the **Host** drop-down menu, select `ha_proxy`.
 
 1. To track metrics from the HAProxy used by the RabbitMQ for PCF tile:
-    1. Open the **CF HAProxy*** dashboards.
+    1. Open the **CF HAProxy \*** dashboards.
     1. From the **Deployment** drop-down menu, select `p-rabbitmq-*`.
     1. From the **Host** drop-down menu, select `rabbitmq-haproxy`.
+
+1. To track metrics from the TCP Router (HAProxy), which is a part of the PCF Elastic Runtime:
+    1. Open the **CF HAProxy \*** dashboards.
+    1. From the **Deployment** drop-down menu, select `cf-*`.
+    1. From the **Host** drop-down menu, select `tcp_router`.
