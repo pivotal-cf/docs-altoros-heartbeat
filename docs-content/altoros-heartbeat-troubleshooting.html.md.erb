@@ -5,6 +5,38 @@ owner: Partners
 
 This topic describes known issues and troubleshooting strategies.
 
+##<a id='heartbeat-troubleshooting'></a>Altoros Heartbeat Troubleshooting
+
+Below, you will a list of common issues you may face when troubleshooting Heartbeat, as well as some ways to resolve them.
+
+1. An error occurs when trying to open Grafana:
+
+    Probably, there is an issue with MySQL. Please, check the status of MySQL VMs and the corresponding logs. If the MySQL cluster is down, run the following command:
+
+    <pre>bosh -d altoros-heartbeat-... run-errand bootstrap</pre>
+
+1. No new metrics appear in the dashboards:
+
+    Probably, you have run out of disk space. Please, run the following command:
+
+    <pre>bosh -d altoros-heartbeat-... ssh heartbeat -c 'df -h /var/vcap/store' | grep stdout</pre>
+
+    If there is no free space left you need to scale **Persistent Disk Type** for **Heartbeat PCF Monitoring backend job** VMs (**Resource Config** page).
+
+    You will also receive an alert if any free space is available on Heartbeat's backends.
+
+1. You experience a delay in graphs visualization after using Heartbeat for a while:
+
+    Please, run the following command:
+
+    <pre>bosh -d altoros-heartbeat-... ssh heartbeat -c 'ss -o state close-wait | wc -l' | grep stdout</pre>
+
+    If get a big value as an output (e.g., exceeding 100), run the following command:
+
+    <pre>bosh -d altoros-heartbeat-... ssh heartbeat -c 'sudo /var/vcap/bosh/bin/monit restart go-carbon'</pre>
+
+    You will also get an alert identifying the number of the **CLOSE_WAIT** connections on Heartbeat's back ends.
+
 ##<a id='mysql-troubleshooting'></a>MySQL Troubleshooting
 
 If the MySQL cluster used by your Heartbeat installation is broken,

@@ -11,7 +11,7 @@ A custom Java buildpack is required to integrate the JMXTrans agent into a Java 
 JMXTrans agent integration enables the app to send performance metrics to the StatsD server.
 These metrics are subsequently pushed to Graphite's Carbon component for caching and persistence.
 
-##<a id='compile'></a> Downloading and Compiling a Java App
+##<a id='compile'></a> Download and Compile a Java App
 
 1. From the command line, navigate to the app directory.
    Below, a sample spring-petclinic app (cloned from https://github.com/spring-projects/spring-petclinic) is used.
@@ -22,7 +22,7 @@ These metrics are subsequently pushed to Graphite's Carbon component for caching
 
       <pre class="terminal">./mvnw package</pre>
 
-##<a id='appmanifest'></a> Creating an Application Manifest
+##<a id='appmanifest'></a> Create an Application Manifest
 
 1. Create an application manifest based on this example:
 
@@ -41,10 +41,10 @@ These metrics are subsequently pushed to Graphite's Carbon component for caching
     vim manifest.yml</pre>
 
 <p class="note"><strong>Note</strong>: Altoros modified the buildpack to attach and configure the JMXTrans agent.
-   Use only the provided <a href="https://github.com/Altoros/java-buildpack#jmx-agent-integration">Altoros/java-buildpack</a>
+   Use only the provided <a href="https://github.com/Altoros/java-buildpack/tree/jmx-agent-integration">Altoros/java-buildpack</a>
     link to access the current version of the buildpack.</p>
 
-##<a id='pushapp'></a> Pushing the App
+##<a id='pushapp'></a> Push the App
 
 1. Navigate to the app directory.
 
@@ -54,7 +54,7 @@ These metrics are subsequently pushed to Graphite's Carbon component for caching
 
       <pre class="terminal">cf push</pre>
 
-##<a id='binding'></a> Binding a Service Instance to the App
+##<a id='binding'></a> Bind a Service Instance to the App
 
 1. Navigate to cf marketplace.
 

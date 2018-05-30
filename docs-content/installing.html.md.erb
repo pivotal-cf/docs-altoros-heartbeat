@@ -68,11 +68,30 @@ This adds the tile to your staging area.
 
 1. From the **Settings** tab, click **Heartbeat Graphite Nozzle Configuration**.
 
-1. If you are using several apps domains in PCF, provide a comma-separated list of additional (other than the apps domain indicated in the Pivotal Elastic Runtime, which needs not to be provided) domains to filter **HttpStartStop** metrics out.
+1. If you are using several apps domains in PCF, provide a comma-separated list of additional 
+   (other than the apps domain indicated in the Pivotal Elastic Runtime, which needs not to be provided) 
+   domains. HttpStartStop metrics from Firehose with the entered domain names won't be dropped.
 
-    <%= image_tag("images/graphite-nozzle-2.png") %>
+1. In the **Interval of updating Nozzle's cache for apps metadata** field, you set the value that determines how frequently 
+   the information about all the deployed applications is updated. The frequency of updates has an impact on CC API's performance (see note below).
+
+1. In the **Interval (in seconds) to flush metrics from Firehose** field, you set the interval (in seconds) to flush metrics from Firehose 
+   to metrics database. The interval value should correlate with the values entered in all the "Storage schema for ..." fields 
+   (see section [Heartbeat Metrics Storage Configuration](#storage_configuration)) for Firehose-related metrics. This value should be adjusted after you configure the schemas.
+
+    <%= image_tag("images/graphite-nozzle-1.png") %>
 
 1. Click **Save**.
+
+To get the right value for the **Interval of updating Nozzle's cache for apps metadata**, you should know how much time it will take to extract application data from CC API. 
+It is vital to prevent data updates from overlapping. You can check it out in the Heartbeat logs after setup:
+<pre>
+$ bosh2 -d altoros-heartbeat-... vms
+$ bosh2 -d altoros-heartbeat-... ssh heartbeat-nozzle/...
+$ less /var/vcap/sys/log/graphite-nozzle/graphite-nozzle_ctl.stdout.log
+INFO: 2018/04/24 **12:33:50** Start filling app/space/org cache.
+INFO: 2018/04/24 **12:34:56** Done filling cache! Found [1051] Apps
+</pre>
 
 ##<a id='grafana'></a>Configure Grafana
 
@@ -96,6 +115,11 @@ This adds the tile to your staging area.
 
 
     1. The email domain to be appended to the user's login if the latter does not represent a real email address.
+    User e-mail is used for alerts. User e-mail can be changed by user later. This option is used to preserve consistency.
+
+
+    1. Activate the **Disable SSL certificate verification for UAA and CC API endpoints** checkbox if the certificates you are using are self-signed 
+    or come from an untrusted CA. The option is used by Grafana for making requests to UAA and CC API during user authentication.
 
          <%= image_tag("images/grafana.png") %>
 
@@ -103,15 +127,51 @@ This adds the tile to your staging area.
 
 ##<a id='storage_configuration'></a>Configure Metrics Storage
 
-Configuration of Altoros Heartbeat's metrics storage helps prevent undesirable expansion of the metric tree resulting in overloaded dashboards, cluttered drop-down menus, extra disk usage, etc. To configure the metrics storage:
-
 1. In the **Settings** tab, click **Heartbeat Metrics Storage Configuration**.
 
-1. Select the **Enable** checkbox to activate removal of inactive metrics from the metrics storage.
+    1. Definitions of a [storage schema](http://graphite.readthedocs.io/en/1.0.0/config-carbon.html#storage-schemas-conf) for different metric types:
 
-1. Specify the time period (in days) upon expiry of which the metrics that haven't received any new values throughout will be considered inactive.
+        <p class="note"><strong>Note:</strong> At the moment, the storage schemas fields can only be configured during the initial installation. For this reason, please read 
+        the <a href="altoros-heartbeat-scaling.html">Altoros Heartbeat Scaling and Performance Tuning</a> section first. In the next releases, Altoros will enable the possibility to change 
+        metrics granularity of a storage schema by necessity.</p>
 
-    <%= image_tag("images/metrics_storage_configuration.png") %>
+        1. The value entered in the **Storage schema for metrics coming from statsd, e.g. firehose/apps metrics** and **Storage schema for BOSH metrics coming from firehose** 
+        fields should correlate with the value entered in the **Interval (in seconds) to flush metrics from Firehose** field.
+
+        1. The value entered in the **Storage schema for metrics coming from collectd, e.g. VM/services metrics** field 
+        should correlate with the value entered for **interval** collectd BOSH Add-on.
+
+        1. The value entered in the **Storage schema for MySQL Tile v1 metrics**, **Storage schema for MySQL Tile v2 metrics**, 
+        **Storage schema for RabbitMQ metrics**, and **Storage schema for Redis metrics** fields should correlate with the value 
+        entered in the **Interval (in seconds) to flush metrics from Firehose** field. 
+        Values of these fields should also correlate with the value entered in the [**Metrics Polling Interval**](#tilesmetrics) field in the corresponding Tiles.
+
+        <%= image_tag("images/metrics-storage-configuration-1.png") %>
+
+    1. If you navigate to the **Replication factor automatic calculation** field, you will see a tip explaining you may click **Disable** to set up replication manually. 
+    If you click **Enable**, the replication factor will be calculated as `Math.sqrt(num_of_backends).ceil`.
+
+        <p class="note"><strong>Note:</strong> The replication factor is responsible for regulating a redundancy level by determining which servers a particular metric gets to. 
+        For large environments where the number of Heartbeat backends exceeds <b>9</b> it is recommended to manually set up the value.
+        It prevents overloading and saves disk space.</p>
+
+        1. If you choose to **Disable**, you will be able to set the **Replication factor for metrics** field 
+        and find out how many servers you may lose without losing data (metrics).
+
+    1. **Enable removal of inactive metrics** helps prevent undesirable expansion of the metric tree resulting in overloaded dashboards, 
+    cluttered drop-down menus, extra disk usage, etc. To configure it:
+
+        1. Select the **Enable** checkbox to activate removal of inactive metrics from the metrics storage.
+
+        1. Specify the time period (in days) upon expiry of which the metrics that haven't received any new values throughout will be considered inactive.
+
+    1. **vm.dirty\_ratio** contains, as a percentage of total available memory that contains free pages and reclaimable pages, the number of pages at which 
+    a process which is generating disk writes will itself start writing out dirty data. The total available memory is not equal to total system memory.
+    1. **vm.dirty\_background_ratio** contains the amount of dirty memory at which the background kernel flusher threads will start writeback.
+    1. **vm.dirty\_expire\_centisecs** is used to define when dirty data is old enough to be eligible for writeout by the kernel flusher threads. 
+    It is expressed in 100'ths of a second. Data which has been dirty in-memory for longer than this interval will be written out next time a flusher thread wakes up.
+
+    <%= image_tag("images/metrics-storage-configuration-2.png") %>
 
 1. Click **Save**.
 
@@ -267,11 +327,11 @@ For more information about third-party services monitoring, see [Third-Party Ser
 
 1. Complete the following fields:
 
-   1. **Load Balancer host for graphite endpoint**: IP address or hostname of your external Load Balancer configured for Heartbeat. For information about getting back-end IP addresses for your configuration, see [**Finding Back-End IPs**](ha-with-external-lb.html#finding-backend-ip). Leave blank if high availability is not required.
+   1. **Load Balancer host for graphite endpoint**: IP address or hostname of your external Load Balancer configured for Heartbeat. For information about getting back-end IP addresses for your configuration, see [**Find Back-End IPs**](ha-with-external-lb.html#find-backend-ip). Leave blank if high availability is not required.
 
    1. **Load Balancer port for graphite endpoint**: port number for the Load Balancer configured to accept metrics from the collectd addon.
 
-   1. **Load Balancer host for statsd endpoint**: IP address or hostname of the Load Balancer configured to accept  application metrics. For information about getting back-end IP addresses for your configuration, see [**Finding Back-End IPs**](ha-with-external-lb.html#finding-backend-ip). The properties are separate, so two separate load balancers for collectd and application metrics can be used. Leave blank if high availability is not required.
+   1. **Load Balancer host for statsd endpoint**: IP address or hostname of the Load Balancer configured to accept  application metrics. For information about getting back-end IP addresses for your configuration, see [**Find Back-End IPs**](ha-with-external-lb.html#find-backend-ip). The properties are separate, so two separate load balancers for collectd and application metrics can be used. Leave blank if high availability is not required.
 
    1. **Load Balancer port for statsd endpoint**: port number for the external Load Balancer configured to accept statsd connections. Note that you need to provide the port accepting metrics, not the port accepting health checks.
 
@@ -302,6 +362,8 @@ For more information about this feature, see [**High Availability**](ha-with-ext
 1. Click **Save**.
 
 ##<a id='resourceconfig'></a>Configure Resource Config
+
+Check out [Altoros Heartbeat Scaling and Performance Tuning ](altoros-heartbeat-scaling.html#heartbeat-scaling) to find Resource Config examples for different environments.
 
 If you are using the **gp2** volume type with **Amazon EC2** instances and expect an intensive influx of metrics,
 Altoros recommends provisioning at least 300&nbsp;GB of persistent disk volume to the Heartbeat PCF Monitoring back-end VMs to ensure sustained IOPS performance.
@@ -348,10 +410,10 @@ follow the instructions in <a href="installing-collectd.html">Installing collect
 
 1. Return to the **Ops Manager Installation Dashboard** and click **Apply Changes** to apply the configuration settings.
 
-##<a id='redisrabbit'></a>Configure Redis and RabbitMQ
+##<a id='tilesmetrics'></a>Configure Redis, RabbitMQ, and MySQL
 
-If you have Redis and RabbitMQ for PCF tiles installed and want to collect metrics from these services using Altoros Heartbeat,
-adjust the Metrics polling interval for these services to `15`.
+If you have Redis, RabbitMQ, and MySQL for PCF tiles installed and want to collect metrics from these services using Altoros Heartbeat,
+set the **Metrics polling interval** field for these services to correspond [storage schemas configured earlier](#storage_configuration).
 
 To set the metrics polling interval in Redis:
 
@@ -359,7 +421,7 @@ To set the metrics polling interval in Redis:
 
 1. In the **Setting** tab, click **Metrics**.
 
-1. In the **Metrics polling interval field**, enter `15`.
+1. In the **Metrics polling interval** field, enter your value.
 
     <%= image_tag("images/configure-redis.png") %>
 
@@ -373,9 +435,33 @@ To set the metrics polling interval in RabbitMQ:
 
 1. In the **Setting** tab, click **RabbitMQ**.
 
-1. Complete the **Metrics polling interval field** with `15`.
+1. In the **Metrics polling interval** field, enter your value.
 
     <%= image_tag("images/configure-rabbitmq.png") %>
+
+1. Click **Save**.
+
+To set the metrics polling interval in MySQL v1 tile:
+
+1. In the **Ops Manager Installation Dashboard**, click the **MySQL v1** tile.
+
+1. In the **Setting** tab, click **Advanced Options**.
+
+1. In the **Metrics polling interval** field, enter your value.
+
+    <%= image_tag("images/configure-mysql-v1.png") %>
+
+1. Click **Save**.
+
+To set the metrics polling interval in MySQL v2 tile:
+
+1. In the **Ops Manager Installation Dashboard**, click the **MySQL v2** tile.
+
+1. In the **Setting** tab, click **Monitoring**.
+
+1. In the **Metrics polling interval** field, enter your value.
+
+    <%= image_tag("images/configure-mysql-v2.png") %>
 
 1. Click **Save**.
 
