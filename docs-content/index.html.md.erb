@@ -7,7 +7,7 @@ This documentation describes the Altoros Heartbeat for Pivotal Cloud Foundry (PC
 creates a service that enables operators and app developers to track all system and application metrics
 from their PCF installation in one place.
 
-## <a id='overview'></a>Overview
+## <a id='overview'></a> Overview
 
 Altoros Heartbeat for PCF is a multi-tenant monitoring service that uses Cloud Foundry's User Account and Authentication (UAA)
 server to grant access to apps and resources based on the user roles and rights within a PCF deployment. The service pulls,
@@ -35,7 +35,7 @@ The tile comes with pre-built integration with the following externally deployed
 
 Altoros Heartbeat for PCF requires additional configuration to monitor these services.
 
-## <a id='features'></a>Key Features
+## <a id='features'></a> Key Features
 
 Altoros Heartbeat for PCF includes the following key features:
 
@@ -50,7 +50,9 @@ Altoros Heartbeat for PCF includes the following key features:
   Dedicated shares of the solution are deployed to different spaces to collect metrics from the apps and services running within.
 * **Alerts**: Can be defined for each dashboard panel, and allow users to get immediate notifications though email, Slack, and other notification channels.
 
-## <a id="snapshot"></a>Product Snapshot
+## <a id="snapshot"></a> Product Snapshot
+
+<p class='note'><strong>Note:</strong> As of PCF v2.0, Elastic Runtime is renamed Pivotal Application Service (PAS).</p>
 
 The following table provides version and version-support information about Altoros Heartbeat for PCF.
 
@@ -74,7 +76,7 @@ The following table provides version and version-support information about Altor
         <td>v1.10.x, v1.11.x, v1.12.x, v2.0.x, and v2.1.x</td>
     </tr>
     <tr>
-        <td>Compatible Pivotal Application Services (PAS)* version(s)</td>
+        <td>Compatible Pivotal Application Services (PAS) version(s)</td>
         <td>v1.10.x, v1.11.x, and v1.12.x, v2.0.x and v2.1.x</td>
     </tr>
     <tr>
@@ -85,10 +87,9 @@ The following table provides version and version-support information about Altor
         <td>IPsec support?</td>
         <td>No</td>
     </tr>
-</table>
-\* As of PCF v2.0, <em>Elastic Runtime</em> is renamed <em>Pivotal Application Service (PAS)</em>. 
+</table> 
 
-## <a id="prerequisites"></a>Prerequisites
+## <a id="prerequisites"></a> Prerequisites
 
 To complete installation of Altoros Heartbeat for PCF, you need the following:
 
@@ -99,7 +100,7 @@ To complete installation of Altoros Heartbeat for PCF, you need the following:
   Altoros recommends installing Heartbeat on the same network with PCF.
 * TCP 2003 and 8126, and UDP 8125 ports open in the firewall to accept connections from PCF and services networks. Ports 2003 and 8125 are used to receive metrics. TCP 8126 is necessary for Load Balancer health checks.
 
-## <a id="reqs"></a>Requirements
+## <a id="reqs"></a> Requirements
 
 Altoros Heartbeat for PCF has the following requirements:
 
@@ -113,7 +114,7 @@ For more information, see [JMXTrans Agent Integration](jmxtrans.html).
 * (Optional) If you want to enable collection of custom application metrics, you must integrate a StatsD library into the app's code.
   For more information, see [StatsD Integration](statsd.html).
 
-## <a id="limitations"></a>Limitations
+## <a id="limitations"></a> Limitations
 
 The Altoros Heartbeat for PCF tile has the following limitations:
 
@@ -122,11 +123,11 @@ The Altoros Heartbeat for PCF tile has the following limitations:
 * Users are limited to using internal MariaDB to store internal Heartbeat data such as user sessions, mappings, dashboards, UI configs, etc.
 * Downscaling with retained high availability is only possible to at least two back-end instances.
 
-## <a id="feedback"></a>Feedback
+## <a id="feedback"></a> Feedback
 
 Please provide any bugs, feature requests, or questions to the
 [Pivotal Cloud Foundry Feedback](mailto:pivotal-cf-feedback@pivotal.io) list or send an email to [Altoros Customer Support](mailto:pcftiles-support@altoros.com).
 
-## <a id='license'></a>Trial License
+## <a id='license'></a> Trial License
 
 Users interested in Heartbeat can sign up for a [free trial](https://www.altoros.com/wp-content/uploads/2017/07/AltorosHeartbeatTileEULA.pdf).
