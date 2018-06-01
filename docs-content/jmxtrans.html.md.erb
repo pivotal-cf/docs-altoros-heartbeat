@@ -5,27 +5,26 @@ owner: Partners
 
 ##<a id='about'></a> About JMXTrans Agent Integration
 
-This topic is intended for app developers who are going to use the Heartbeat service to collect JMX metrics from their Java apps.
+This topic describes how to configure the Heartbeat service to collect JMX metrics from Java apps.
 
 A custom Java buildpack is required to integrate the JMXTrans agent into a Java app for JMX monitoring.
 JMXTrans agent integration enables the app to send performance metrics to the StatsD server.
 These metrics are subsequently pushed to Graphite's Carbon component for caching and persistence.
 
-##<a id='compile'></a> Download and Compile a Java App
+
+## <a id='compile'></a> Download and Compile a Java App
 
 1. From the command line, navigate to the app directory.
-   Below, a sample spring-petclinic app (cloned from https://github.com/spring-projects/spring-petclinic) is used.
-
+   See the sample [spring-petclinic](https://github.com/spring-projects/spring-petclinic) app below.
       <pre class="terminal">cd spring-petclinic/</pre>
 
 1. Compile the app:
-
       <pre class="terminal">./mvnw package</pre>
 
-##<a id='appmanifest'></a> Create an Application Manifest
+
+## <a id='appmanifest'></a> Create an Application Manifest
 
 1. Create an application manifest based on this example:
-
     ```
     applications:
     - name: spring-petclinic
@@ -36,28 +35,25 @@ These metrics are subsequently pushed to Graphite's Carbon component for caching
     ```
 
 1. Add the manifest to your project:
-
       <pre class="terminal">cd spring-petclinic
     vim manifest.yml</pre>
 
-<p class="note"><strong>Note</strong>: Altoros modified the buildpack to attach and configure the JMXTrans agent.
+<p class="note"><strong>Note:</strong> Altoros modified the buildpack to attach and configure the JMXTrans agent.
    Use only the provided <a href="https://github.com/Altoros/java-buildpack/tree/jmx-agent-integration">Altoros/java-buildpack</a>
     link to access the current version of the buildpack.</p>
 
-##<a id='pushapp'></a> Push the App
+## <a id='pushapp'></a> Push the App
 
 1. Navigate to the app directory.
-
       <pre class="terminal">cd spring-petclinic</pre>
 
 1. Push the app.
-
       <pre class="terminal">cf push</pre>
 
-##<a id='binding'></a> Bind a Service Instance to the App
+
+## <a id='binding'></a> Bind a Service Instance to the App
 
 1. Navigate to cf marketplace.
-
       <pre class="terminal">cf marketplace
         Getting services from marketplace in org admin / space demo as admin...
     OK
@@ -65,16 +61,13 @@ These metrics are subsequently pushed to Graphite's Carbon component for caching
     app-autoscaler       standard       Scales bound applications in response to load (beta)
     heartbeat            standard       Heartbeat Monitoring Solution</pre>
 
-1. Find Heartbeat in the list of the available services and select the service plan (currently, only the standard service plan is available—it will be selected by default).
+1. Find Heartbeat in the list of the available services and select the service plan. Currently, only the standard service plan is available, so it will be selected by default.
 
 1. Create a service instance.
-
       <pre class="terminal">cf create-service heartbeat standard heartbeat</pre>
 
 1. Bind the service to your app.
-
       <pre class="terminal">cf bind-service spring-petclinic heartbeat</pre>
 
 1. Restage the app to start the metrics flow.
-
       <pre class="terminal">cf restage spring-petclinic</pre>
