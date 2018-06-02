@@ -5,7 +5,8 @@ owner: Partners
 
 This topic describes how to scale Altoros Heartbeat and how to tune its performance.
 
-##<a id='heartbeat-scaling'></a>Scale Altoros Heartbeat
+
+## <a id='heartbeat-scaling'></a> Scale Altoros Heartbeat
 
 Below, you will find some examples of resource configuration for PCF installations of different sizes.
 
@@ -17,44 +18,28 @@ Below, you will find some examples of resource configuration for PCF installatio
 
     <%= image_tag("images/scale-2.png") %>
 
-##<a id='heartbeat-tune'></a>Tune Performance of Altoros Heartbeat
 
-Below, you may check out a list of performance parameters for PCF installations of different sizes.
+## <a id='heartbeat-tune'></a> Tune Performance of Altoros Heartbeat
+
+Below is a list of performance parameters for PCF installations of different sizes.
 
 1. 50 diego cells and 1000-1500 apps
-
     **Storage schema for ... metrics** = `30s:3h,5m:7d,30m:90d`
-
     **Replication factor automatic calculation** = **True**
-
     **vm.dirty\_ratio** = `80`
-
     **vm.dirty\_background\_ratio** = `50`
-
     **vm.dirty\_expire\_centisecs** = `60000`
-
     **Collectd interval** = `30`
-
     **Interval (in seconds) to flush metrics from firehose** = `30`
-
     **Interval of updating nozzle's cache for apps metadata** = `3600s`
 
 1. 300 diego cells and 15000 apps
-
     **Storage schema for ... metrics** = `1m:1h,5m:1d,10m:90d`
-
     **Replication factor automatic calculation** = **False**
-
     **Replication factor for metrics** = `2 or 3`
-
     **vm.dirty\_ratio** = `80`
-
     **vm.dirty\_background\_ratio** = `50`
-
     **vm.dirty\_expire_centisecs** = `60000`
-
     **Collectd interval** = `60`
-
     **Interval (in seconds) to flush metrics from firehose** = `60`
-
     **Interval of updating nozzle's cache for apps metadata** = `7200s`
