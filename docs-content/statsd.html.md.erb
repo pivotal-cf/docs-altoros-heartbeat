@@ -3,11 +3,12 @@ title: StatsD Integration
 owner: Partners
 ---
 
-##<a id='about'></a> About StatsD Integration
+## <a id='about'></a> About StatsD Integration
 
 This section is intended for app developers who are going to use the Altoros Heartbeat service to collect custom metrics from their apps.
 The section describes how to enable an app to send metrics to the StatsD server.
 These metrics are subsequently pushed to Graphite's Carbon component for caching and persistence.
+
 
 ## <a id='integration'></a> Integrate Heartbeat's StatsD Into the App
 
@@ -53,6 +54,7 @@ These metrics are subsequently pushed to Graphite's Carbon component for caching
 
 For an example of an app written in golang that sends custom metrics to a Grafana dashboard, see [this GitHub repository](https://github.com/Altoros/tweets-fetcher/).
 
+                                                 
 ## <a id='example'></a> Example of an App with StatsD Integration
 
 1. Navigate to cf marketplace.
@@ -72,6 +74,7 @@ For an example of an app written in golang that sends custom metrics to a Grafan
 
 1. Restage the app to start the metrics flow.
       <pre class="terminal">cf restage app_name</pre>
+
 
 ## <a id='create'></a> Create a Custom Dashboard
 
