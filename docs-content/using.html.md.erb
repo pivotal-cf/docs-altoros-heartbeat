@@ -5,20 +5,20 @@ owner: Partners
 
 This topic describes how to use Altoros Heartbeat for Pivotal Cloud Foundry (PCF).
 
-##<a id='create'></a>Create a Service Instance, Heartbeat for Developers
 
-To start using Heartbeat, a developer needs to create an Altoros Heartbeat service instance inside their org/space.
-After this, they are able to navigate to a URL in a browser to access the Altoros Heartbeat Grafana dashboard and log in using their PCF login and password.
-After login, the developer gets access to Developer View.
+## <a id='create'></a> Create a Service Instance, Heartbeat for Developers
 
-<p class="note"><strong>Note</strong>: You do not need to create service instances inside the org/space
+To start using Heartbeat, you must create an Altoros Heartbeat service instance inside your org/space.
+After this, you can navigate to a URL in a browser to access the Altoros Heartbeat Grafana dashboard and log in using your PCF username and password.
+After login, you have access to Developer View.
+
+<p class="note"><strong>Note:</strong> You do not need to create service instances inside the org/space
    that grant users admin access rights to Altoros Heartbeat.
-   These org/space are provided at the Grafana configuration step of the Altoros Heartbeat for PCF installation process).</p>
+   These org/spaces are provided during the Grafana configuration step of the Altoros Heartbeat for PCF installation process.</p>
 
-To create an Altoros Heartbeat service instance:
+To create an Altoros Heartbeat service instance, do the following:
 
 1. Navigate to cf-marketplace:
-
       <pre class="terminal">cf marketplace
         Getting services from marketplace in org admin / space demo as admin...
     OK
@@ -27,37 +27,38 @@ To create an Altoros Heartbeat service instance:
     heartbeat            standard                            Heartbeat Monitoring Solution</pre>
 
 1. Find Heartbeat in the list of the available services and select the service plan.
-   Currently, only the standard service plan is available, and it is selected by default.
+   Currently, only the standard service plan is available, so it is selected by default.
 
 1. Create a service instance.
-
       <pre class="terminal">cf create-service heartbeat standard heartbeat</pre>
 
-##<a id='update'></a>Update a Service Instance
 
-Every time you rename an org/space, all service instances within this org/space need to be updated.
+## <a id='update'></a> Update a Service Instance
+
+Each time you rename an org/space, all service instances within that org/space need to be updated.
 It can be done automatically through the **Heartbeat Grafana Bootstrap** errand or manually through a service update procedure.
 Another case when you might need to update a service instance is to manually refresh dashboards for a specific org/space when the **Heartbeat Grafana Bootstrap** errand is disabled.
 
-<p class="note"><strong>Note</strong>: Altoros highly recommends keeping the <b>Heartbeat Grafana Bootstrap</b> errand enabled.
+<p class="note"><strong>Note:</strong> Altoros highly recommends keeping the <b>Heartbeat Grafana Bootstrap</b> errand enabled.
  For details, see <a href="installing.html#errands">Configure Errands</a>.</p>
 
-To update an Altoros Heartbeat service instance, run:
+To update an Altoros Heartbeat service instance, run the following command:
 
 <pre class="terminal">cf update-service heartbeat -c '{"version":some_new_number}'</pre>
 
-where `some_new_number` is a number greater than that assigned to the service instance during the previous update.
-If it's the first time the service instance is being updated, provide any number, for example, `1`.
+`some_new_number` is a number greater than the number assigned to the service instance during the previous update.
+If this is the first time the service instance is being updated, provide any number.
 
 The most convenient approach is to use a Unix timestamp as `some_new_number`:
 
 <pre class="terminal">cf update-service heartbeat -c "{\"version\":$(date +%s)}"</pre>
 
-<p class="note"><strong>Note</strong>: The <b>date</b> command is only available in Linux and macOS.
+<p class="note"><strong>Note:</strong> The <b>date</b> command is only available in Linux and macOS.
    For Windows, use a Unix timestamp generator,
    e.g. <a href="http://www.unixtimestamp.com/">http://www.unixtimestamp.com/</a>.</p>
 
-##<a id='access'></a>Access the Altoros Heartbeat Dashboard
+
+## <a id='access'></a> Access the Altoros Heartbeat Dashboard
 
 To access the Altoros Heartbeat dashboard, perform the following steps:
 
@@ -66,42 +67,39 @@ To access the Altoros Heartbeat dashboard, perform the following steps:
 1. From the **Settings** tab, click **Domain**.
 
 1. Record the value for **System Domain**.
-
       <%= image_tag("images/monitoring-url.png") %>
 
 1. Navigate to `https://monitoring.YOUR-SYSTEM-DOMAIN.com`.
 
 1. Log in to **Altoros Heartbeat** using your **Pivotal Elastic Runtime** credentials.
-
       <%= image_tag("images/using-pcf-authorization.png") %>
-
-    A prompt requesting permission to access Altoros Heartbeat appears.
-
+    A prompt requesting permission to access Altoros Heartbeat will appear.
       <%= image_tag("images/using-prompt.png") %>
 
 1. Click **Authorize**.
 
-##<a id='configure'></a>Configure the Altoros Heartbeat Dashboard
+
+## <a id='configure'></a> Configure the Altoros Heartbeat Dashboard
 
 The Altoros Heartbeat dashboard is based on open source Grafana software.
 For information about creating and editing Grafana graphs and panels, see [Grafana documentation](http://docs.grafana.org/guides/getting_started/).
 
-##<a id='viewing'></a>View Metrics from PCF
 
-Altoros Heartbeat offers the following PCF deployment monitoring views: Admin view and User view.
+## <a id='viewing'></a> View Metrics from PCF
 
-###Admin View
+Altoros Heartbeat offers the following PCF deployment monitoring views: Admin View and User View.
+
+### <a id='admin-view'></a> Admin View
 
 A view from the admin org/space.
 
 <%= image_tag("images/admin.png") %>
 
-The dashboards accessible from the Admin view are:
+The dashboards accessible from the Admin View are:
 
 **Overview** dashboards:
 
-* The **Pivotal BOSH Overview dashboard** contains panels with BOSH health metrics, such as sum CPU and memory/swap usage, and VMs availability.
-
+* The **Pivotal BOSH Overview dashboard** contains panels with BOSH health metrics, such as sum CPU and memory/swap usage, and VM availability.
 * The **Pivotal Cloud Foundry Overview** dashboard contain panels with metrics on the state of long-running processes,
   container count and capacity of remaining containers, % of running VMs, average CPU usage on cells,
   overall memory usage on cells, overall swap usage on cells, load average on cells, all TCP connections of routers,
@@ -113,8 +111,7 @@ The dashboards accessible from the Admin view are:
 **BOSH** dashboards:
 
 * The Pivotal BOSH Overview dashboard contains panels with BOSH health metrics,
-  such as sum CPU and memory/swap usage, and VMs availability.
-
+  such as sum CPU and memory/swap usage, and VM availability.
 * The Pivotal BOSH VMs dashboard contains panels with metrics of any VM managed by BOSH, including CPU usage,
   LA 1 min, memory/swap usage, health, health timeline, health status, system disc usage, persistent disc usage,
   and ephemeral disc usage.
@@ -125,26 +122,27 @@ The dashboards accessible from the Admin view are:
 
 For more information about third-party services monitoring, see [Third-Party Services Monitoring](services-monitoring.html).
 
-<a id='alerting-dashboards'></a>**Alerting dashboards** include panels with BOSH HM alerts, Diego alerts, and Heartbeat self-alerts.
+**Alerting dashboards** include panels with BOSH HM alerts, Diego alerts, and Heartbeat self-alerts.
 
-To enable alerts after installing the Altoros Heartbeat for PCF tile, complete the following steps:
+To enable alerts after installing the Altoros Heartbeat for PCF tile, do the following:
 
 1. Configure [Alert Notification Channels](http://docs.grafana.org/alerting/notifications/)
 
 1. Open dashboards with alerts (dashboards with tag **alerting**)
 
-1. Click the save icon:</p>
+1. Click the save icon:
 
       <%= image_tag("images/diego-alerts.png") %>
 
-As an example of a custom alerting dashboard you can use <a href="examples/Example_of_Alerting_Dashboard.json" download>this dashboard with alerts for Diego cells' cpu/mem/swap and an alert for the percentage of running VMs in BOSH</a>.
+As an example of a custom alerting dashboard, you can use <a href="examples/Example_of_Alerting_Dashboard.json"> to download this dashboard with alerts for Diego cell CPU and memory/swap usage and an alert for the percentage of running VMs in BOSH</a>.
 Download and [import](http://docs.grafana.org/reference/export_import/#importing-a-dashboard) it to see how it works.
 
 <%= image_tag("images/import-example-alerting-dashboard.png") %>
 
 For information about creating and editing alerts in Grafana, see [Grafana documentation](http://docs.grafana.org/alerting/rules/).
 
-####The Drill-Down Feature for Diego Cells
+#### <a id='drill-down'></a> Drill-Down Feature for Diego Cells
+
 The drill-down feature is available for the Pivotal Cloud Foundry Overview and Apps on Cell dashboards. 
 It allows users to drill down to a deeper level of detail about Diego cells and the applications deployed to them, a dashboard at a time.
 
@@ -153,15 +151,11 @@ To use the drill-down feature:
 1. Select **Apps on Cell** from the dashboard dropdown in the navigation menu.
 
 1. From the **Apps on Cell** dashboard:
-
     1. On a graph featuring system metrics (CPU/memory), hover over the icon at the top left and click the **CF Components Stats** link 
     to drill down to detailed system metrics.
-
         <%= image_tag("images/drill-down-1.png") %>
-
     1. On a graph featuring application-specific metrics, hover over the icon at the top left and click the **CF Apps Metrics for Ops** link 
     to drill down to detailed application metrics.
-
         <%= image_tag("images/drill-down-2.png") %>
 
 You can also drill down to the **CF Apps Metrics for Ops** dashboard right from **Pivotal Cloud Foundry Overview**:
@@ -172,7 +166,7 @@ You can also drill down to the **CF Apps Metrics for Ops** dashboard right from 
 
     <%= image_tag("images/drill-down-3.png") %>
 
-###Developer View
+### <a id='developer-view'></a> Developer View
 
 A sample view from a developer org/space.
 
@@ -182,19 +176,20 @@ The dashboards accessible from the Developer view are:
 
 * The **PCF Apps Metrics for Devs dashboard** includes panes with metrics on CPU, memory,
   HTTP requests/error/status code rates, HTTP response types, and disk usage.
-
 * The **JMX Metrics for Java Apps dashboard** includes panes with metrics on system swap usage,
   system CPU LA, JVM HEAP and non-HEAP memory usage, system memory usage, JVM loaded classes, thread, GC count, and GC crime.
 
-##<a id='manage-licenses'></a>Manage Licenses
+
+## <a id='manage-licenses'></a> Manage Licenses
 
 Upon expiration of the trial period or five days prior to expiration of your current license key, a notification appears on the top of the screen:
 
 <%= image_tag("images/licence-expired.png") %>
 
-Clicking on the notification takes you to the page for entering a new license key. To activate Altoros Heartbeat for PCF:
+Clicking on the notification takes you to the page for entering a new license key. To activate Altoros Heartbeat for PCF, do the following:
 
 1. [Contact](mailto:heartbeat@altoros.com?subject=Heartbeat license key renewal) Altoros's sales team for a commercial license.
+
 1. Enter the provided license key.
 
     <%= image_tag("images/licence-key-window.png") %>
@@ -206,6 +201,7 @@ Clicking on the notification takes you to the page for entering a new license ke
 To view the expiration date for your current license key:
 
 1. In **Admin** menu, click **Server Settings**.
+
 1. Scroll down to the **license** section.
 
     <%= image_tag("images/licence-menu.png") %>
