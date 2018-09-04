@@ -271,9 +271,9 @@ For more information about third-party services monitoring, see [Third-Party Ser
     <%= image_tag("images/balancer-for-ha.png") %>
 
 1. Complete the following fields:
-   1. **Load Balancer host for graphite endpoint**: IP address or hostname of your external load balancer configured for Heartbeat. For information about getting back end IP addresses for your configuration, see [**Find Back-End IPs**](ha-with-external-lb.html#find-backend-ip). Leave blank if high availability is not required.
+   1. **Load Balancer host for graphite endpoint**: IP address or hostname of your external load balancer configured for Heartbeat. For information about getting back end IP addresses for your configuration, see [**Find Back End IPs**](ha-with-external-lb.html#find-backend-ip). Leave blank if high availability is not required.
    1. **Load Balancer port for graphite endpoint**: port number for the load balancer configured to accept metrics from the collectd add-on.
-   1. **Load Balancer host for statsd endpoint**: IP address or hostname of the load balancer configured to accept application metrics. For information about getting back end IP addresses for your configuration, see [**Find Back-End IPs**](ha-with-external-lb.html#find-backend-ip). The properties are separate, so two separate load balancers for collectd and application metrics can be used. Leave blank if high availability is not required.
+   1. **Load Balancer host for statsd endpoint**: IP address or hostname of the load balancer configured to accept application metrics. For information about getting nozzle IP addresses for your configuration, see [**Find Nozzle IPs**](ha-with-external-lb.html#find-nozzle-ip). The properties are separate, so two separate load balancers for collectd and application metrics can be used. Leave blank if high availability is not required.
    1. **Load Balancer port for statsd endpoint**: port number for the external load balancer configured to accept statsd connections. Note that you need to provide the port accepting metrics, not the port accepting health checks.
 
 1. Click **Save**.
