@@ -33,12 +33,12 @@ both built-in (e.g. JMX) and custom (sent to Statsd from an app).
 Because the UDP port is used to receive metrics,
 your load balancer may not support health checks.
 In this case, use TCP port 8126 to test server availability.
-Besides simple configuration, advanced TCP health check is available. 
+Besides simple configuration, advanced TCP health check is available.
 You can pass the `health` command to the TCP port and analyze the output, which can be `up` or `down`.
 
-Similar to Graphite metrics, metrics from StatsD are sent to the VMs with `heartbeat-backend` in their names.
+Similar to Graphite metrics, metrics from StatsD are sent to the VMs with `heartbeat-nozzle` in their names.
 For information about getting back end IP addresses for these VMs,
-see [Find Back End IPs](#find-backend-ip) below.
+see [Find Nozzle IPs](#find-nozzle-ip) below.
 These IP addresses can be used for configuring the load balancer.
 
 
@@ -47,9 +47,19 @@ These IP addresses can be used for configuring the load balancer.
 To find the IP address for your Heartbeat back end:
 
 1. Open the Status tab.
-1. Copy the value in the Jobs column for Heartbeat PCF Monitoring back end job.
+1. Copy the value in the **IPS** column for the **Heartbeat PCF Monitoring frontend job**.
 
-<%= image_tag("images/finding-backend-ip.png") %>
+<%= image_tag("images/finding-job-ip.png") %>
+
+
+## <a id='find-nozzle-ip'></a> Find Nozzle IPs
+
+To find the IP address for your Heartbeat nozzle:
+
+1. Open the Status tab.
+1. Copy the value in the **IPS** column for the **Heartbeat PCF Monitoring nozzle job**.
+
+<%= image_tag("images/finding-job-ip.png") %>
 
 
 ## <a id='upscale'></a> Scale Up
