@@ -9,37 +9,20 @@ using an external load balancer.
 
 ## <a id='lb-config'></a> External Load Balancer Configuration
 
-Setup and configuration of an external load balancer is required to implement high availability of the installation.
-Any highly available TCP and UDP load balancer is acceptable.
+Setup and configuration of an external load balancer is required to implement high availability of the installation. Any highly available TCP and UDP load balancer is acceptable.
 
 Heartbeat uses the following two ports to accept metrics:
 
 * TCP 2003
 * UDP 8125
 
-**TCP 2003** is the load balancer port for the Graphite endpoint.
-It is used to receive component metrics from PCF and external services sent by the collectd agent.
-To implement high availability in your Altoros Heartbeat installation,
-configure your load balancer to accept these TCP connections and balance them across Heartbeat back ends.
-For information about getting back end IP addresses for your configuration,
-see [Find Back End IPs](#find-backend-ip) below.
-If high availability is not required, configure your collectd agent to send metrics to any back end
-as described in [Installing collectd Add-On for PCF](installing-collectd.html).
+**TCP 2003** is the load balancer port for the Graphite endpoint. It is used to receive component metrics from PCF and external services sent by the collectd agent. To implement high availability in your Altoros Heartbeat installation, configure your load balancer to accept these TCP connections and balance them across Heartbeat back ends. For information about getting back end IP addresses for your configuration, see [Find Back End IPs](#find-backend-ip) below. If high availability is not required, configure your collectd agent to send metrics to any back end as described in [Installing collectd Add-On for PCF](installing-collectd.html).
 
-**UDP 8125** is the load balancer port for the Statsd endpoint.
-It is used to receive metrics from PCF deployed applications,
-both built-in (e.g. JMX) and custom (sent to Statsd from an app).
+**UDP 8125** is the load balancer port for the StatsD endpoint. It is used to receive metrics from PCF deployed applications, both built-in (e.g. JMX) and custom (sent to StatsD from an app).
 
-Because the UDP port is used to receive metrics,
-your load balancer may not support health checks.
-In this case, use TCP port 8126 to test server availability.
-Besides simple configuration, advanced TCP health check is available.
-You can pass the `health` command to the TCP port and analyze the output, which can be `up` or `down`.
+Because the UDP port is used to receive metrics, your load balancer may not support health checks. In this case, use TCP port 8126 to test server availability. Besides simple configuration, advanced TCP health check is available. You can pass the `health` command to the TCP port and analyze the output, which can be `up` or `down`.
 
-Similar to Graphite metrics, metrics from StatsD are sent to the VMs with `heartbeat-nozzle` in their names.
-For information about getting back end IP addresses for these VMs,
-see [Find Nozzle IPs](#find-nozzle-ip) below.
-These IP addresses can be used for configuring the load balancer.
+Similar to Graphite metrics, metrics from StatsD are sent to the VMs with `heartbeat-nozzle` in their names. For information about getting back end IP addresses for these VMs, see [Find Nozzle IPs](#find-nozzle-ip) below. These IP addresses can be used for configuring the load balancer.
 
 
 ## <a id='find-backend-ip'></a> Find Back End IPs
@@ -47,6 +30,7 @@ These IP addresses can be used for configuring the load balancer.
 To find the IP address for your Heartbeat back end:
 
 1. Open the Status tab.
+
 1. Copy the value in the **IPS** column for the **Heartbeat PCF Monitoring frontend job**.
 
 <%= image_tag("images/finding-job-ip.png") %>
@@ -57,6 +41,7 @@ To find the IP address for your Heartbeat back end:
 To find the IP address for your Heartbeat nozzle:
 
 1. Open the Status tab.
+
 1. Copy the value in the **IPS** column for the **Heartbeat PCF Monitoring nozzle job**.
 
 <%= image_tag("images/finding-job-ip.png") %>
@@ -64,15 +49,10 @@ To find the IP address for your Heartbeat nozzle:
 
 ## <a id='upscale'></a> Scale Up
 
-The default installation can be scaled up to improve performance.
-Scaling up is achieved by increasing the number of back end and front end jobs.
-In fact, scaling up can be done without a load balancer and high availability.
-However, in this case, back end operation and the metrics flow can be compromised.
+The default installation can be scaled up to improve performance. Scaling up is achieved by increasing the number of back end and front end jobs. In fact, scaling up can be done without a load balancer and high availability. However, in this case, back end operation and the metrics flow can be compromised.
 
 <p class="note"><strong>Note:</strong> The default installation of the Altoros Heartbeat for PCF tile is highly performant
-and has large capacity for receiving and processing metrics.
-Lack of performance might not be related to insufficient number of instances.
-For assistance with detecting and eliminating performance problems with your installation,
+and has large capacity for receiving and processing metrics. Lack of performance might not be related to insufficient number of instances. For assistance with detecting and eliminating performance problems with your installation,
 contact <a href="index.html#feedback">Contact Altoros</a>.</p>
 
 To increase the number of back end and front end jobs:
@@ -88,12 +68,6 @@ To increase the number of back end and front end jobs:
 
 ## <a id='downscale'></a> Scale Down
 
-The installation can be scaled down to adjust to decreased consumption of resources.
-To decrease the number of back end and front end jobs, follow the steps described in [Scale Up](#upscale) above.
+The installation can be scaled down to adjust to decreased consumption of resources. To decrease the number of back end and front end jobs, follow the steps described in [Scale Up](#upscale) above.
 
-Although scaling down front end jobs is unrestricted, with back end jobs,
-avoid selecting fewer than two instances to prevent metrics loss.
-Scaling down can lead to a loss in high availability for some previously received metrics,
-because only one copy thereof is retained.
-New values of these metrics have multiple copies according to a new configuration.
-Scale down carefully. If you need assistance, contact [Altoros support](index.html#feedback).
+Although scaling down front end jobs is unrestricted, with back end jobs, avoid selecting fewer than two instances to prevent metrics loss. Scaling down can lead to a loss in high availability for some previously received metrics, because only one copy thereof is retained. New values of these metrics have multiple copies according to a new configuration. Scale down carefully. If you need assistance, contact [Altoros support](index.html#feedback).
