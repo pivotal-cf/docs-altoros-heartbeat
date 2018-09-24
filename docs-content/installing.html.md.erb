@@ -14,8 +14,7 @@ This topic describes how to install and configure Altoros Heartbeat for Pivotal 
 
 1. Navigate to the Ops Manager Installation Dashboard and click **Import a Product** to upload the product file.
 
-1. Under the **Import a Product** button, click **+** next to the version number of Altoros Heartbeat for PCF.
-This adds the tile to your staging area.
+1. Under the **Import a Product** button, click **+** next to the version number of Altoros Heartbeat for PCF. This adds the tile to your staging area.
 
 1. Click the newly added **Altoros Heartbeat for PCF** tile.
 
@@ -38,21 +37,17 @@ This adds the tile to your staging area.
 1. From the **Settings** tab, click **Heartbeat Alert Configuration**.
 
 1. Specify the external server for uploading Grafana images so that they can be attached to Slack and email alert notifications:
-    1. If you are using [AWS S3](https://aws.amazon.com/s3/) , enable the **S3** checkbox
-       and provide your Amazon S3 Bucket URL, Amazon API Access Key ID, and Amazon API Secret Key.
+    1. If you are using [AWS S3](https://aws.amazon.com/s3/) , enable the **S3** checkbox and provide your Amazon S3 Bucket URL, Amazon API Access Key ID, and Amazon API Secret Key.
          <%= image_tag("images/alert.png") %>
-    1. If you are using WebDAV, enable the **webdav** checkbox and provide your WebDAV URL,
-       username and password for WebDAV (basic auth), and (optional) the URL to send to users
-       in notifications. The URL is appended to the resulting name of the uploaded file.
+    1. If you are using WebDAV, enable the **webdav** checkbox and provide your WebDAV URL, username and password for WebDAV (basic auth), and (optional) the URL to send to users in notifications. The URL is appended to the resulting name of the uploaded file.
          <%= image_tag("images/alert-webdav.png") %>
 
 1. To define email server settings, select the **SMTP** checkbox and complete the following fields:
-    * **Host:port**: The hostname and port of the outgoing SMTP server
-    * **Username**: Your SMTP server username
-    * **Password**: Your SMTP server password
-    * **Disable SSL certificate verification**: If you are using your own, self-signed certificates that are not from the trusted CA,
-      disable SSL verification.
-    * **Address used when sending out emails**: The address from which emails will be sent
+    * **Host:port**: The hostname and port of the outgoing SMTP server.
+    * **Username**: Your SMTP server username.
+    * **Password**: Your SMTP server password.
+    * **Disable SSL certificate verification**: If you are using your own, self-signed certificates that are not from the trusted CA, disable SSL verification.
+    * **Address used when sending out emails**: The address from which emails will be sent.
     <%= image_tag("images/alert-mail.png") %>
 
 1. Click **Save**.
@@ -62,23 +57,17 @@ This adds the tile to your staging area.
 
 1. From the **Settings** tab, click **Heartbeat Graphite Nozzle Configuration**.
 
-1. If you are using several apps domains in PCF, provide a comma-separated list of additional 
-   (other than the apps domain indicated in the Pivotal Elastic Runtime, which needs not to be provided) 
-   domains. HttpStartStop metrics from Firehose with the entered domain names will not be dropped.
+1. If you are using several apps domains in PCF, provide a comma-separated list of additional (other than the apps domain indicated in the Pivotal Elastic Runtime, which needs not to be provided) domains. HttpStartStop metrics from Firehose with the entered domain names will not be dropped.
 
-1. In the **Interval of updating Nozzle's cache for apps metadata** field, you set the value that determines how frequently 
-   the information about all the deployed applications is updated. The frequency of updates has an impact on CC API's performance (see note below).
+1. In the **Interval of updating Nozzle's cache for apps metadata** field, you set the value that determines how frequently the information about all the deployed applications is updated. The frequency of updates has an impact on CC API's performance (see note below).
 
-1. In the **Interval (in seconds) to flush metrics from Firehose** field, you set the interval (in seconds) to flush metrics from Firehose 
-   to metrics database. The interval value should correlate with the values entered in all the "Storage schema for ..." fields 
-   (see section [Heartbeat Metrics Storage Configuration](#storage_configuration)) for Firehose-related metrics. This value should be adjusted after you configure the schemas.
+1. In the **Interval (in seconds) to flush metrics from Firehose** field, you set the interval (in seconds) to flush metrics from Firehose to metrics database. The interval value should correlate with the values entered in all the "Storage schema for ..." fields (see section [Heartbeat Metrics Storage Configuration](#storage_configuration)) for Firehose-related metrics. This value should be adjusted after you configure the schemas.
 
     <%= image_tag("images/graphite-nozzle-1.png") %>
 
 1. Click **Save**.
 
-To get the right value for the **Interval of updating Nozzle's cache for apps metadata**, you should know how much time it will take to extract application data from CC API. 
-It is vital to prevent data updates from overlapping. You can check it out in the Heartbeat logs after setup:
+To get the right value for the **Interval of updating Nozzle's cache for apps metadata**, you should know how much time it will take to extract application data from CC API. It is vital to prevent data updates from overlapping. You can check it out in the Heartbeat logs after setup:
 
 <pre>
 $ bosh2 -d altoros-heartbeat-... vms
@@ -96,10 +85,8 @@ INFO: 2018/04/24 **12:34:56** Done filling cache! Found [1051] Apps
 1. Provide the following information:
     1. The organization and space within PCF granting users admin access rights to Altoros Heartbeat.<br><br>
        In Altoros Heartbeat, the following users have access to the Admin View:
-           <ul>
-             <li>Administrator accounts within PCF</li>
-             <li>User accounts within PCF are assigned to the above specified org and space</li>
-           </ul>
+           * Administrator accounts within PCF
+           * User accounts within PCF are assigned to the above specified org and space
        Cloud Foundry user rights map to Grafana rights in the following way:
            <table>
          <th>PCF space</th><th>Grafana organisation</th>
@@ -107,10 +94,8 @@ INFO: 2018/04/24 **12:34:56** Done filling cache! Found [1051] Apps
          <tr><td>Space Developer</td><td>Editor</td></tr>
          <tr><td>Space Auditor</td><td>Viewer</td></tr>
          </table><br><br>
-    1. The email domain to be appended to the user's login if the latter does not represent a real email address.
-    User email is used for alerts. User email can be changed by user later. This option is used to preserve consistency.
-    1. Activate the **Disable SSL certificate verification for UAA and CC API endpoints** checkbox if the certificates you are using are self-signed 
-    or come from an untrusted CA. The option is used by Grafana for making requests to UAA and CC API during user authentication.
+    1. The email domain to be appended to the user's login if the latter does not represent a real email address. User email is used for alerts. User email can be changed by user later. This option is used to preserve consistency.
+    1. Activate the **Disable SSL certificate verification for UAA and CC API endpoints** checkbox if the certificates you are using are self-signed or come from an untrusted CA. The option is used by Grafana for making requests to UAA and CC API during user authentication.
          <%= image_tag("images/grafana.png") %>
 
 1. Click **Save**.
@@ -120,33 +105,20 @@ INFO: 2018/04/24 **12:34:56** Done filling cache! Found [1051] Apps
 
 1. In the **Settings** tab, click **Heartbeat Metrics Storage Configuration**.
     1. Definitions of a [storage schema](http://graphite.readthedocs.io/en/1.0.0/config-carbon.html#storage-schemas-conf) for different metric types:
-        <p class="note"><strong>Note:</strong> At the moment, the storage schemas fields can only be configured during the initial installation. For this reason, please read 
-        the <a href="altoros-heartbeat-scaling.html">Altoros Heartbeat Scaling and Performance Tuning</a> section first.</p>
-        1. The value entered in the **Storage schema for metrics coming from statsd, e.g. Firehose/apps metrics** and **Storage schema for BOSH metrics coming from Firehose** 
-        fields should correlate with the value entered in the **Interval (in seconds) to flush metrics from Firehose** field.
-        1. The value entered in the **Storage schema for metrics coming from collectd, e.g. VM/services metrics** field 
-        should correlate with the value entered for **interval** collectd BOSH Add-on.
-        1. The value entered in the **Storage schema for MySQL Tile v1 metrics**, **Storage schema for MySQL Tile v2 metrics**, 
-        **Storage schema for RabbitMQ metrics**, and **Storage schema for Redis metrics** fields should correlate with the value 
-        entered in the **Interval (in seconds) to flush metrics from Firehose** field. 
-        Values of these fields should also correlate with the value entered in the [**Metrics Polling Interval**](#tilesmetrics) field in the corresponding Tiles.
+        <p class="note"><strong>Note:</strong> At the moment, the storage schemas fields can only be configured during the initial installation. For this reason, see <a href="altoros-heartbeat-scaling.html">Altoros Heartbeat Scaling and Performance Tuning</a> first.</p>
+        1. The value entered in the **Storage schema for metrics coming from StatsD, e.g. Firehose/apps metrics** and **Storage schema for BOSH metrics coming from Firehose** fields should correlate with the value entered in the **Interval (in seconds) to flush metrics from Firehose** field.
+        1. The value entered in the **Storage schema for metrics coming from collectd, e.g. VM/services metrics** field should correlate with the value entered for **interval** collectd BOSH Add-on.
+        1. The value entered in the **Storage schema for MySQL Tile v1 metrics**, **Storage schema for MySQL Tile v2 metrics**, **Storage schema for RabbitMQ metrics**, and **Storage schema for Redis metrics** fields should correlate with the value entered in the **Interval (in seconds) to flush metrics from Firehose** field. Values of these fields should also correlate with the value entered in the [**Metrics Polling Interval**](#tilesmetrics) field in the corresponding tiles.
         <%= image_tag("images/metrics-storage-configuration-1.png") %>
-    1. If you navigate to the **Replication factor automatic calculation** field, you will see a tip explaining you may click **Disable** to set up replication manually. 
-    If you click **Enable**, the replication factor will be calculated as `Math.sqrt(num_of_backends).ceil`.
-        <p class="note"><strong>Note:</strong> The replication factor is responsible for regulating a redundancy level by determining which servers a particular metric gets to. 
-        For large environments where the number of Heartbeat back ends exceeds <b>9</b>, it is recommended to manually set up the value.
-        It prevents overloading and saves disk space.</p>
-        1. If you choose to **Disable**, you will be able to set the **Replication factor for metrics** field 
-        and find out how many servers you may lose without losing data (metrics).
-    1. **Enable removal of inactive metrics** helps prevent undesirable expansion of the metric tree resulting in overloaded dashboards, 
-    cluttered drop-down menus, extra disk usage, etc. To configure it:
+    1. If you navigate to the **Replication factor automatic calculation** field, you will see a tip explaining you may click **Disable** to set up replication manually. If you click **Enable**, the replication factor will be calculated as `Math.sqrt(num_of_backends).ceil`.
+        <p class="note"><strong>Note:</strong> The replication factor is responsible for regulating a redundancy level by determining which servers a particular metric gets to. For large environments where the number of Heartbeat back ends exceeds <strong>9</strong>, it is recommended to manually set up the value. It prevents overloading and saves disk space.</p>
+        1. If you choose to **Disable**, you will be able to set the **Replication factor for metrics** field and find out how many servers you may lose without losing data (metrics).
+    1. **Enable removal of inactive metrics** helps prevent undesirable expansion of the metric tree resulting in overloaded dashboards, cluttered drop-down menus, extra disk usage, etc. To configure it, do the following:
         1. Select the **Enable** checkbox to activate removal of inactive metrics from the metrics storage.
         1. Specify the time period (in days) upon expiry of which the metrics that have not received any new values throughout will be considered inactive.
-    1. **vm.dirty\_ratio** contains, as a percentage of total available memory that contains free pages and reclaimable pages, the number of pages at which 
-    a process which is generating disk writes will itself start writing out dirty data. The total available memory is not equal to total system memory.
+    1. **vm.dirty\_ratio** contains, as a percentage of total available memory that contains free pages and reclaimable pages, the number of pages at which a process which is generating disk writes will itself start writing out dirty data. The total available memory is not equal to total system memory.
     1. **vm.dirty\_background_ratio** contains the amount of dirty memory at which the background kernel flusher threads will start writeback.
-    1. **vm.dirty\_expire\_centisecs** is used to define when dirty data is old enough to be eligible for writeout by the kernel flusher threads. 
-    It is expressed in 100'ths of a second. Data which has been dirty in-memory for longer than this interval will be written out next time a flusher thread wakes up.
+    1. **vm.dirty\_expire\_centisecs** is used to define when dirty data is old enough to be eligible for writeout by the kernel flusher threads. It is expressed in 100ths of a second. Data which has been dirty in-memory for longer than this interval will be written out next time a flusher thread wakes up.
     <%= image_tag("images/metrics-storage-configuration-2.png") %>
 
 1. Click **Save**.
@@ -165,7 +137,7 @@ INFO: 2018/04/24 **12:34:56** Done filling cache! Found [1051] Apps
 
 ## <a id='logsearch_integration'></a> Configure Integration with Altoros Log Search for PCF
 
-To enable integration with the Log Search for PCF tile from Altoros:
+To enable integration with the Log Search for PCF tile from Altoros, do the following:
 
 1. In the **Settings** tab, click **Integration with Altoros Log Search for PCF**.
 
@@ -183,8 +155,7 @@ For more information about this feature, see [Altoros Log Search for PCF Integra
 
 ## <a id='external_services'></a> Configure External Services Monitoring
 
-<p class="note"><strong>Note:</strong> Before configuring External Services Monitoring, make sure you have installed
- the latest version of the <a href="https://network.pivotal.io/products/altoros-heartbeat">collectd BOSH add-on</a>.</p>
+<p class="note"><strong>Note:</strong> Before configuring External Services Monitoring, make sure you have installed the latest version of the <a href="https://network.pivotal.io/products/altoros-heartbeat">collectd BOSH add-on</a>.</p>
 
 1. In the **Settings** tab, click **External Services Monitoring Configuration**.
 
@@ -200,14 +171,12 @@ For more information about this feature, see [Altoros Log Search for PCF Integra
         * **Port**: the port number on which the PostgreSQL database listens
         * **User** and **Password**: the username and password used to access the database
         * The **Enable disk IO by table** checkbox, when selected, measures the disc I/O usage by each specific table.
-        <p class="note"><strong>Note:</strong> Selecting **Enable disk IO by table** significantly escalates 
-           the number of generated metrics, so, by default, the checkbox is disabled.</p>
+        <p class="note"><strong>Note:</strong> Selecting **Enable disk IO by table** significantly escalates the number of generated metrics, so, by default, the checkbox is disabled.</p>
     1. For MongoDB Servers:
         * **Host**: the IP address or hostname of the MongoDB server
         * **Port**: the port number on which the server listens
         * (Optional) **User** and **Password**: the username and password used to access the server
-        * **A space-separated list of MongoDB databases**: names of the monitored databases.
-          The **admin** database is added automatically.
+        * **A space-separated list of MongoDB databases**: names of the monitored databases. The **admin** database is added automatically.
     1. For Memcached Servers:
         * **Host**: the IP address or hostname of the Memcached server
         * **Port**: the port number on which the server listens
@@ -232,14 +201,8 @@ For more information about third-party services monitoring, see [Third-Party Ser
 1. In the **Settings** tab, click **MySQL Proxy Configuration**.
 
 1. Complete the following fields:
-    1. **Load Balancer Unhealthy Threshold (Shutdown Delay)**: If you are using a load balancer above the proxies,
-       enter your load balancers unhealthy total threshold time here in seconds.
-       For example, if your load balancer polls every 30 seconds, and immediately fails over upon failure,
-       set this property to 30 seconds.
-    1. **Load Balancer Healthy Threshold (Start Delay)**: If you are using a load balancer above the proxies,
-       enter your load balancers healthy total threshold time here in seconds.
-       For example, if your load balancer polls every 30 seconds and requires three successful attempts,
-       set this property to 90 seconds.
+    1. **Load Balancer Unhealthy Threshold (Shutdown Delay)**: If you are using a load balancer above the proxies, enter your load balancers unhealthy total threshold time here in seconds. For example, if your load balancer polls every 30 seconds, and immediately fails over upon failure, set this property to 30 seconds.
+    1. **Load Balancer Healthy Threshold (Start Delay)**: If you are using a load balancer above the proxies, enter your load balancers healthy total threshold time here in seconds. For example, if your load balancer polls every 30 seconds and requires three successful attempts, set this property to 90 seconds.
     1. **Consul Service Name**: If `consul_enabled` is true, switchboard registers with consul using this name.
     <%= image_tag("images/mysql-proxy.png") %>
 
@@ -250,15 +213,11 @@ For more information about third-party services monitoring, see [Third-Party Ser
 
 1. In the **Settings** tab, click **MySQL Server Configuration**.
 
-1. If you are controlling access to the database from outside of PCF and the access is limited by a hostname,
-   clear the **Disable reverse DNS lookups checkbox**.
+1. If you are controlling access to the database from outside of PCF and the access is limited by a hostname, clear the **Disable reverse DNS lookups checkbox**.
 
 1. Complete the following fields:
-   1. **Read-Only User Password**: The password to automatically provision a `roadmin` user
-      with the right to read all databases in the system, but permission to write to none.
-      Leave blank to disable the read-only user.
-   1. **MySQL Start Timeout**: The minimum amount of time necessary for the MySQL process to start, in seconds.
-      For advanced configuration, read the MySQL documentation before modifying.
+   1. **Read-Only User Password**: The password to automatically provision a `roadmin` user with the right to read all databases in the system, but permission to write to none. Leave blank to disable the read-only user.
+   1. **MySQL Start Timeout**: The minimum amount of time necessary for the MySQL process to start, in seconds. For advanced configuration, read the MySQL documentation before modifying.
     <%= image_tag("images/mysql-server.png") %>
 
 1. Click **Save**.
@@ -271,10 +230,10 @@ For more information about third-party services monitoring, see [Third-Party Ser
     <%= image_tag("images/balancer-for-ha.png") %>
 
 1. Complete the following fields:
-   1. **Load Balancer host for graphite endpoint**: IP address or hostname of your external load balancer configured for Heartbeat. For information about getting back end IP addresses for your configuration, see [**Find Back End IPs**](ha-with-external-lb.html#find-backend-ip). Leave blank if high availability is not required.
-   1. **Load Balancer port for graphite endpoint**: port number for the load balancer configured to accept metrics from the collectd add-on.
-   1. **Load Balancer host for statsd endpoint**: IP address or hostname of the load balancer configured to accept application metrics. For information about getting nozzle IP addresses for your configuration, see [**Find Nozzle IPs**](ha-with-external-lb.html#find-nozzle-ip). The properties are separate, so two separate load balancers for collectd and application metrics can be used. Leave blank if high availability is not required.
-   1. **Load Balancer port for statsd endpoint**: port number for the external load balancer configured to accept statsd connections. Note that you need to provide the port accepting metrics, not the port accepting health checks.
+   1. **Load Balancer host for Graphite endpoint**: IP address or hostname of your external load balancer configured for Heartbeat. For information about getting back end IP addresses for your configuration, see [**Find Back End IPs**](ha-with-external-lb.html#find-backend-ip). Leave blank if high availability is not required.
+   1. **Load Balancer port for Graphite endpoint**: port number for the load balancer configured to accept metrics from the collectd add-on.
+   1. **Load Balancer host for StatsD endpoint**: IP address or hostname of the load balancer configured to accept application metrics. For information about getting nozzle IP addresses for your configuration, see [**Find Nozzle IPs**](ha-with-external-lb.html#find-nozzle-ip). The properties are separate, so two separate load balancers for collectd and application metrics can be used. Leave blank if high availability is not required.
+   1. **Load Balancer port for StatsD endpoint**: port number for the external load balancer configured to accept StatsD connections. Note that you need to provide the port accepting metrics, not the port accepting health checks.
 
 1. Click **Save**.
 
@@ -303,8 +262,7 @@ For more information about this feature, see [**High Availability**](ha-with-ext
 
 Check out [Altoros Heartbeat Scaling and Performance Tuning ](altoros-heartbeat-scaling.html#heartbeat-scaling) to find Resource Config examples for different environments.
 
-If you are using the **gp2** volume type with **Amazon EC2** instances and expect an intensive influx of metrics,
-Altoros recommends provisioning at least 300&nbsp;GB of persistent disk volume to the Heartbeat PCF Monitoring back end VMs to ensure sustained IOPS performance.
+If you are using the **gp2** volume type with **Amazon EC2** instances and expect an intensive influx of metrics, Altoros recommends provisioning at least 300&nbsp;GB of persistent disk volume to the Heartbeat PCF Monitoring back end VMs to ensure sustained IOPS performance.
 
 To increase the default disk volume value, do the following:
 
@@ -318,12 +276,9 @@ To increase the default disk volume value, do the following:
 
 1. Return to the **Ops Manager Installation Dashboard** and click **Apply Changes** to apply the configuration settings.
 
-<p class="note"><strong>Note:</strong> If you are not monitoring external services, 
-   Altoros recommends selecting 0 instances for <strong>Collectd VM to monitor external services</strong>.
-   If you are going to monitor external services, reset the number of instances for this VM to 1.</p>
+<p class="note"><strong>Note:</strong> If you are not monitoring external services, Altoros recommends selecting 0 instances for <strong>Collectd VM to monitor external services</strong>. If you are going to monitor external services, reset the number of instances for this VM to 1.</p>
 
-<p class="note"><strong>Note:</strong> After you complete the procedures on this page,
-follow the instructions in <a href="installing-collectd.html">Installing collectd Add-On for PCF</a>.</p>
+<p class="note"><strong>Note:</strong> After you complete the procedures on this page, follow the instructions in <a href="installing-collectd.html">Installing collectd Add-On for PCF</a>.</p>
 
 
 ## <a id='opsmanager'></a> Configure BOSH Director
@@ -349,10 +304,9 @@ follow the instructions in <a href="installing-collectd.html">Installing collect
 
 ## <a id='tilesmetrics'></a> Configure Redis, RabbitMQ, and MySQL
 
-If you have Redis, RabbitMQ, and MySQL for PCF tiles installed and want to collect metrics from these services using Altoros Heartbeat,
-set the **Metrics polling interval** field for these services to correspond [storage schemas configured earlier](#storage_configuration).
+If you have Redis, RabbitMQ, and MySQL for PCF tiles installed and want to collect metrics from these services using Altoros Heartbeat, set the **Metrics polling interval** field for these services to correspond [storage schemas configured earlier](#storage_configuration).
 
-To set the metrics polling interval in Redis:
+To set the metrics polling interval in Redis, do the following:
 
 1. In the **Ops Manager Installation Dashboard**, click the **Redis tile**.
 
@@ -366,7 +320,7 @@ To set the metrics polling interval in Redis:
 
 1. Return to the **Ops Manager Installation Dashboard** and click **Apply Changes** to apply the configuration settings.
 
-To set the metrics polling interval in RabbitMQ:
+To set the metrics polling interval in RabbitMQ, do the following:
 
 1. In the **Ops Manager Installation Dashboard**, click the **RabbitMQ** tile.
 
@@ -378,7 +332,7 @@ To set the metrics polling interval in RabbitMQ:
 
 1. Click **Save**.
 
-To set the metrics polling interval in MySQL v1 tile:
+To set the metrics polling interval in MySQL v1 tile, do the following:
 
 1. In the **Ops Manager Installation Dashboard**, click the **MySQL v1** tile.
 
@@ -390,7 +344,7 @@ To set the metrics polling interval in MySQL v1 tile:
 
 1. Click **Save**.
 
-To set the metrics polling interval in MySQL v2 tile:
+To set the metrics polling interval in MySQL v2 tile, do the following:
 
 1. In the **Ops Manager Installation Dashboard**, click the **MySQL v2** tile.
 
@@ -404,5 +358,4 @@ To set the metrics polling interval in MySQL v2 tile:
 
 1. Return to the **Ops Manager Installation Dashboard** and click **Apply Changes** to apply the configuration settings.
 
-<p class="note"><strong>Note</strong>: After you complete the procedures on this page,
-   follow the instructions in <a href="installing-collectd.html">Installing collectd Add-On for PCF</a>.</p>
+<p class="note"><strong>Note</strong>: After you complete the procedures on this page, follow the instructions in <a href="installing-collectd.html">Installing collectd Add-On for PCF</a>.</p>
