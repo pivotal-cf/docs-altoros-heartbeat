@@ -3,7 +3,7 @@ title: High Availability
 owner: Partners
 ---
 
-This topic describes implementation of high availability for Altoros Heartbeat for Pivotal Cloud Foundry (PCF) using an external load balancer.
+This topic describes implementation of high availability for Altoros Heartbeat for Pivotal Platform using an external load balancer.
 
 
 ## <a id='lb-config'></a> External Load Balancer Configuration
@@ -15,9 +15,9 @@ Heartbeat uses the following two ports to accept metrics:
 * TCP 2003
 * UDP 8125
 
-**TCP 2003** is the load balancer port for the Graphite endpoint. It is used to receive component metrics from PCF and external services sent by the collectd agent. To implement high availability in your Altoros Heartbeat installation, configure your load balancer to accept these TCP connections and balance them across Heartbeat back ends. For information about getting back end IP addresses for your configuration, see [Find Back End IPs](#find-backend-ip) below. If high availability is not required, configure your collectd agent to send metrics to any back end as described in [Installing collectd Add-On for PCF](installing-collectd.html).
+**TCP 2003** is the load balancer port for the Graphite endpoint. It is used to receive component metrics from Pivotal Platform and external services sent by the collectd agent. To implement high availability in your Altoros Heartbeat installation, configure your load balancer to accept these TCP connections and balance them across Heartbeat back ends. For information about getting back end IP addresses for your configuration, see [Find Back End IPs](#find-backend-ip) below. If high availability is not required, configure your collectd agent to send metrics to any back end as described in [Installing collectd Add-On for Pivotal Platform](installing-collectd.html).
 
-**UDP 8125** is the load balancer port for the StatsD endpoint. It is used to receive metrics from PCF deployed applications, both built-in (e.g. JMX) and custom (sent to StatsD from an app).
+**UDP 8125** is the load balancer port for the StatsD endpoint. It is used to receive metrics from Pivotal Platform deployed applications, both built-in (e.g. JMX) and custom (sent to StatsD from an app).
 
 Because the UDP port is used to receive metrics, your load balancer may not support health checks. In this case, use TCP port 8126 to test server availability. Besides simple configuration, advanced TCP health check is available. You can pass the `health` command to the TCP port and analyze the output, which can be `up` or `down`.
 
@@ -30,7 +30,7 @@ To find the IP address for your Heartbeat back end:
 
 1. Open the Status tab.
 
-1. Copy the value in the **IPS** column for the **Heartbeat PCF Monitoring frontend job**.
+1. Copy the value in the **IPS** column for the **Heartbeat Pivotal Platform Monitoring frontend job**.
 
 <%= image_tag("images/finding-job-ip.png") %>
 
@@ -41,7 +41,7 @@ To find the IP address for your Heartbeat nozzle:
 
 1. Open the Status tab.
 
-1. Copy the value in the **IPS** column for the **Heartbeat PCF Monitoring nozzle job**.
+1. Copy the value in the **IPS** column for the **Heartbeat Pivotal Platform Monitoring nozzle job**.
 
 <%= image_tag("images/finding-job-ip.png") %>
 
@@ -50,7 +50,7 @@ To find the IP address for your Heartbeat nozzle:
 
 The default installation can be scaled up to improve performance. Scaling up is achieved by increasing the number of back end and front end jobs. In fact, scaling up can be done without a load balancer and high availability. However, in this case, back end operation and the metrics flow can be compromised.
 
-<p class="note"><strong>Note:</strong> The default installation of the Altoros Heartbeat for PCF tile is highly performant
+<p class="note"><strong>Note:</strong> The default installation of the Altoros Heartbeat for Pivotal Platform tile is highly performant
 and has large capacity for receiving and processing metrics. Lack of performance might not be related to insufficient number of instances. For assistance with detecting and eliminating performance problems with your installation,
 contact <a href="index.html#feedback">Contact Altoros</a>.</p>
 

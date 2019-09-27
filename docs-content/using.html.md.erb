@@ -1,20 +1,20 @@
 ---
-title: Using Altoros Heartbeat for PCF
+title: Using Altoros Heartbeat for Pivotal Platform
 owner: Partners
 ---
 
-This topic describes how to use Altoros Heartbeat for Pivotal Cloud Foundry (PCF).
+This topic describes how to use Altoros Heartbeat for Pivotal Platform.
 
 
 ## <a id='create'></a> Create a Service Instance, Heartbeat for Developers
 
 To start using Heartbeat, you must create an Altoros Heartbeat service instance inside your org/space.
-After this, you can navigate to a URL in a browser to access the Altoros Heartbeat Grafana dashboard and log in using your PCF username and password.
+After this, you can navigate to a URL in a browser to access the Altoros Heartbeat Grafana dashboard and log in using your Pivotal Platform username and password.
 After login, you have access to Developer View.
 
 <p class="note"><strong>Note:</strong> You do not need to create service instances inside the org/space
    that grant users admin access rights to Altoros Heartbeat.
-   These org/spaces are provided during the Grafana configuration step of the Altoros Heartbeat for PCF installation process.</p>
+   These org/spaces are provided during the Grafana configuration step of the Altoros Heartbeat for Pivotal Platform installation process.</p>
 
 To create an Altoros Heartbeat service instance, do the following:
 
@@ -85,9 +85,9 @@ The Altoros Heartbeat dashboard is based on open source Grafana software.
 For information about creating and editing Grafana graphs and panels, see [Grafana documentation](http://docs.grafana.org/guides/getting_started/).
 
 
-## <a id='viewing'></a> View Metrics from PCF
+## <a id='viewing'></a> View Metrics from Pivotal Platform
 
-Altoros Heartbeat offers the following PCF deployment monitoring views: Admin View and User View.
+Altoros Heartbeat offers the following Pivotal Platform deployment monitoring views: Admin View and User View.
 
 ### <a id='admin-view'></a> Admin View
 
@@ -100,7 +100,7 @@ The dashboards accessible from the Admin View are:
 **Overview** dashboards:
 
 * The **Pivotal BOSH Overview dashboard** contains panels with BOSH health metrics, such as sum CPU and memory/swap usage, and VM availability.
-* The **Pivotal Cloud Foundry Overview** dashboard contain panels with metrics on the state of long-running processes,
+* The **Pivotal Platform Overview** dashboard contain panels with metrics on the state of long-running processes,
   container count and capacity of remaining containers, % of running VMs, average CPU usage on cells,
   overall memory usage on cells, overall swap usage on cells, load average on cells, all TCP connections of routers,
   and all apps' CPU, memory and disk usage.
@@ -116,7 +116,7 @@ The dashboards accessible from the Admin View are:
   LA 1 min, memory/swap usage, health, health timeline, health status, system disc usage, persistent disc usage,
   and ephemeral disc usage.
 
-**Cf component** dashboards provide full overview of PCF API Stats, installation capacity, and component-specific metrics from Consul, Diego, Etcd, Router, and UAA.
+**Cf component** dashboards provide full overview of Pivotal Platform API Stats, installation capacity, and component-specific metrics from Consul, Diego, Etcd, Router, and UAA.
 
 **Cf service** dashboards contain panels with service-specific metrics for various services (e.g. MySQL, PostgreSQL, Redis, and RabbitMQ).
 
@@ -124,7 +124,7 @@ For more information about third-party services monitoring, see [Third-Party Ser
 
 **Alerting dashboards** include panels with BOSH HM alerts, Diego alerts, and Heartbeat self-alerts.
 
-To enable alerts after installing the Altoros Heartbeat for PCF tile, do the following:
+To enable alerts after installing the Altoros Heartbeat for Pivotal Platform tile, do the following:
 
 1. Configure [Alert Notification Channels](http://docs.grafana.org/alerting/notifications/)
 
@@ -143,7 +143,7 @@ For information about creating and editing alerts in Grafana, see [Grafana docum
 
 #### <a id='drill-down'></a> Drill-Down Feature for Diego Cells
 
-The drill-down feature is available for the Pivotal Cloud Foundry Overview and Apps on Cell dashboards. 
+The drill-down feature is available for the Pivotal Platform Overview and Apps on Cell dashboards. 
 It allows users to drill down to a deeper level of detail about Diego cells and the applications deployed to them, a dashboard at a time.
 
 To use the drill-down feature:
@@ -158,7 +158,7 @@ To use the drill-down feature:
     to drill down to detailed application metrics.
         <%= image_tag("images/drill-down-2.png") %>
 
-You can also drill down to the **CF Apps Metrics for Ops** dashboard right from **Pivotal Cloud Foundry Overview**:
+You can also drill down to the **CF Apps Metrics for Ops** dashboard right from **Pivotal Platform Overview**:
 
 1. Scroll down to the **Apps Usage** section.
 
@@ -174,7 +174,7 @@ A sample view from a developer org/space.
 
 The dashboards accessible from the Developer view are:
 
-* The **PCF Apps Metrics for Devs dashboard** includes panes with metrics on CPU, memory,
+* The **Pivotal Platform Apps Metrics for Devs dashboard** includes panes with metrics on CPU, memory,
   HTTP requests/error/status code rates, HTTP response types, and disk usage.
 * The **JMX Metrics for Java Apps dashboard** includes panes with metrics on system swap usage,
   system CPU LA, JVM HEAP and non-HEAP memory usage, system memory usage, JVM loaded classes, thread, GC count, and GC crime.
@@ -186,7 +186,7 @@ Upon expiration of the trial period or five days prior to expiration of your cur
 
 <%= image_tag("images/licence-expired.png") %>
 
-Clicking on the notification takes you to the page for entering a new license key. To activate Altoros Heartbeat for PCF, do the following:
+Clicking on the notification takes you to the page for entering a new license key. To activate Altoros Heartbeat for Pivotal Platform, do the following:
 
 1. [Contact](mailto:heartbeat@altoros.com?subject=Heartbeat license key renewal) Altoros's sales team for a commercial license.
 

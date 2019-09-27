@@ -1,29 +1,29 @@
 ---
-title: Installing and Configuring Altoros Heartbeat for PCF
+title: Installing and Configuring Altoros Heartbeat for Pivotal Platform
 owner: Partners
 ---
 
-This topic describes how to install and configure Altoros Heartbeat for Pivotal Cloud Foundry (PCF).
+This topic describes how to install and configure Altoros Heartbeat for Pivotal Platform.
 
-<p class="note"><strong>Note:</strong> If you update the Altoros Heartbeat for PCF tile, the collectd BOSH add-on must be <a href="installing-collectd.html">updated</a> as well.</p>
+<p class="note"><strong>Note:</strong> If you update the Altoros Heartbeat for Pivotal Platform tile, the collectd BOSH add-on must be <a href="installing-collectd.html">updated</a> as well.</p>
 
 
-## <a id='install'></a> Install and Configure Altoros Heartbeat for PCF
+## <a id='install'></a> Install and Configure Altoros Heartbeat for Pivotal Platform
 
 1. Download the product file and the collectd add-on from [Pivotal Network](https://network.pivotal.io/products/altoros-heartbeat).
 
 1. Navigate to the Ops Manager Installation Dashboard and click **Import a Product** to upload the product file.
 
-1. Under the **Import a Product** button, click **+** next to the version number of Altoros Heartbeat for PCF. This adds the tile to your staging area.
+1. Under the **Import a Product** button, click **+** next to the version number of Altoros Heartbeat for Pivotal Platform. This adds the tile to your staging area.
 
-1. Click the newly added **Altoros Heartbeat for PCF** tile.
+1. Click the newly added **Altoros Heartbeat for Pivotal Platform** tile.
 
 1. Click **Save**.
 
 
 ## <a id='configureaz'></a> Configure AZ and Network Assignments
 
-1. In Pivotal Ops Manager, click the **Altoros Heartbeat for PCF** tile to open its configuration options.
+1. In Pivotal Ops Manager, click the **Altoros Heartbeat for Pivotal Platform** tile to open its configuration options.
 
 1. From the Settings tab, click **Assign AZs** and **Networks** to configure the network and availability zones.
 
@@ -57,7 +57,7 @@ This topic describes how to install and configure Altoros Heartbeat for Pivotal 
 
 1. From the **Settings** tab, click **Heartbeat Graphite Nozzle Configuration**.
 
-1. If you are using several apps domains in PCF, provide a comma-separated list of additional (other than the apps domain indicated in the Pivotal Elastic Runtime, which needs not to be provided) domains. HttpStartStop metrics from Firehose with the entered domain names will not be dropped.
+1. If you are using several apps domains in Pivotal Platform, provide a comma-separated list of additional (other than the apps domain indicated in the Pivotal Elastic Runtime, which needs not to be provided) domains. HttpStartStop metrics from Firehose with the entered domain names will not be dropped.
 
 1. In the **Interval of updating Nozzle's cache for apps metadata** field, you set the value that determines how frequently the information about all the deployed applications is updated. The frequency of updates has an impact on CC API's performance (see note below).
 
@@ -83,13 +83,13 @@ INFO: 2018/04/24 **12:34:56** Done filling cache! Found [1051] Apps
 1. From the **Settings** tab, click **Heartbeat Grafana Configuration**.
 
 1. Provide the following information:
-    1. The organization and space within PCF granting users admin access rights to Altoros Heartbeat.<br><br>
+    1. The organization and space within Pivotal Platform granting users admin access rights to Altoros Heartbeat.<br><br>
        In Altoros Heartbeat, the following users have access to the Admin View:
-           * Administrator accounts within PCF
-           * User accounts within PCF are assigned to the above specified org and space
+           * Administrator accounts within Pivotal Platform
+           * User accounts within Pivotal Platform are assigned to the above specified org and space
        Cloud Foundry user rights map to Grafana rights in the following way:
            <table>
-         <th>PCF space</th><th>Grafana organisation</th>
+         <th>Pivotal Platform space</th><th>Grafana organisation</th>
          <tr><td>Space Manager</td><td>Admin</td></tr>
          <tr><td>Space Developer</td><td>Editor</td></tr>
          <tr><td>Space Auditor</td><td>Viewer</td></tr>
@@ -135,14 +135,14 @@ INFO: 2018/04/24 **12:34:56** Done filling cache! Found [1051] Apps
 1. Click **Save**.
 
 
-## <a id='logsearch_integration'></a> Configure Integration with Altoros Log Search for PCF
+## <a id='logsearch_integration'></a> Configure Integration with Altoros Log Search for Pivotal Platform
 
-To enable integration with the Log Search for PCF tile from Altoros, do the following:
+To enable integration with the Log Search for Pivotal Platform tile from Altoros, do the following:
 
-1. In the **Settings** tab, click **Integration with Altoros Log Search for PCF**.
+1. In the **Settings** tab, click **Integration with Altoros Log Search for Pivotal Platform**.
 
 1. Provide the Elasticsearch Master IP:
-    1. Navigate to the **Ops Manager Installation Dashboard** and click the **Altoros Log Search for PCF** tile.
+    1. Navigate to the **Ops Manager Installation Dashboard** and click the **Altoros Log Search for Pivotal Platform** tile.
     1. In the **Status** tab, copy the first **Elasticsearch Master IP** from the list.
         <%= image_tag("images/ip_of_elasticsearch.png") %>
     1. Paste the copied IP into the **Elasticsearch Master IP** field.
@@ -150,7 +150,7 @@ To enable integration with the Log Search for PCF tile from Altoros, do the foll
 
 1. Click **Save**.
 
-For more information about this feature, see [Altoros Log Search for PCF Integration](integration-with-logsearch.html).
+For more information about this feature, see [Altoros Log Search for Pivotal Platform Integration](integration-with-logsearch.html).
 
 
 ## <a id='external_services'></a> Configure External Services Monitoring
@@ -213,7 +213,7 @@ For more information about third-party services monitoring, see [Third-Party Ser
 
 1. In the **Settings** tab, click **MySQL Server Configuration**.
 
-1. If you are controlling access to the database from outside of PCF and the access is limited by a hostname, clear the **Disable reverse DNS lookups checkbox**.
+1. If you are controlling access to the database from outside of Pivotal Platform and the access is limited by a hostname, clear the **Disable reverse DNS lookups checkbox**.
 
 1. Complete the following fields:
    1. **Read-Only User Password**: The password to automatically provision a `roadmin` user with the right to read all databases in the system, but permission to write to none. Leave blank to disable the read-only user.
@@ -262,13 +262,13 @@ For more information about this feature, see [**High Availability**](ha-with-ext
 
 Check out [Altoros Heartbeat Scaling and Performance Tuning ](altoros-heartbeat-scaling.html#heartbeat-scaling) to find Resource Config examples for different environments.
 
-If you are using the **gp2** volume type with **Amazon EC2** instances and expect an intensive influx of metrics, Altoros recommends provisioning at least 300&nbsp;GB of persistent disk volume to the Heartbeat PCF Monitoring back end VMs to ensure sustained IOPS performance.
+If you are using the **gp2** volume type with **Amazon EC2** instances and expect an intensive influx of metrics, Altoros recommends provisioning at least 300&nbsp;GB of persistent disk volume to the Heartbeat Pivotal Platform Monitoring back end VMs to ensure sustained IOPS performance.
 
 To increase the default disk volume value, do the following:
 
 1. In the **Settings** tab, click **Resource Config**.
 
-1. Change the default value in the Persistent disk type column next to Heartbeat PCF Monitoring back end job from `100 GB` to `300 GB`.
+1. Change the default value in the Persistent disk type column next to Heartbeat Pivotal Platform Monitoring back end job from `100 GB` to `300 GB`.
 
     <%= image_tag("images/resource-config.png") %>
 
@@ -278,7 +278,7 @@ To increase the default disk volume value, do the following:
 
 <p class="note"><strong>Note:</strong> If you are not monitoring external services, Altoros recommends selecting 0 instances for <strong>Collectd VM to monitor external services</strong>. If you are going to monitor external services, reset the number of instances for this VM to 1.</p>
 
-<p class="note"><strong>Note:</strong> After you complete the procedures on this page, follow the instructions in <a href="installing-collectd.html">Installing collectd Add-On for PCF</a>.</p>
+<p class="note"><strong>Note:</strong> After you complete the procedures on this page, follow the instructions in <a href="installing-collectd.html">Installing collectd Add-On for Pivotal Platform</a>.</p>
 
 
 ## <a id='opsmanager'></a> Configure BOSH Director
@@ -292,9 +292,9 @@ To increase the default disk volume value, do the following:
 1. In the **Settings** tab, click **Director Config**.
 
 2. Do one of the following:
-  * For PCF v1.10, paste the copied BOSH HM Forwarder IP address into **Metrics IP Address**.
+  * For Pivotal Platform v1.10, paste the copied BOSH HM Forwarder IP address into **Metrics IP Address**.
          <%= image_tag("images/ops-manager-director-2.png") %>
-  * For PCF v1.11 or later, paste the copied BOSH HM Forwarder IP address into **Bosh HM Forwarder IP Address**.
+  * For Pivotal Platform v1.11 or later, paste the copied BOSH HM Forwarder IP address into **Bosh HM Forwarder IP Address**.
          <%= image_tag("images/ops-manager-director-3.png") %>
 
 1. Click **Save**.
@@ -304,7 +304,7 @@ To increase the default disk volume value, do the following:
 
 ## <a id='tilesmetrics'></a> Configure Redis, RabbitMQ, and MySQL
 
-If you have Redis, RabbitMQ, and MySQL for PCF tiles installed and want to collect metrics from these services using Altoros Heartbeat, set the **Metrics polling interval** field for these services to correspond [storage schemas configured earlier](#storage_configuration).
+If you have Redis, RabbitMQ, and MySQL for Pivotal Platform tiles installed and want to collect metrics from these services using Altoros Heartbeat, set the **Metrics polling interval** field for these services to correspond [storage schemas configured earlier](#storage_configuration).
 
 To set the metrics polling interval in Redis, do the following:
 
@@ -358,4 +358,4 @@ To set the metrics polling interval in MySQL v2 tile, do the following:
 
 1. Return to the **Ops Manager Installation Dashboard** and click **Apply Changes** to apply the configuration settings.
 
-<p class="note"><strong>Note</strong>: After you complete the procedures on this page, follow the instructions in <a href="installing-collectd.html">Installing collectd Add-On for PCF</a>.</p>
+<p class="note"><strong>Note</strong>: After you complete the procedures on this page, follow the instructions in <a href="installing-collectd.html">Installing collectd Add-On for Pivotal Platform</a>.</p>

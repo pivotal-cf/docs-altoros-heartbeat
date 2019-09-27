@@ -17,7 +17,7 @@ Below is a list of common issues you may face when troubleshooting Heartbeat, as
 1. No new metrics appear in the dashboards:
     You have likely run out of disk space. Run the following command:
     <pre>bosh -d altoros-heartbeat-... ssh heartbeat -c 'df -h /var/vcap/store' | grep stdout</pre>
-    If there is no free space left, you must scale **Persistent Disk Type** for **Heartbeat PCF Monitoring backend job** VMs (**Resource Config** page).
+    If there is no free space left, you must scale **Persistent Disk Type** for **Heartbeat Pivotal Platform Monitoring backend job** VMs (**Resource Config** page).
     You will also receive an alert if any free space is available on Heartbeat's back ends.
 
 1. You experience a delay in graphs visualization after using Heartbeat for a while:

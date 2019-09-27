@@ -1,26 +1,26 @@
 ---
-title: Altoros Heartbeat for PCF
+title: Altoros Heartbeat for Pivotal Platform
 owner: Partners
 ---
 
-This documentation describes the Altoros Heartbeat for Pivotal Cloud Foundry (PCF) tile. Installing this tile
+This documentation describes the Altoros Heartbeat for Pivotal Platform tile. Installing this tile
 creates a service that enables operators and app developers to track all system and application metrics
-from their PCF installation in one place.
+from their Pivotal Platform installation in one place.
 
 
 ## <a id='overview'></a> Overview
 
-Altoros Heartbeat for PCF is a multi-tenant monitoring service that uses Cloud Foundry's User Account and Authentication (UAA)
-server to grant access to apps and resources based on the user roles and rights within a PCF deployment. The service pulls,
-stores, visualizes, and sends alerts on the metrics emitted by VMs, PCF components, services, and apps running on PCF.
+Altoros Heartbeat for Pivotal Platform is a multi-tenant monitoring service that uses Cloud Foundry's User Account and Authentication (UAA)
+server to grant access to apps and resources based on the user roles and rights within a Pivotal Platform deployment. The service pulls,
+stores, visualizes, and sends alerts on the metrics emitted by VMs, Pivotal Platform components, services, and apps running on Pivotal Platform.
 
-The tile comes with pre-built integration with the following services available as PCF tiles:
+The tile comes with pre-built integration with the following services available as Pivotal Platform tiles:
 
-- [MySQL for PCF](https://network.pivotal.io/products/p-mysql)
-- [RabbitMQ for PCF](https://network.pivotal.io/products/pivotal-rabbitmq-service)
-- [Redis for PCF](https://network.pivotal.io/products/p-redis)
-- [Crunchy PostgreSQL for PCF](https://network.pivotal.io/products/crunchy-postgresql)
-- [Altoros Log Search for PCF](https://network.pivotal.io/products/altoros-log-search)
+- [MySQL for Pivotal Platform](https://network.pivotal.io/products/p-mysql)
+- [RabbitMQ for Pivotal Platform](https://network.pivotal.io/products/pivotal-rabbitmq-service)
+- [Redis for Pivotal Platform](https://network.pivotal.io/products/p-redis)
+- [Crunchy PostgreSQL for Pivotal Platform](https://network.pivotal.io/products/crunchy-postgresql)
+- [Altoros Log Search for Pivotal Platform](https://network.pivotal.io/products/altoros-log-search)
 
 This integration enables operators to monitor these services without any additional configuration.
 
@@ -34,13 +34,13 @@ The tile comes with pre-built integration with the following externally deployed
 - RabbitMQ
 - Concourse
 
-Altoros Heartbeat for PCF requires additional configuration to monitor these services.
+Altoros Heartbeat for Pivotal Platform requires additional configuration to monitor these services.
 
 ## <a id='features'></a> Key Features
 
-Altoros Heartbeat for PCF includes the following key features:
+Altoros Heartbeat for Pivotal Platform includes the following key features:
 
-* **PCF monitoring**: Collects metrics emitted by all components of PCF
+* **Pivotal Platform monitoring**: Collects metrics emitted by all components of Pivotal Platform
 * **IaaS-level monitoring**: Collects metrics from CPU, memory usage, IO, network, VM states, and more, regardless of the underlying infrastructure
 * **Third-party services monitoring**: Provides the ability to collect metrics from MySQL, PostgreSQL, Redis, RabbitMQ, and more
 * **Application monitoring**: Gathers standard metrics (CPU, memory, or disk usage), arbitrary metrics (gauges, counters, timings, sets),
@@ -55,7 +55,7 @@ Altoros Heartbeat for PCF includes the following key features:
 ## <a id="snapshot"></a> Product Snapshot
 
 
-The following table provides version and version-support information about Altoros Heartbeat for PCF.
+The following table provides version and version-support information about Altoros Heartbeat for Pivotal Platform.
 
 <table class="nice">
     <th>Element</th>
@@ -97,25 +97,25 @@ The following table provides version and version-support information about Altor
 
 ## <a id="prerequisites"></a> Prerequisites
 
-To complete installation of Altoros Heartbeat for PCF, you need the following:
+To complete installation of Altoros Heartbeat for Pivotal Platform, you need the following:
 
 * An AWS S3 bucket or WebDAV with credentials to store alert images from Grafana
 * Alert notification endpoint (e.g. SMTP server for email notifications, Slack incoming webhook URL) with credentials
 * CPU, RAM, and disk resources for seven VMs
-* Internet connectivity between the networks where the PCF deployment and Heartbeat are installed.
-  Altoros recommends installing Heartbeat on the same network with PCF.
-* TCP 2003 and 8126, and UDP 8125 ports open in the firewall to accept connections from PCF and services networks. Ports 2003 and 8125 are used to receive metrics. TCP 8126 is necessary for Load Balancer health checks.
+* Internet connectivity between the networks where the Pivotal Platform deployment and Heartbeat are installed.
+  Altoros recommends installing Heartbeat on the same network with Pivotal Platform.
+* TCP 2003 and 8126, and UDP 8125 ports open in the firewall to accept connections from Pivotal Platform and services networks. Ports 2003 and 8125 are used to receive metrics. TCP 8126 is necessary for Load Balancer health checks.
 
 
 ## <a id="reqs"></a> Requirements
 
-Altoros Heartbeat for PCF has the following requirements:
+Altoros Heartbeat for Pivotal Platform has the following requirements:
 
 * [Pivotal Application Service (formerly Elastic Runtime)](https://network.pivotal.io/products/elastic-runtime) v1.10.x, v1.11.x, v1.12.x, v2.0.x, and v2.1.x
 * [Ops Manager](https://network.pivotal.io/products/ops-manager) v1.10.x, v1.11.x, v1.12.x, v2.0.x, and v2.1.x
-* Installation of the collectd add-on for PCF to enable PCF component VMs and the VMs of any other BOSH-deployed services expose component metrics to Heartbeat.
-For more information, see [Installing collectd Add-on for PCF](installing-collectd.html).
-* (Optional) If you want to enable collection of JMX metrics from Java apps, you will need a custom Java buildpack for Altoros Heartbeat for PCF.
+* Installation of the collectd add-on for Pivotal Platform to enable Pivotal Platform component VMs and the VMs of any other BOSH-deployed services expose component metrics to Heartbeat.
+For more information, see [Installing collectd Add-on for Pivotal Platform](installing-collectd.html).
+* (Optional) If you want to enable collection of JMX metrics from Java apps, you will need a custom Java buildpack for Altoros Heartbeat for Pivotal Platform.
 For more information, see [JMXTrans Agent Integration](jmxtrans.html).
 * (Optional) If you want to enable collection of custom application metrics, you must integrate a StatsD library into the app's code.
   For more information, see [StatsD Integration](statsd.html).
@@ -123,7 +123,7 @@ For more information, see [JMXTrans Agent Integration](jmxtrans.html).
 
 ## <a id="limitations"></a> Limitations
 
-The Altoros Heartbeat for PCF tile has the following limitations:
+The Altoros Heartbeat for Pivotal Platform tile has the following limitations:
 
 * Offline buildpack for collecting JMX metrics is unavailable. Only the online version of the buildpack from
   [this GitHub repository](https://github.com/Altoros/java-buildpack/tree/jmx-agent-integration) can be used to collect JMX metrics from Java apps.
@@ -134,7 +134,7 @@ The Altoros Heartbeat for PCF tile has the following limitations:
 ## <a id="feedback"></a> Feedback
 
 Please provide any bugs, feature requests, or questions to the
-[Pivotal Cloud Foundry Feedback](mailto:pivotal-cf-feedback@pivotal.io) list or send an email to [Altoros Customer Support](mailto:pcftiles-support@altoros.com).
+[Pivotal Platform Feedback](mailto:pivotal-cf-feedback@pivotal.io) list or send an email to [Altoros Customer Support](mailto:pcftiles-support@altoros.com).
 
 
 ## <a id='license'></a> Trial License

@@ -1,9 +1,9 @@
 ---
-title: Release Notes for Altoros Heartbeat for PCF
+title: Release Notes for Altoros Heartbeat for Pivotal Platform
 owner: Partners
 ---
 
-These are release notes for Altoros Heartbeat for Pivotal Cloud Foundry (PCF).
+These are release notes for Altoros Heartbeat for Pivotal Platform.
 
 ## <a id="v1.2.1"></a> v1.2.1
 
@@ -37,14 +37,14 @@ New features available in this release:
 * Added a description of the drill-down feature in the documentation.
 * Added the option to disable SSL certificate verification for UAA and CC API endpoints for Grafana.
 * Truncated the dashboard names ending with `with Logs`. Delete such dashboards, if you have any left.
-* Added support for PCF v2.0 and initial support for PCF v2.1.
+* Added support for Pivotal Platform v2.0 and initial support for Pivotal Platform v2.1.
 * Added OS-tuning properties.
 * Moved a nozzle to a separate VM.
 * Enabled a local cache for metrics requests.
 * Changed a formula for a replication factor and added a property to override a replication factor.
 * Made it possible to configure metrics storage schemas.
 * Updated the existing dashboards for Services.
-* Added dashboards for "MySQL for PCF v1".
+* Added dashboards for "MySQL for Pivotal Platform v1".
 * Added Heartbeat self-alerts.
 * Performance optimizations.
 
@@ -88,7 +88,7 @@ Features included in this release:
 
 Known issues in this release:
 
-* Alerts are not enabled automatically after installation of the Altoros Heartbeat for PCF tile.
+* Alerts are not enabled automatically after installation of the Altoros Heartbeat for Pivotal Platform tile.
   To [enable alerts](using.html#alerting-dashboards), open the **alerting** dashboard and click the save icon.
 
 ## <a id="v0.8.95"></a> v0.8.95
@@ -100,15 +100,15 @@ Features included in this release:
 * Monitoring external services (MySQL, PostgreSQL, Memcached, MongoDB, RabbitMQ, and Redis)
 * Monitoring external Memcached installations (e.g. ElastiCache Memcached)
 * Monitoring external MongoDB installations
-* PCF v1.9 is no longer supported
+* Pivotal Platform v1.9 is no longer supported
 
 Fixed issues in this release:
 
-* The missing BOSH metrics in PCF v1.11
+* The missing BOSH metrics in Pivotal Platform v1.11
 
 Known issues in this release:
 
-* Alerts are not enabled automatically after installation of the Altoros Heartbeat for PCF tile.
+* Alerts are not enabled automatically after installation of the Altoros Heartbeat for Pivotal Platform tile.
   To [enable alerts](using.html#alerting-dashboards), open the **alerting** dashboard and click the save icon.
 
 ## <a id="v0.8.94"></a> v0.8.94
@@ -118,12 +118,12 @@ Known issues in this release:
 Features included in this release:
 
 * Service instance update
-* Automated update of all service instances upon PCF tile upgrade
-* Support for monitoring [Altoros Log Search for PCF](https://network.pivotal.io/products/altoros-log-search/) (Elasticsearch)
+* Automated update of all service instances upon Pivotal Platform tile upgrade
+* Support for monitoring [Altoros Log Search for Pivotal Platform](https://network.pivotal.io/products/altoros-log-search/) (Elasticsearch)
 
 Known issues in this release:
 
-* Alerts are not enabled automatically after installation of the Altoros Heartbeat for PCF tile.
+* Alerts are not enabled automatically after installation of the Altoros Heartbeat for Pivotal Platform tile.
   To [enable alerts](using.html#alerting-dashboards), open the **alerting** dashboard and click the save icon.
 
 ## <a id="v0.8.93"></a> v0.8.93
@@ -132,14 +132,14 @@ Known issues in this release:
 
 Features included in this release:
 
-* Added integration with the [Altoros Log Search for PCF](https://network.pivotal.io/products/altoros-log-search) tile
+* Added integration with the [Altoros Log Search for Pivotal Platform](https://network.pivotal.io/products/altoros-log-search) tile
 * Added configuration of the metrics storage
 
 Known issues in this release:
 
 * After renaming the org/space with the Altoros Heartbeat service instance, access to metrics of this org/space is unavailable.
   For instructions on how to fix the issue manually, contact Altoros support team.
-* Alerts are not enabled automatically after installation of the Altoros Heartbeat for PCF tile.
+* Alerts are not enabled automatically after installation of the Altoros Heartbeat for Pivotal Platform tile.
   To [enable alerts](using.html#alerting-dashboards), open the **alerting** dashboard and click the save icon.
 
 ## <a id="v0.8.92"></a> v0.8.92
@@ -159,7 +159,7 @@ Known issues in this release:
 
 * After renaming the org/space with the Altoros Heartbeat service instance, access to metrics of this org/space is unavailable.
   For instructions on how to fix the issue manually, contact Altoros support team.
-* Alerts are not enabled automatically after installation of the Altoros Heartbeat for PCF tile.
+* Alerts are not enabled automatically after installation of the Altoros Heartbeat for Pivotal Platform tile.
   To [enable alerts](using.html#alerting-dashboards), open the **alerting** dashboard and click the save icon.
 
 ## <a id="v0.8.91"></a> v0.8.91
@@ -168,7 +168,7 @@ Known issues in this release:
 
 Features included in this release:
 
-* Added support of external MySQL for PCF Elastic Runtime
+* Added support of external MySQL for Pivotal Platform Elastic Runtime
 * Added support of on-demand version of Crunchy PostgreSQL
 * Minor updates of dashboards
 * Update the version of carbonapi
@@ -181,7 +181,7 @@ Known issues in this release:
 
 * After renaming the org/space with the Altoros Heartbeat service instance, access to metrics of this org/space is unavailable.
   For instructions on how to fix the issue manually, contact Altoros support team.
-* Alerts are not enabled automatically after installation of the Altoros Heartbeat for PCF tile.
+* Alerts are not enabled automatically after installation of the Altoros Heartbeat for Pivotal Platform tile.
   To [enable alerts](using.html#alerting-dashboards), open the **alerting** dashboard and click the save icon.
 
 ## <a id="v0.8.90"></a> v0.8.90
@@ -191,7 +191,7 @@ Known issues in this release:
 Features included in this release:
 
 * Open Beta
-* PCF monitoring with predefined dashboards
+* Pivotal Platform monitoring with predefined dashboards
 * UAA integration
 * The possibility to use the service in a multitenant mode
 * Services monitoring (RabbitMQ, Redis, MySQL, Crunchy PostgreSQL, Dingo PostgreSQL) with predefined dashboards
@@ -204,5 +204,5 @@ Known issues in this release:
   (the org/space specified at the Grafana configuration step during the installation process) is not supported.
 * After renaming the org/space with the Altoros Heartbeat service instance, access to metrics of this org/space is unavailable.
   For instructions on how to fix the issue manually, contact Altoros.
-* Alerts are not enabled automatically after installation of the Altoros Heartbeat for PCF tile.
+* Alerts are not enabled automatically after installation of the Altoros Heartbeat for Pivotal Platform tile.
   To [enable alerts](using.html#alerting-dashboards), open the **alerting** dashboard and click the save icon.

@@ -1,24 +1,24 @@
 ---
-title: Installing collectd Add-On for PCF
+title: Installing collectd Add-On for Pivotal Platform
 owner: Partners
 ---
 
-This topic describes how to add collectd to your Pivotal Cloud Foundry (PCF) deployment.
+This topic describes how to add collectd to your Pivotal Platform deployment.
 
-## <a id='about'></a>About collectd Add-On for PCF
+## <a id='about'></a>About collectd Add-On for Pivotal Platform
 
 This add-on is required to enable the Altoros Heartbeat monitoring solution to consume component metrics
-from the VMs that make up a PCF deployment. The [collectd](https://collectd.org/) add-on gathers VM
-metrics from PCF platform components and any other BOSH-deployed services, such as databases,
+from the VMs that make up a Pivotal Platform deployment. The [collectd](https://collectd.org/) add-on gathers VM
+metrics from Pivotal Platform platform components and any other BOSH-deployed services, such as databases,
 and makes this information available to Altoros Heartbeat over the network.
 
 ## <a id='prerequisites'></a>Prerequisites
 
-<p class="note"><strong>Note:</strong> collectd add-on for PCF does not work on Windows machines.</p>
+<p class="note"><strong>Note:</strong> collectd add-on for Pivotal Platform does not work on Windows machines.</p>
 
 To complete the collectd add-on installation:
 
-* You must be a PCF operator with admin rights.
+* You must be a Pivotal Platform operator with admin rights.
   For more information, see [Operators](https://docs.pivotal.io/pivotalcf/customizing/user-types.html#operator).
 * You must have Pivotal Operations Manager (Ops Manager) v1.10 or later.
 * Ensure you have at least 128&nbsp;MB of memory free on each VM before deploying collectd add-on. The collectd add-on uses 50&nbsp;MB of memory.
@@ -115,9 +115,9 @@ If you are not going to use HA mode, use the IP address of any of Altoros Heartb
 1. On the Ops Manager VM, navigate to the software binary location.
     <pre class="terminal">$ cd PATH-TO-BINARY</pre>
 
-If you are using PCF v1.11 or later, follow the [BOSH CLI v2](#bosh-cli-v2) procedures to deploy the collectd add-on.
+If you are using Pivotal Platform v1.11 or later, follow the [BOSH CLI v2](#bosh-cli-v2) procedures to deploy the collectd add-on.
 
-If you are using PCF v1.10, follow the [BOSH CLI v1](#bosh-cli-v1) procedures to deploy the collectd add-on.
+If you are using Pivotal Platform v1.10, follow the [BOSH CLI v1](#bosh-cli-v1) procedures to deploy the collectd add-on.
 
 ### <a id='bosh-cli-v2'></a> Deploy the collectd Add-On with BOSH CLI v2
 
@@ -214,17 +214,17 @@ To remove the collectd add-on from your existing runtime config and roll back to
     <pre class="terminal">$ ssh -i PATH-TO-PRIVATE-KEY ubuntu@YOUR-OPS-MANAGER-VM-IP</pre>
 
 1. On the Ops Manager VM, retrieve the latest runtime configuration saved on the BOSH Director.
-    1. If you are using PCF v1.10, use the BOSH CLI v1 command:
+    1. If you are using Pivotal Platform v1.10, use the BOSH CLI v1 command:
         <pre class="terminal">$ bosh runtime-config > PATH-TO-SAVE-THE-RUNTIME-CONFIG</pre>
-    1. If you are using PCF v1.11 or later, use the BOSH CLI v2 command:
+    1. If you are using Pivotal Platform v1.11 or later, use the BOSH CLI v2 command:
         <pre class="terminal">$ bosh2 -e my-env runtime-config > PATH-TO-SAVE-THE-RUNTIME-CONFIG</pre>
 
 1. From the file you retrieved above, delete the lines that were added at the [Create a collectd Manifest](#manifest) step.
 
 1. Update the runtime configuration.
-    1. If you are using PCF v1.10, use the BOSH CLI v1 command:
+    1. If you are using Pivotal Platform v1.10, use the BOSH CLI v1 command:
         <pre class="terminal">$ bosh update runtime-config PATH-TO-SAVE-THE-RUNTIME-CONFIG</pre>
-    1. If you are using PCF v1.11 or later, use the BOSH CLI v2 command:
+    1. If you are using Pivotal Platform v1.11 or later, use the BOSH CLI v2 command:
         <pre class="terminal">$ bosh2 -e my-env update-runtime-config PATH-TO-SAVE-THE-RUNTIME-CONFIG</pre>
 
 1. Navigate to your Installation Dashboard in Ops Manager.
@@ -238,9 +238,9 @@ If you have no existing runtime configuration, follow the steps below:
     releases: []</pre>
 
 1. Update the runtime configuration with the `empty-runtime.yml` file.
-    1. If you are using PCF v1.10, use the BOSH CLI v1 command:
+    1. If you are using Pivotal Platform v1.10, use the BOSH CLI v1 command:
         <pre class="terminal">$ bosh update runtime-config empty-runtime.yml</pre>
-    1. If you are using PCF v1.11 or later, use the BOSH CLI v2 command:
+    1. If you are using Pivotal Platform v1.11 or later, use the BOSH CLI v2 command:
         <pre class="terminal">$ bosh2 -e my-env update-runtime-config empty-runtime.yml</pre>
 
 1. Navigate to your Installation Dashboard in Ops Manager.
